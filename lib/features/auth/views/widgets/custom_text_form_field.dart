@@ -4,7 +4,8 @@ import 'package:yosrixia/core/utils/styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    super.key, required this.labelText,
+    super.key,
+    required this.labelText,
   });
   final String labelText;
 
@@ -16,12 +17,16 @@ class CustomTextFormField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-           Text(labelText, style: Styles.textStyle24),
+          Text(labelText, style: Styles.textStyle24),
           const SizedBox(height: 8),
           TextFormField(
             cursorColor: kSecondaryColor,
             obscureText: labelText.contains('Password') ? true : false,
-            keyboardType: labelText == 'Email' ? TextInputType.emailAddress : labelText.contains('Number')? TextInputType.phone : TextInputType.visiblePassword,
+            keyboardType: labelText.contains('Email')
+                ? TextInputType.emailAddress
+                : labelText.contains('Number')
+                    ? TextInputType.phone
+                    : TextInputType.visiblePassword,
             style: Styles.textStyle24.copyWith(color: kSecondaryColor),
             decoration: InputDecoration(
               filled: true,

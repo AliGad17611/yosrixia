@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yosrixia/core/responsive/widget_height.dart';
+import 'package:yosrixia/features/auth/views/widgets/child_role.dart';
+import 'package:yosrixia/features/auth/views/widgets/doctor_role.dart';
 import 'package:yosrixia/features/auth/views/widgets/yosrixia.dart';
 
 class SelectRoleViewBody extends StatelessWidget {
@@ -6,11 +9,14 @@ class SelectRoleViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         body: Column(
       children: [
-        Yosrixia(),
-        SizedBox(height: 30),
+        const Yosrixia(),
+        SizedBox(height: widgetHeight(context: context, height: 30)),
+        const ChildRole(),
+        SizedBox(height: widgetHeight(context: context, height: 25)),
+        const DoctorRole(),
       ],
     ));
   }

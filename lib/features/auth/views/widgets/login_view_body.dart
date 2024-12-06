@@ -25,10 +25,10 @@ class LoginViewBody extends StatelessWidget {
             const SizedBox(height: 24),
             const CustomTextFormField(labelText: 'Password'),
             const SizedBox(height: 8),
-            const Align(
+            Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: EdgeInsets.only(right: 28),
+                padding: const EdgeInsets.only(right: 28),
                 child: Text(
                   'Forgot Password?',
                   style: Styles.textStyle24,
@@ -42,7 +42,7 @@ class LoginViewBody extends StatelessWidget {
               onTap: () {
                 GoRouter.of(context).push(AppRouter.selectRole);
               },
-              child: const Text(
+              child: Text(
                 'Create Account',
                 style: Styles.textStyle32,
               ),

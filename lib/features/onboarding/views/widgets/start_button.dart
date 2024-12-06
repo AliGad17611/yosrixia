@@ -30,7 +30,7 @@ class StartButton extends StatelessWidget {
                   kGridentEnd,
                 ],
               )),
-          child: const Center(child: Text('Start', style: Styles.textStyle40))),
+          child: Center(child: Text('Start', style: Styles.textStyle40))),
     );
   }
 }
