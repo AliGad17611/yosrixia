@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({
-    super.key,
-    required this.labelText,
-  });
+class NumberTextFormField extends StatelessWidget {
+  const NumberTextFormField({super.key, required this.labelText});
   final String labelText;
 
   @override
@@ -21,12 +18,7 @@ class CustomTextFormField extends StatelessWidget {
           const SizedBox(height: 8),
           TextFormField(
             cursorColor: kSecondaryColor,
-            obscureText: labelText.contains('Password') ? true : false,
-            keyboardType: labelText.contains('Email')
-                ? TextInputType.emailAddress
-                : labelText.contains('Number')
-                    ? TextInputType.phone
-                    : TextInputType.visiblePassword,
+            keyboardType: TextInputType.phone,
             style: Styles.textStyle24.copyWith(color: kSecondaryColor),
             decoration: InputDecoration(
               filled: true,

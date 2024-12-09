@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/auth/views/widgets/custom_text_form_field.dart';
+import 'package:yosrixia/core/widgets/email_text_form_field.dart';
+import 'package:yosrixia/core/widgets/password_text_form_field.dart';
 import 'package:yosrixia/features/auth/views/widgets/yosrixia.dart';
 import 'package:yosrixia/features/widgets/custom_button.dart';
 
@@ -21,9 +22,9 @@ class LoginViewBody extends StatelessWidget {
               style: Styles.textStyle40.copyWith(height: 0.7),
             ),
             const SizedBox(height: 40),
-            const CustomTextFormField(labelText: 'Email'),
+            const EmailTextFormField(labelText: 'Email'),
             const SizedBox(height: 24),
-            const CustomTextFormField(labelText: 'Password'),
+            const PasswordTextFormField(labelText: 'Password'),
             const SizedBox(height: 8),
             Align(
               alignment: Alignment.centerRight,
