@@ -30,8 +30,18 @@ abstract class Styles {
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle textStyle64Passion = GoogleFonts.passionOne(
+    fontSize: 64.sp,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle textStyle96 = GoogleFonts.passionOne(
     fontSize: 96.sp,
     fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle textStyle128Passion = GoogleFonts.passionOne(
+    fontSize: 128.sp,
+    fontWeight: FontWeight.w400,
   );
 }

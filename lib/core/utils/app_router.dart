@@ -3,6 +3,7 @@ import 'package:yosrixia/features/auth/views/login_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/parent%20registeration/parent_email_confirmation.dart';
 import 'package:yosrixia/features/auth/views/widgets/parent%20registeration/parent_register_view.dart';
 import 'package:yosrixia/features/auth/views/select_role_view.dart';
+import 'package:yosrixia/features/droos/views/aleph1.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 
 abstract class AppRouter {
@@ -12,6 +13,7 @@ abstract class AppRouter {
   static const String home = '/home';
   static const String selectRole = '/selectRole';
   static const String parentEmailConfirmation = '/parentEmailConfirmation';
+  static const String aleph1 = '/aleph1';
   static final router = GoRouter(routes: [
     GoRoute(
       path: onboarding,
@@ -31,6 +33,10 @@ abstract class AppRouter {
     ),
     GoRoute(path: parentEmailConfirmation,
     builder: (context, state) => const ParentEmailConfirmation(),
+    ),
+    GoRoute(
+      path: aleph1,
+      builder: (context, state) => const Aleph1(),
     ),
     
   ]);
