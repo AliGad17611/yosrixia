@@ -31,13 +31,13 @@ abstract class AppRouter {
       path: parentRegister,
       builder: (context, state) => const ParentRegisterView(),
     ),
-    GoRoute(path: parentEmailConfirmation,
-    builder: (context, state) => const ParentEmailConfirmation(),
+    GoRoute(
+      path: parentEmailConfirmation,
+      builder: (context, state) => const ParentEmailConfirmation(),
     ),
     GoRoute(
       path: aleph1,
       builder: (context, state) => const Aleph1(),
     ),
-    
   ]);
 }

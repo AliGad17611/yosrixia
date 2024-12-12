@@ -1,55 +1,48 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:yosrixia/features/droos/views/manger/speech_bloc/speech_events.dart';
 import 'package:yosrixia/features/droos/views/manger/speech_bloc/speech_states.dart';
 
 class SpeechBloc extends Bloc<SpeechEvent, SpeechState> {
-  final stt.SpeechToText _speechToText = stt.SpeechToText();
+  final stt.SpeechToText _speechToText;
 
-  SpeechBloc() : super(SpeechInitial()) {
-    on<InitializeSpeech>(_onInitializeSpeech);
-    on<StartListening>(_onStartListening);
-    on<StopListening>(_onStopListening);
-    on<UpdateSpeechResult>(_onUpdateSpeechResult);
-    on<CheckMatch>(_onCheckMatch);
+  SpeechBloc()
+      : _speechToText = stt.SpeechToText(),
+        super(InitialSpeechState()) {
+    on<StartListeningEvent>(_onStartListening);
+    on<StopListeningEvent>(_onStopListening);
+    on<ListeningSpeechEvent>(_onListeningSpeech);
   }
 
-  void _onInitializeSpeech(InitializeSpeech event, Emitter<SpeechState> emit) async {
-    bool available = await _speechToText.initialize();
-    emit(state.copyWith(isInitialized: available));
-  }
-
-  void _onStartListening(StartListening event, Emitter<SpeechState> emit) async {
-    if (!state.isInitialized) return;
-
-    _speechToText.listen(
-      onResult: (result) {
-        add(UpdateSpeechResult(result.recognizedWords, result.confidence));
-      },
-      localeId: 'ar-EG', // العربية
-    );
-
-    emit(state.copyWith(isListening: true));
-  }
-
-  void _onStopListening(StopListening event, Emitter<SpeechState> emit) async {
-    await _speechToText.stop();
-    emit(state.copyWith(isListening: false));
-  }
-
-  void _onUpdateSpeechResult(UpdateSpeechResult event, Emitter<SpeechState> emit) {
-    emit(state.copyWith(text: event.text, confidence: event.confidence));
-  }
-
-  void _onCheckMatch(CheckMatch event, Emitter<SpeechState> emit) {
-    Color newColor;
-    if (state.text == event.customText) {
-      newColor = Colors.green;
-    } else {
-      newColor = Colors.red;
+  Future<void> _onStartListening(
+      StartListeningEvent event, Emitter<SpeechState> emit) async {
+    if (await _speechToText.initialize()) {
+      _speechToText.listen(
+        onResult: (result) {
+          final text = result.recognizedWords;
+          log(text);
+          add(ListeningSpeechEvent(recognizedText: text, wordToMatch: event.wordToMatch));
+        },
+        localeId: 'ar-EG',
+      );
     }
+  }
 
-    emit(state.copyWith(textColor: newColor));
+  Future<void> _onStopListening(
+      StopListeningEvent event, Emitter<SpeechState> emit) async {
+    await _speechToText.stop();
+    emit(InitialSpeechState());
+  }
+
+  void _onListeningSpeech(
+      ListeningSpeechEvent event, Emitter<SpeechState> emit) {
+    log(event.recognizedText);
+    if (event.recognizedText == event.wordToMatch) {
+      emit(MatchSpeechState(true));
+    } else {
+      emit(MatchSpeechState(false));
+    }
   }
 }

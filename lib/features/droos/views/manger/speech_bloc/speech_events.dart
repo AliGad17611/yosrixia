@@ -1,20 +1,31 @@
-abstract class SpeechEvent {}
+import 'package:equatable/equatable.dart';
 
-class InitializeSpeech extends SpeechEvent {}
+abstract class SpeechEvent extends Equatable {
+  const SpeechEvent();
 
-class StartListening extends SpeechEvent {}
-
-class StopListening extends SpeechEvent {}
-
-class UpdateSpeechResult extends SpeechEvent {
-  final String text;
-  final double confidence;
-
-  UpdateSpeechResult(this.text, this.confidence);
+  @override
+  List<Object?> get props => [];
 }
 
-class CheckMatch extends SpeechEvent {
-  final String customText;
+// Event to start listening
+class StartListeningEvent extends SpeechEvent {
+  final String wordToMatch;
 
-  CheckMatch(this.customText);
+  const StartListeningEvent({required this.wordToMatch});
+}
+
+// Event to stop listening
+class StopListeningEvent extends SpeechEvent {
+
+}
+
+// Event when text is recognized from speech
+class ListeningSpeechEvent extends SpeechEvent {
+  final String recognizedText;
+   final String wordToMatch;
+
+  const ListeningSpeechEvent({required this.recognizedText,required this.wordToMatch});
+
+  @override
+  List<Object?> get props => [recognizedText,wordToMatch];
 }

@@ -1,44 +1,14 @@
-import 'package:flutter/material.dart';
+// speech_state.dart
+abstract class SpeechState {}
 
-class SpeechState {
-  final bool isInitialized;
-  final bool isListening;
-  final String text;
-  final double confidence;
-  final Color textColor;
+class InitialSpeechState extends SpeechState {}
 
-  SpeechState({
-    required this.isInitialized,
-    required this.isListening,
-    required this.text,
-    required this.confidence,
-    required this.textColor,
-  });
-
-  SpeechState copyWith({
-    bool? isInitialized,
-    bool? isListening,
-    String? text,
-    double? confidence,
-    Color? textColor,
-  }) {
-    return SpeechState(
-      isInitialized: isInitialized ?? this.isInitialized,
-      isListening: isListening ?? this.isListening,
-      text: text ?? this.text,
-      confidence: confidence ?? this.confidence,
-      textColor: textColor ?? this.textColor,
-    );
-  }
+class ListeningSpeechState extends SpeechState {
+  final String recognizedText;
+  ListeningSpeechState(this.recognizedText);
 }
 
-class SpeechInitial extends SpeechState {
-  SpeechInitial()
-      : super(
-          isInitialized: false,
-          isListening: false,
-          text: "",
-          confidence: 1.0,
-          textColor: Colors.black,
-        );
+class MatchSpeechState extends SpeechState {
+  final bool isMatch;
+  MatchSpeechState(this.isMatch);
 }
