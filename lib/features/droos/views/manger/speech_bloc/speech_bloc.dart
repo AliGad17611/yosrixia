@@ -22,8 +22,10 @@ class SpeechBloc extends Bloc<SpeechEvent, SpeechState> {
       _speechToText.listen(
         onResult: (result) {
           final text = result.recognizedWords;
-          log(text);
-          add(ListeningSpeechEvent(recognizedText: text, wordToMatch: event.wordToMatch));
+          if (result.finalResult) {
+            add(ListeningSpeechEvent(
+                recognizedText: text, wordToMatch: event.wordToMatch));
+          }
         },
         localeId: 'ar-EG',
       );
