@@ -3,9 +3,10 @@ import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
 class EmailTextFormField extends StatelessWidget {
-  const EmailTextFormField({super.key, required this.labelText});
+  const EmailTextFormField({super.key, required this.labelText, required this.validator, this.controller});
   final String labelText;
-
+  final String? Function(String?) validator;
+final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,6 +18,8 @@ class EmailTextFormField extends StatelessWidget {
           Text(labelText, style: Styles.textStyle24),
           const SizedBox(height: 8),
           TextFormField(
+            controller: controller,
+            validator: validator,
             cursorColor: kSecondaryColor,
             keyboardType: TextInputType.emailAddress,
             style: Styles.textStyle24.copyWith(color: kSecondaryColor),

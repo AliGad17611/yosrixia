@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/models/word_model.dart';
+import 'package:yosrixia/features/child/dross/manger/speech_bloc/speech_bloc.dart';
+import 'package:yosrixia/features/child/dross/views/widgets/mic_widget.dart';
+import 'package:yosrixia/features/child/dross/views/widgets/speaker_widget.dart';
+import 'package:yosrixia/features/child/dross/views/widgets/text_widget.dart';
+
+class WordWidget extends StatelessWidget {
+  const WordWidget({
+    super.key,
+    required this.wordModel,
+  });
+  final WordModel wordModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => SpeechBloc(),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: Image.asset(
+              wordModel.imagePath,
+            ),
+          ),
+          Row(
+            children: [
+              MicWidget(
+                text: wordModel.wordToCheck,
+              ),
+              const Spacer(),
+              TextWidget(
+                text: wordModel.wordToDisplay,
+              ),
+              const Spacer(),
+              SpeakerWidget(
+                voicePath: wordModel.voicePath,
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

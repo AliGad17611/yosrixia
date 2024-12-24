@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/responsive/widget_height.dart';
 import 'package:yosrixia/core/responsive/widget_width.dart';
+import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/assets_data.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
@@ -13,7 +15,9 @@ class DoctorRole extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        GoRouter.of(context).push(AppRouter.parentRegister, extra: 'doctor');
+      },
       child: Container(
           width: widgetWidth(context: context, width: 344),
           height: widgetHeight(context: context, height: 246),

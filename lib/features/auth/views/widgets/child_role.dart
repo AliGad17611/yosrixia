@@ -16,7 +16,7 @@ class ChildRole extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.parentRegister);
+        GoRouter.of(context).push(AppRouter.parentRegister, extra: 'child');
       },
       child: Container(
           width: widgetWidth(context: context, width: 344),

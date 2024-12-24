@@ -3,8 +3,10 @@ import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
 class PasswordTextFormField extends StatelessWidget {
-  const PasswordTextFormField({super.key, required this.labelText});
+  const PasswordTextFormField({super.key, required this.labelText, required this.validator, this.controller});
   final String labelText;
+  final String? Function(String?) validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,8 @@ class PasswordTextFormField extends StatelessWidget {
           Text(labelText, style: Styles.textStyle24),
           const SizedBox(height: 8),
           TextFormField(
+            controller: controller,
+            validator: validator,
             obscureText: true,
             cursorColor: kSecondaryColor,
             keyboardType: TextInputType.visiblePassword,
