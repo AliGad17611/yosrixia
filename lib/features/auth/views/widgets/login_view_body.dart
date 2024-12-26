@@ -24,10 +24,10 @@ class LoginViewBody extends StatelessWidget {
               // Navigate to the appropriate role-based screen
               switch (state.role) {
                 case 'child':
-                  GoRouter.of(context).push(AppRouter.childHome);
+                  GoRouter.of(context).go(AppRouter.childHome);
                   break;
                 case 'doctor':
-                  GoRouter.of(context).push(AppRouter.selectRole);
+                  GoRouter.of(context).go(AppRouter.doctorHome);
                   break;
                 case 'support':
                   GoRouter.of(context).push(AppRouter.selectRole);

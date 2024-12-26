@@ -20,11 +20,16 @@ abstract class Styles {
     color: kPrimaryColor,
   );
 
+  static TextStyle textStyle32Inter = GoogleFonts.inter(
+    fontSize: 48.sp,
+    fontWeight: FontWeight.w400,
+    color: kBlackColor,
+  );
+
   static TextStyle textStyle40 = TextStyle(
     fontSize: 40.sp,
     fontWeight: FontWeight.w400,
   );
-
 
   static TextStyle textStyle40Passion = GoogleFonts.passionOne(
     fontSize: 40.sp,
@@ -32,10 +37,9 @@ abstract class Styles {
   );
 
   static TextStyle textStyle48 = GoogleFonts.passeroOne(
-    fontSize: 48.sp,
-    fontWeight: FontWeight.w400,
-    color: const Color(0xFF53ACDE)
-  );
+      fontSize: 48.sp,
+      fontWeight: FontWeight.w400,
+      color: const Color(0xFF53ACDE));
 
   static TextStyle textStyle64Passion = GoogleFonts.passionOne(
     fontSize: 64.sp,

@@ -7,6 +7,7 @@ import 'package:yosrixia/features/auth/views/select_role_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/user_information_view.dart';
 import 'package:yosrixia/features/child/dross/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/views/dross_home_view.dart';
+import 'package:yosrixia/features/child/dross/views/sub_character_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/child/dross/views/aleph1.dart';
@@ -19,6 +20,7 @@ abstract class AppRouter {
   static const String childHome = '/childHome';
   static const String droosHome = '/droosHome';
   static const String characters = '/characters';
+  static const String subCharacters = '/subCharacters';
   static const String home = '/home';
   static const String selectRole = '/selectRole';
   static const String parentEmailConfirmation = '/parentEmailConfirmation';
@@ -70,6 +72,10 @@ abstract class AppRouter {
     GoRoute(
       path: characters,
       builder: (context, state) => const CharactersView(),
+    ),
+    GoRoute(
+      path: subCharacters,
+      builder: (context, state) => const SubCharacterView(),
     ),
     GoRoute(
       path: aleph1,

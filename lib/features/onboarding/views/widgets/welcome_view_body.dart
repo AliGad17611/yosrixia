@@ -11,7 +11,7 @@ class WelcomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 146),
+        padding: const EdgeInsets.symmetric(vertical: 130),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
