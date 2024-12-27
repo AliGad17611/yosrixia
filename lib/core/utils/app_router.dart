@@ -11,10 +11,12 @@ import 'package:yosrixia/features/child/dross/views/sub_character_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/child/dross/views/aleph1.dart';
+import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 
 abstract class AppRouter {
-  static const String onboarding = '/';
+  static const String splash = '/';
+  static const String welcome = '/welcome';
   static const String login = '/login';
   static const String parentRegister = '/parentRegister';
   static const String childHome = '/childHome';
@@ -30,7 +32,11 @@ abstract class AppRouter {
   static const String doctorHome = '/doctorHome';
   static final router = GoRouter(routes: [
     GoRoute(
-      path: onboarding,
+      path: splash,
+      builder: (context, state) => const SplashView(),
+    ),
+    GoRoute(
+      path: welcome,
       builder: (context, state) => const WelcomeView(),
     ),
     GoRoute(

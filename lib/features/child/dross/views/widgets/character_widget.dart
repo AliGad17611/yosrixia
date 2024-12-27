@@ -1,21 +1,27 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:yosrixia/core/utils/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/models/character_model.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
+import 'package:yosrixia/features/child/dross/manger/speech_bloc/speech_bloc.dart';
+import 'package:yosrixia/features/child/dross/manger/speech_bloc/speech_events.dart';
 
 class CharacterWidget extends StatelessWidget {
   const CharacterWidget({super.key, required this.subLetter});
-  final String subLetter;
+  final CharacterModel subLetter;
 
   @override
   Widget build(BuildContext context) {
+        final bloc = context.read<SpeechBloc>();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         GestureDetector(
-          onTap: () {
-            GoRouter.of(context).push(AppRouter.subCharacters);
+          onTap: () async{
+            final player = AudioPlayer();
+        await player.play(AssetSource(subLetter.voicePath));
           },
           child: Container(
             width: 148,
@@ -26,14 +32,17 @@ class CharacterWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(35),
             ),
             child: Text(
-              subLetter,
+              subLetter.characterToDisplay,
               style: Styles.textStyle64Inter,
               textAlign: TextAlign.center,
             ),
           ),
         ),
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+        bloc.add(StartListeningEvent(wordToMatch: subLetter.wordToCheck));
+
+            },
             icon:
                 const Icon(Icons.graphic_eq, size: 50, color: kSecondaryColor)),
       ],

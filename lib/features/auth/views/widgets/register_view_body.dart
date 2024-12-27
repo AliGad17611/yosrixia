@@ -8,8 +8,8 @@ import 'package:yosrixia/features/auth/views/widgets/custom_text_button.dart';
 import 'package:yosrixia/features/auth/views/widgets/yosrixia.dart';
 
 class RegisterViewBody extends StatelessWidget {
-  const RegisterViewBody({super.key,this.extra});
-final String? extra;
+  const RegisterViewBody({super.key, this.extra});
+  final String? extra;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,7 +27,9 @@ final String? extra;
                     const Yosrixia(),
                     const SizedBox(height: 12),
                     EmailTextFormField(
-                      labelText: 'Parent Email',
+                      labelText: extra!.toLowerCase() == 'doctor'
+                          ? 'Email'
+                          : 'Parent Email',
                       controller: cubit.emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -41,7 +43,9 @@ final String? extra;
                     ),
                     const SizedBox(height: 12),
                     NumberTextFormField(
-                      labelText: 'Parent Number',
+                      labelText: extra!.toLowerCase() == 'doctor'
+                          ? 'Number'
+                          : 'Parent Number',
                       controller: cubit.numberController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {

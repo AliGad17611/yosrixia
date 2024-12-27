@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
@@ -12,7 +15,11 @@ class LetterButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.subCharacters);
+        globalMainCharacter = letter;
+        log(globalMainCharacter);
+        letter == ''
+            ? null
+            : GoRouter.of(context).push(AppRouter.subCharacters);
       },
       child: Container(
         width: 97,

@@ -17,32 +17,35 @@ class WordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SpeechBloc(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 50),
-            child: Image.asset(
-              wordModel.imagePath,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: wordModel.imagePadding),
+              child: Image.asset(
+                wordModel.imagePath,
+              ),
             ),
-          ),
-          Row(
-            children: [
-              MicWidget(
-                text: wordModel.wordToCheck,
-              ),
-              const Spacer(),
-              TextWidget(
-                text: wordModel.wordToDisplay,
-              ),
-              const Spacer(),
-              SpeakerWidget(
-                voicePath: wordModel.voicePath,
-              )
-            ],
-          ),
-        ],
+            Row(
+              children: [
+                MicWidget(
+                  text: wordModel.wordToCheck,
+                ),
+                const Spacer(),
+                TextWidget(
+                  text: wordModel.wordToDisplay,
+                ),
+                const Spacer(),
+                SpeakerWidget(
+                  voicePath: wordModel.voicePath,
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

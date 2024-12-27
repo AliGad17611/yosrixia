@@ -78,7 +78,7 @@ Map<String, Map<String, List<WordModel>>> arabicCharactersMap = {
       WordModel(
         wordToDisplay: 'عائد',
         wordToCheck: 'عائد',
-        imagePadding: 0,
+        imagePadding: 100,
         imagePath: 'assets/images/characters/alef/alef2Aaid.png',
         voicePath: 'images/characters/alef/alef2Aaid.wav',
       ),
