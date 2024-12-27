@@ -1,6 +1,4 @@
-import 'package:yosrixia/core/helper/arabic_characters_map.dart';
 
 String globalMainCharacter = '';
-List<String> globalSubCharacter =
-    arabicCharactersMap[globalMainCharacter]!.keys.toList();
+List<String> globalSubCharacter = [];
 int globalCharacterIndex = 0;

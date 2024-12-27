@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/helper/arabic_characters_map.dart';
 import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
@@ -16,6 +17,8 @@ class LetterButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         globalMainCharacter = letter;
+        globalSubCharacter = arabicCharactersMap[globalMainCharacter]!.keys.toList();
+        // context.read<CharacterCubit>().updateMainCharacter(letter);
         log(globalMainCharacter);
         letter == ''
             ? null
@@ -39,23 +42,3 @@ class LetterButton extends StatelessWidget {
   }
 }
 
-
-  
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       alignment: Alignment.center,
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(30),
-//       ),
-//       child: Text(
-//         letter,
-//         style: const TextStyle(
-//           fontSize: 24,
-//           fontWeight: FontWeight.bold,
-//         ),
-//       ),
-//     );
-//   }
-// }

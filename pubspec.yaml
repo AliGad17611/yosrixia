@@ -44,6 +44,7 @@ dependencies:
   cloud_firestore: ^5.5.1
   firebase_auth: ^5.3.4
   audioplayers: ^6.1.0
+  rename: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -68,9 +69,37 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/welcome/
-    - assets/images/characters/alef/
-    - assets/images/childHome/
+    - assets/media/welcome/
+    - assets/media/sound/
+    - assets/media/characters/alef/
+    - assets/media/characters/ba/
+    - assets/media/characters/ta/
+    - assets/media/characters/tha/
+    - assets/media/characters/jeem/
+    - assets/media/characters/ha/
+    - assets/media/characters/kha/
+    - assets/media/characters/dal/
+    - assets/media/characters/dhal/
+    - assets/media/characters/ra/
+    - assets/media/characters/za/
+    - assets/media/characters/seen/
+    - assets/media/characters/sheen/
+    - assets/media/characters/sad/
+    - assets/media/characters/dad/
+    - assets/media/characters/taa/
+    - assets/media/characters/zaa/
+    - assets/media/characters/ain/
+    - assets/media/characters/ghain/
+    - assets/media/characters/fa/
+    - assets/media/characters/qaf/
+    - assets/media/characters/kaf/
+    - assets/media/characters/lam/
+    - assets/media/characters/meem/
+    - assets/media/characters/noon/
+    - assets/media/characters/haa/
+    - assets/media/characters/waw/
+    - assets/media/characters/ya/
+    - assets/media/childHome/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

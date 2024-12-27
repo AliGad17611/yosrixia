@@ -1,9 +1,9 @@
 class WordModel {
-  final String wordToDisplay;
-  final String wordToCheck;
-  final double imagePadding;
-  final String imagePath;
-  final String voicePath;
+  String wordToDisplay;
+  String wordToCheck;
+  double imagePadding;
+  String imagePath;
+  String voicePath;
 
   WordModel({
     required this.wordToDisplay,

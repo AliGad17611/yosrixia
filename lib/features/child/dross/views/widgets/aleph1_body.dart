@@ -39,7 +39,7 @@ class Aleph1Body extends StatelessWidget {
                 Expanded(
                   child: ListView.separated(
                     itemBuilder: (context, index) {
-                      final wordData = arabicCharactersMap[mainCharacter]
+                      WordModel? wordData = arabicCharactersMap[mainCharacter]
                           ?[subCharacters[pageViewIndex]]?[index];
                       return WordWidget(
                         wordModel: wordData ??
