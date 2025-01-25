@@ -24,12 +24,13 @@ class ChildHomeViewBody extends StatelessWidget {
                       ChildCategory(
                         scale: 1.7,
                         image: AssetsData.lessons,
-                        text: 'Lessons',
+                        text: 'دروس',
                       ),
                       ChildCategory(
                         scale: 0.9,
-                        image: AssetsData.levels,
-                        text: 'Level',
+                        image: AssetsData.games,
+                        text: 'العاب تعليمية',
+                        fontSize: 32,
                       ),
                     ],
                   ),
@@ -39,13 +40,13 @@ class ChildHomeViewBody extends StatelessWidget {
                     children: [
                       ChildCategory(
                         scale: 0.9,
-                        image: AssetsData.levels,
-                        text: 'Doctors',
+                        image: AssetsData.doctors,
+                        text: 'أطباء',
                       ),
                       ChildCategory(
                         scale: 0.9,
-                        image: AssetsData.levels,
-                        text: 'Support',
+                        image: AssetsData.tips,
+                        text: 'نصائح',
                       ),
                     ],
                   )

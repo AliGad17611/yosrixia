@@ -8,10 +8,15 @@ import 'package:yosrixia/core/utils/styles.dart';
 
 class ChildCategory extends StatelessWidget {
   const ChildCategory(
-      {super.key, this.scale = 1, required this.text, required this.image});
+      {super.key,
+      this.scale = 1,
+      required this.text,
+      required this.image,
+      this.fontSize = 40});
   final String text;
   final String image;
   final double scale;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,8 @@ class ChildCategory extends StatelessWidget {
             ),
             Text(
               text,
-              style: Styles.textStyle40Passion.copyWith(color: kBlueColor),
+              style: Styles.textStyle40Passion
+                  .copyWith(color: kBlueColor, fontSize: fontSize),
             )
           ],
         ),
