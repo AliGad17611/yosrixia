@@ -8,6 +8,7 @@ import 'package:yosrixia/features/auth/views/widgets/user_information_view.dart'
 import 'package:yosrixia/features/child/dross/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/views/sub_character_view.dart';
+import 'package:yosrixia/features/child/games/views/game_home_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/child/dross/views/aleph1.dart';
@@ -21,6 +22,7 @@ abstract class AppRouter {
   static const String parentRegister = '/parentRegister';
   static const String childHome = '/childHome';
   static const String droosHome = '/droosHome';
+  static const String gamesHome = '/gamesHome';
   static const String characters = '/characters';
   static const String subCharacters = '/subCharacters';
   static const String home = '/home';
@@ -74,6 +76,10 @@ abstract class AppRouter {
     GoRoute(
       path: droosHome,
       builder: (context, state) => const DrossHomeView(),
+    ),
+    GoRoute(
+      path: gamesHome,
+      builder: (context, state) => const GameHomeView(),
     ),
     GoRoute(
       path: characters,

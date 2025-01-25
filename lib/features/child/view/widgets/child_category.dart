@@ -22,7 +22,11 @@ class ChildCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.droosHome);
+        if (text == 'دروس') {
+          GoRouter.of(context).push(AppRouter.droosHome);
+        } else if (text == 'العاب تعليمية') {
+          GoRouter.of(context).push(AppRouter.gamesHome);
+        }
       },
       child: Container(
         width: widgetWidth(context: context, width: 177),
