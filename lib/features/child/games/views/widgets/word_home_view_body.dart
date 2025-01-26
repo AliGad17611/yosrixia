@@ -4,8 +4,8 @@ import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/features/child/dross/views/widgets/dross_category.dart';
 
-class GameHomeViewBody extends StatelessWidget {
-  const GameHomeViewBody({super.key});
+class WordHomeViewBody extends StatelessWidget {
+  const WordHomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,21 +18,22 @@ class GameHomeViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'ألعاب',
+                'كلمات',
                 style: Styles.textStyle96,
               ),
               const Spacer(
                 flex: 3,
               ),
               DrossCategory(
-                text: 'حروف',
-                onTap: () {},
+                text: 'اختيارات',
+                onTap: () {
+                  // GoRouter.of(context).push(AppRouter.imagesName);
+                },
               ),
               const SizedBox(height: 46),
               DrossCategory(
-                text: 'كلمات',
+                text: 'تكملة',
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.wordsQuiz);
                 },
               ),
               const Spacer(

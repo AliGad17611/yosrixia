@@ -9,6 +9,7 @@ import 'package:yosrixia/features/child/dross/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/views/sub_character_view.dart';
 import 'package:yosrixia/features/child/games/views/game_home_view.dart';
+import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/child/dross/views/aleph1.dart';
@@ -22,7 +23,6 @@ abstract class AppRouter {
   static const String parentRegister = '/parentRegister';
   static const String childHome = '/childHome';
   static const String droosHome = '/droosHome';
-  static const String gamesHome = '/gamesHome';
   static const String characters = '/characters';
   static const String subCharacters = '/subCharacters';
   static const String home = '/home';
@@ -31,6 +31,8 @@ abstract class AppRouter {
   static const String userInformation = '/userInformation';
   static const String doctorExtraInformation = '/doctorExtraInformation';
   static const String aleph1 = '/aleph1';
+  static const String gamesHome = '/gamesHome';
+  static const String wordsQuiz = '/wordsQuiz';
   static const String doctorHome = '/doctorHome';
   static final router = GoRouter(routes: [
     GoRoute(
@@ -78,10 +80,6 @@ abstract class AppRouter {
       builder: (context, state) => const DrossHomeView(),
     ),
     GoRoute(
-      path: gamesHome,
-      builder: (context, state) => const GameHomeView(),
-    ),
-    GoRoute(
       path: characters,
       builder: (context, state) => const CharactersView(),
     ),
@@ -93,6 +91,17 @@ abstract class AppRouter {
       path: aleph1,
       builder: (context, state) => const Aleph1(),
     ),
-    GoRoute(path: doctorHome, builder: (context, state) => const DoctorHome()),
+    GoRoute(
+      path: gamesHome,
+      builder: (context, state) => const GameHomeView(),
+    ),
+    GoRoute(
+      path: wordsQuiz,
+      builder: (context, state) => const WordHomeView(),
+    ),
+    GoRoute(
+      path: doctorHome,
+      builder: (context, state) => const DoctorHome(),
+    ),
   ]);
 }

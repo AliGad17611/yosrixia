@@ -15,9 +15,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    super.initState();
     // Calling the function to check user role or ID
     checkUserRole();
+    super.initState();
   }
 
   void checkUserRole() async {
@@ -42,7 +42,6 @@ class _SplashViewState extends State<SplashView> {
     return const SafeArea(
       child: Scaffold(
         backgroundColor: kPrimaryColor,
-        body: Center(child: CircularProgressIndicator()),
       ),
     );
   }
