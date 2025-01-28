@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/views/widgets/dross_category.dart';
+import 'package:yosrixia/features/widgets/category.dart';
 
 class GameHomeViewBody extends StatelessWidget {
   const GameHomeViewBody({super.key});
@@ -24,12 +24,12 @@ class GameHomeViewBody extends StatelessWidget {
               const Spacer(
                 flex: 3,
               ),
-              DrossCategory(
+              Category(
                 text: 'حروف',
                 onTap: () {},
               ),
               const SizedBox(height: 46),
-              DrossCategory(
+              Category(
                 text: 'كلمات',
                 onTap: () {
                   GoRouter.of(context).push(AppRouter.wordsQuiz);

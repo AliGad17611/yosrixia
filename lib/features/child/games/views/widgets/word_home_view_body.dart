@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/views/widgets/dross_category.dart';
+import 'package:yosrixia/features/widgets/category.dart';
 
 class WordHomeViewBody extends StatelessWidget {
   const WordHomeViewBody({super.key});
@@ -24,16 +24,18 @@ class WordHomeViewBody extends StatelessWidget {
               const Spacer(
                 flex: 3,
               ),
-              DrossCategory(
+              Category(
                 text: 'اختيارات',
                 onTap: () {
                   GoRouter.of(context).push(AppRouter.imageName);
                 },
               ),
               const SizedBox(height: 46),
-              DrossCategory(
+              Category(
                 text: 'تكملة',
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.wordCompletionQuiz);
+                },
               ),
               const Spacer(
                 flex: 4,

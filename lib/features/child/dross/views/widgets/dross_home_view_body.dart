@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/views/widgets/dross_category.dart';
+import 'package:yosrixia/features/widgets/category.dart';
 
 class DrossHomeViewBody extends StatelessWidget {
   const DrossHomeViewBody({super.key});
@@ -22,20 +22,20 @@ class DrossHomeViewBody extends StatelessWidget {
                 style: Styles.textStyle96,
               ),
               const SizedBox(height: 126),
-              DrossCategory(
+              Category(
                 text: 'حروف و كلمات',
                 onTap: () {
                   GoRouter.of(context).push(AppRouter.characters);
                 },
               ),
               const SizedBox(height: 46),
-              DrossCategory(
+              Category(
                   text: 'جمل',
                   onTap: () {
                     GoRouter.of(context).push(AppRouter.aleph1);
                   }),
               const SizedBox(height: 46),
-              DrossCategory(
+              Category(
                   text: 'قصص',
                   onTap: () {
                     GoRouter.of(context).push(AppRouter.aleph1);
