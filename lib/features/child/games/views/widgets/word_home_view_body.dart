@@ -27,14 +27,13 @@ class WordHomeViewBody extends StatelessWidget {
               DrossCategory(
                 text: 'اختيارات',
                 onTap: () {
-                  // GoRouter.of(context).push(AppRouter.imagesName);
+                  GoRouter.of(context).push(AppRouter.imageName);
                 },
               ),
               const SizedBox(height: 46),
               DrossCategory(
                 text: 'تكملة',
-                onTap: () {
-                },
+                onTap: () {},
               ),
               const Spacer(
                 flex: 4,

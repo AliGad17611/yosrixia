@@ -9,6 +9,7 @@ import 'package:yosrixia/features/child/dross/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/views/sub_character_view.dart';
 import 'package:yosrixia/features/child/games/views/game_home_view.dart';
+import 'package:yosrixia/features/child/games/views/image_name_view.dart';
 import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
@@ -33,6 +34,7 @@ abstract class AppRouter {
   static const String aleph1 = '/aleph1';
   static const String gamesHome = '/gamesHome';
   static const String wordsQuiz = '/wordsQuiz';
+  static const String imageName = '/imageName';
   static const String doctorHome = '/doctorHome';
   static final router = GoRouter(routes: [
     GoRoute(
@@ -99,6 +101,7 @@ abstract class AppRouter {
       path: wordsQuiz,
       builder: (context, state) => const WordHomeView(),
     ),
+    GoRoute(path: imageName, builder: (context, state) => const ImageNameView(),),
     GoRoute(
       path: doctorHome,
       builder: (context, state) => const DoctorHome(),

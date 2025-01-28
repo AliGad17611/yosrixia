@@ -19,7 +19,7 @@ List<ChoiceWordModel> gamesWordsList = [
   ChoiceWordModel(
     imagePath: 'assets/media/games/thor.png',
     choices: ['ثعلب', 'ثعبان', 'ثور', 'ديك'],
-    correctAnswer: 'ثورة',
+    correctAnswer: 'ثور',
   ),
   ChoiceWordModel(
     imagePath: 'assets/media/games/gbal.png',
@@ -115,7 +115,7 @@ List<ChoiceWordModel> gamesWordsList = [
     imagePath: 'assets/media/games/lemon.png',
     choices: ['ليمون', 'لوحة', 'ملوك', 'لؤلؤ'],
     correctAnswer: 'ليمون',
-  ),  
+  ),
   ChoiceWordModel(
     imagePath: 'assets/media/games/mango.png',
     choices: ['مثلث', 'ملوك', 'ملعب', 'مانجو'],
