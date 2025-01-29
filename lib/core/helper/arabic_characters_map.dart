@@ -1964,7 +1964,115 @@ Map<String, Map<String, List<WordModel>>> arabicCharactersMap = {
     ),
   ],
 },
-  // 'ع': {},
+  'ع': {
+    'عَ': [
+      WordModel(
+        wordToDisplay: 'عَصير',
+        wordToCheck: 'عصير',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain1Aseer.png',
+        voicePath: 'media/characters/ain/ain1Aseer.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'عَسل',
+        wordToCheck: 'عسل',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain1Asal.png',
+        voicePath: 'media/characters/ain/ain1Asal.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'ملعَقة',
+        wordToCheck: 'ملعقه',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain1Melaaqa.png',
+        voicePath: 'media/characters/ain/ain1Melaaqa.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'نعَامة',
+        wordToCheck: 'نعامه',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain1Naama.png',
+        voicePath: 'media/characters/ain/ain1Naama.wav',
+      ),
+    ],
+    'عِ': [
+      WordModel(
+        wordToDisplay: 'عِنب',
+        wordToCheck: 'عنب',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain2Enab.png',
+        voicePath: 'media/characters/ain/ain2Enab.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'عِملاق',
+        wordToCheck: 'عملاق',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain2Emlaq.png',
+        voicePath: 'media/characters/ain/ain2Emlaq.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'سعِيد',
+        wordToCheck: 'سعيد',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain2Saeed.png',
+        voicePath: 'media/characters/ain/ain2Saeed.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'راعِي',
+        wordToCheck: 'راعي',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain2Raee.png',
+        voicePath: 'media/characters/ain/ain2Raee.wav',
+
+      )
+      ],
+    'عُ': [
+      WordModel(
+        wordToDisplay: 'عُصفور',
+        wordToCheck: 'عصفور',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain3Asafur.png',
+        voicePath: 'media/characters/ain/ain3Asafur.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'عُش',
+        wordToCheck: 'عش',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain3Aash.png',
+        voicePath: 'media/characters/ain/ain3Aash.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'بعُوضة',
+        wordToCheck: 'بعوضه',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain3Baaud.png',
+        voicePath: 'media/characters/ain/ain3Baaud.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'يعُود'
+        ,wordToCheck: 'يعود'
+        ,imagePadding: 0
+        ,imagePath: 'assets/media/characters/ain/ain3Yaaud.png'
+        ,voicePath: 'media/characters/ain/ain3Yaaud.wav'
+      ),
+    ],
+    'عْ': [
+      WordModel(
+        wordToDisplay: 'شعْلة',
+        wordToCheck: 'شعله',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain4Shoala.png',
+        voicePath: 'media/characters/ain/ain4Shoala.wav',
+      ),
+      WordModel(
+        wordToDisplay: 'ثعْلب',
+        wordToCheck: 'ثعلب',
+        imagePadding: 0,
+        imagePath: 'assets/media/characters/ain/ain4Thaalab.png',
+        voicePath: 'media/characters/ain/ain4Thaalab.wav',
+      ),
+    ],
+  },
   // 'غ': {},
   // 'ف': {},
   // 'ق': {},
