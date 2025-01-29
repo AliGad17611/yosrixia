@@ -99,6 +99,9 @@ flutter:
     - assets/media/characters/haa/
     - assets/media/characters/waw/
     - assets/media/characters/ya/
+    - assets/media/gomal/1/
+    - assets/media/gomal/2/
+    - assets/media/gomal/3/
     - assets/media/childHome/
     - assets/media/games/
   #   - images/a_dot_ham.jpeg

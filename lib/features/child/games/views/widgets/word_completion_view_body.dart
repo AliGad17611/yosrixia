@@ -7,7 +7,6 @@ import 'package:yosrixia/features/child/games/manger/cubit/game_state.dart';
 import 'package:yosrixia/features/child/games/manger/cubit/word_completion_cubit.dart';
 import 'package:yosrixia/features/child/games/views/widgets/choice_option.dart';
 import 'package:yosrixia/features/child/games/views/widgets/incomplete_word_item.dart';
-import 'package:yosrixia/features/widgets/category.dart';
 
 class WordCompletionViewBody extends StatelessWidget {
   const WordCompletionViewBody({super.key});
