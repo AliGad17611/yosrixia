@@ -7,7 +7,8 @@ import 'package:yosrixia/features/child/dross/words/manger/speech_bloc/speech_st
 
 class TextWidget extends StatelessWidget {
   const TextWidget({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
   final String text;
 
@@ -20,9 +21,16 @@ class TextWidget extends StatelessWidget {
         if (state is MatchSpeechState) {
           textColor = state.isMatch ? Colors.green : Colors.red;
         }
-        return Text(
-          text,
-          style: Styles.textStyle64Passion.copyWith(color: textColor),
+        return Align(
+          alignment: Alignment.center,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: Text(
+              text,
+              style: Styles.textStyle64Passion.copyWith(color: textColor),
+              textAlign: TextAlign.center,
+            ),
+          ),
         );
       },
     );
