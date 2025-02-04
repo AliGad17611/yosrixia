@@ -5,8 +5,10 @@ import 'package:yosrixia/features/auth/views/widgets/email_confirmation.dart';
 import 'package:yosrixia/features/auth/views/widgets/register_view.dart';
 import 'package:yosrixia/features/auth/views/select_role_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/user_information_view.dart';
-import 'package:yosrixia/features/child/dross/views/gomal_home_view.dart';
-import 'package:yosrixia/features/child/dross/views/gomal_level_view.dart';
+import 'package:yosrixia/features/child/dross/gomal/views/gomal_home_view.dart';
+import 'package:yosrixia/features/child/dross/gomal/views/gomal_level_view.dart';
+import 'package:yosrixia/features/child/dross/stories/views/stories_home_view.dart';
+import 'package:yosrixia/features/child/dross/stories/views/story_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/aleph1.dart';
 import 'package:yosrixia/features/child/dross/words/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/dross_home_view.dart';
@@ -29,6 +31,7 @@ abstract class AppRouter {
   static const String droosHome = '/droosHome';
   static const String characters = '/characters';
   static const String gomalHome = '/gomalHome';
+  static const String storiesHome = '/storiesHome';
   static const String subCharacters = '/subCharacters';
   static const String home = '/home';
   static const String selectRole = '/selectRole';
@@ -37,6 +40,7 @@ abstract class AppRouter {
   static const String doctorExtraInformation = '/doctorExtraInformation';
   static const String aleph1 = '/aleph1';
   static const String level = '/level';
+  static const String story = '/story';
   static const String gamesHome = '/gamesHome';
   static const String wordsQuiz = '/wordsQuiz';
   static const String imageName = '/imageName';
@@ -96,6 +100,10 @@ abstract class AppRouter {
       builder: (context, state) => const GomalHomeView(),
     ),
     GoRoute(
+      path: storiesHome,
+      builder: (context, state) => const StoriesHomeView(),
+    ),
+    GoRoute(
       path: subCharacters,
       builder: (context, state) => const SubCharacterView(),
     ),
@@ -106,6 +114,10 @@ abstract class AppRouter {
     GoRoute(
       path: level,
       builder: (context, state) => const GomalLevelView(),
+    ),
+    GoRoute(
+      path: story,
+      builder: (context, state) => const StoryView(),
     ),
     GoRoute(
       path: gamesHome,

@@ -8,10 +8,10 @@ import 'package:yosrixia/features/child/dross/words/manger/speech_bloc/speech_bl
 import 'package:yosrixia/features/child/dross/words/manger/speech_bloc/speech_events.dart';
 
 class MicWidget extends StatelessWidget {
-  const MicWidget( {
+  const MicWidget({
     super.key, required this.text,
   });
-  final String text ;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

@@ -113,73 +113,73 @@ Map<String, List<CharacterModel>> subCharactersMap = {
     CharacterModel(
         characterToDisplay: 'خَ',
         wordToCheck: 'خ',
-        voicePath: 'media/characters/kha/kha1.wav'),
+        voicePath: 'media/characters/khaa/kha1.wav'),
     CharacterModel(
         characterToDisplay: 'خِ',
         wordToCheck: 'خ',
-        voicePath: 'media/characters/kha/kha2.wav'),
+        voicePath: 'media/characters/khaa/kha2.wav'),
     CharacterModel(
         characterToDisplay: 'خُ',
         wordToCheck: 'خ',
-        voicePath: 'media/characters/kha/kha3.wav'),
+        voicePath: 'media/characters/khaa/kha3.wav'),
     CharacterModel(
         characterToDisplay: 'خْ',
         wordToCheck: 'خ',
-        voicePath: 'media/characters/kha/kha4.wav'),
+        voicePath: 'media/characters/khaa/kha4.wav'),
   ],
   'د': [
     CharacterModel(
         characterToDisplay: 'دَ',
         wordToCheck: 'د',
-        voicePath: 'media/characters/dal/dal1.wav'),
+        voicePath: 'media/characters/daal/dal1.wav'),
     CharacterModel(
         characterToDisplay: 'دِ',
         wordToCheck: 'د',
-        voicePath: 'media/characters/dal/dal2.wav'),
+        voicePath: 'media/characters/daal/dal2.wav'),
     CharacterModel(
         characterToDisplay: 'دُ',
         wordToCheck: 'د',
-        voicePath: 'media/characters/dal/dal3.wav'),
+        voicePath: 'media/characters/daal/dal3.wav'),
     CharacterModel(
         characterToDisplay: 'دْ',
         wordToCheck: 'د',
-        voicePath: 'media/characters/dal/dal4.wav'),
+        voicePath: 'media/characters/daal/dal4.wav'),
   ],
   'ذ': [
     CharacterModel(
         characterToDisplay: 'ذَ',
         wordToCheck: 'ذ',
-        voicePath: 'media/characters/dhal/dhal1.wav'),
+        voicePath: 'media/characters/thal/dhal1.wav'),
     CharacterModel(
         characterToDisplay: 'ذِ',
         wordToCheck: 'ذ',
-        voicePath: 'media/characters/dhal/dhal2.wav'),
+        voicePath: 'media/characters/thal/dhal2.wav'),
     CharacterModel(
         characterToDisplay: 'ذُ',
         wordToCheck: 'ذ',
-        voicePath: 'media/characters/dhal/dhal3.wav'),
+        voicePath: 'media/characters/thal/dhal3.wav'),
     CharacterModel(
         characterToDisplay: 'ذْ',
         wordToCheck: 'ذ',
-        voicePath: 'media/characters/dhal/dhal4.wav'),
+        voicePath: 'media/characters/thal/dhal4.wav'),
   ],
   'ر': [
     CharacterModel(
         characterToDisplay: 'رَ',
         wordToCheck: 'ر',
-        voicePath: 'media/characters/ra/ra1.wav'),
+        voicePath: 'media/characters/raa/ra1.wav'),
     CharacterModel(
         characterToDisplay: 'رِ',
         wordToCheck: 'ر',
-        voicePath: 'media/characters/ra/ra2.wav'),
+        voicePath: 'media/characters/raa/ra2.wav'),
     CharacterModel(
         characterToDisplay: 'رُ',
         wordToCheck: 'ر',
-        voicePath: 'media/characters/ra/ra3.wav'),
+        voicePath: 'media/characters/raa/ra3.wav'),
     CharacterModel(
         characterToDisplay: 'رْ',
         wordToCheck: 'ر',
-        voicePath: 'media/characters/ra/ra4.wav'),
+        voicePath: 'media/characters/raa/ra4.wav'),
   ],
   'ز': [
     CharacterModel(
@@ -257,55 +257,55 @@ Map<String, List<CharacterModel>> subCharactersMap = {
     CharacterModel(
         characterToDisplay: 'ضَ',
         wordToCheck: 'ض',
-        voicePath: 'media/characters/dad/dad1.wav'),
+        voicePath: 'media/characters/dhad/dad1.wav'),
     CharacterModel(
         characterToDisplay: 'ضِ',
         wordToCheck: 'ض',
-        voicePath: 'media/characters/dad/dad2.wav'),
+        voicePath: 'media/characters/dhad/dad2.wav'),
     CharacterModel(
         characterToDisplay: 'ضُ',
         wordToCheck: 'ض',
-        voicePath: 'media/characters/dad/dad3.wav'),
+        voicePath: 'media/characters/dhad/dad3.wav'),
     CharacterModel(
         characterToDisplay: 'ضْ',
         wordToCheck: 'ض',
-        voicePath: 'media/characters/dad/dad4.wav'),
+        voicePath: 'media/characters/dhad/dad4.wav'),
   ],
   'ط': [
     CharacterModel(
         characterToDisplay: 'طَ',
         wordToCheck: 'ط',
-        voicePath: 'media/characters/taa/taa1.wav'),
+        voicePath: 'media/characters/tah/taa1.wav'),
     CharacterModel(
         characterToDisplay: 'طِ',
         wordToCheck: 'ط',
-        voicePath: 'media/characters/taa/taa2.wav'),
+        voicePath: 'media/characters/tah/taa2.wav'),
     CharacterModel(
         characterToDisplay: 'طُ',
         wordToCheck: 'ط',
-        voicePath: 'media/characters/taa/taa3.wav'),
+        voicePath: 'media/characters/tah/taa3.wav'),
     CharacterModel(
         characterToDisplay: 'طْ',
         wordToCheck: 'ط',
-        voicePath: 'media/characters/taa/taa4.wav'),
+        voicePath: 'media/characters/tah/taa4.wav'),
   ],
   'ظ': [
     CharacterModel(
         characterToDisplay: 'ظَ',
         wordToCheck: 'ظ',
-        voicePath: 'media/characters/zaa/zaa1.wav'),
+        voicePath: 'media/characters/thah/zaa1.wav'),
     CharacterModel(
         characterToDisplay: 'ظِ',
         wordToCheck: 'ظ',
-        voicePath: 'media/characters/zaa/zaa2.wav'),
+        voicePath: 'media/characters/thah/zaa2.wav'),
     CharacterModel(
         characterToDisplay: 'ظُ',
         wordToCheck: 'ظ',
-        voicePath: 'media/characters/zaa/zaa3.wav'),
+        voicePath: 'media/characters/thah/zaa3.wav'),
     CharacterModel(
         characterToDisplay: 'ظْ',
         wordToCheck: 'ظ',
-        voicePath: 'media/characters/zaa/zaa4.wav'),
+        voicePath: 'media/characters/thah/zaa4.wav'),
   ],
   'ع': [
     CharacterModel(
@@ -491,18 +491,18 @@ Map<String, List<CharacterModel>> subCharactersMap = {
     CharacterModel(
         characterToDisplay: 'يَ',
         wordToCheck: 'ي',
-        voicePath: 'media/characters/ya/ya1.wav'),
+        voicePath: 'media/characters/yaa/ya1.wav'),
     CharacterModel(
         characterToDisplay: 'يِ',
         wordToCheck: 'ي',
-        voicePath: 'media/characters/ya/ya2.wav'),
+        voicePath: 'media/characters/yaa/ya2.wav'),
     CharacterModel(
         characterToDisplay: 'يُ',
         wordToCheck: 'ي',
-        voicePath: 'media/characters/ya/ya3.wav'),
+        voicePath: 'media/characters/yaa/ya3.wav'),
     CharacterModel(
         characterToDisplay: 'يْ',
         wordToCheck: 'ي',
-        voicePath: 'media/characters/ya/ya4.wav'),
+        voicePath: 'media/characters/yaa/ya4.wav'),
   ],
 };

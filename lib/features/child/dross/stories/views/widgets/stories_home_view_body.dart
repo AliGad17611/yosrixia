@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/features/widgets/category.dart';
 
-class DrossHomeViewBody extends StatelessWidget {
-  const DrossHomeViewBody({super.key});
+class StoriesHomeViewBody extends StatelessWidget {
+  const StoriesHomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,27 +19,30 @@ class DrossHomeViewBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'دروس',
+                'قصص',
                 style: Styles.textStyle96,
               ),
               const SizedBox(height: 126),
               Category(
-                text: 'حروف و كلمات',
+                text: 'الصياد الماهر',
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.characters);
+                  storyTitle = 'الصياد الماهر';
+                  GoRouter.of(context).push(AppRouter.story);
                 },
               ),
               const SizedBox(height: 46),
               Category(
-                  text: 'جمل',
+                  text: 'نهاية الشقاوة',
                   onTap: () {
-                    GoRouter.of(context).push(AppRouter.gomalHome);
+                    storyTitle = 'نهاية الشقاوة';
+                    GoRouter.of(context).push(AppRouter.story);
                   }),
               const SizedBox(height: 46),
               Category(
-                  text: 'قصص',
+                  text: 'الدب و الصديقان',
                   onTap: () {
-                    GoRouter.of(context).push(AppRouter.storiesHome);
+                    storyTitle = 'الدب و الصديقان';
+                    GoRouter.of(context).push(AppRouter.story);
                   }),
             ],
           ),

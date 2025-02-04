@@ -20,6 +20,12 @@ abstract class Styles {
     color: kPrimaryColor,
   );
 
+  static TextStyle textStyle36Passion = GoogleFonts.passionOne(
+    fontSize: 36.sp,
+    fontWeight: FontWeight.w400,
+    color: kBlackColor,
+  );
+
   static TextStyle textStyle32Inter = GoogleFonts.inter(
     fontSize: 48.sp,
     fontWeight: FontWeight.w400,

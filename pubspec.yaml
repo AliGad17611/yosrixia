@@ -77,17 +77,17 @@ flutter:
     - assets/media/characters/tha/
     - assets/media/characters/jeem/
     - assets/media/characters/ha/
-    - assets/media/characters/kha/
-    - assets/media/characters/dal/
-    - assets/media/characters/dhal/
-    - assets/media/characters/ra/
-    - assets/media/characters/za/
+    - assets/media/characters/khaa/
+    - assets/media/characters/daal/
+    - assets/media/characters/thal/
+    - assets/media/characters/raa/
+    - assets/media/characters/zaa/
     - assets/media/characters/seen/
     - assets/media/characters/sheen/
     - assets/media/characters/sad/
-    - assets/media/characters/dad/
-    - assets/media/characters/taa/
-    - assets/media/characters/zaa/
+    - assets/media/characters/dhad/
+    - assets/media/characters/tah/
+    - assets/media/characters/thah/
     - assets/media/characters/ain/
     - assets/media/characters/ghain/
     - assets/media/characters/fa/
@@ -98,10 +98,13 @@ flutter:
     - assets/media/characters/noon/
     - assets/media/characters/haa/
     - assets/media/characters/waw/
-    - assets/media/characters/ya/
+    - assets/media/characters/yaa/
     - assets/media/gomal/1/
     - assets/media/gomal/2/
     - assets/media/gomal/3/
+    - assets/media/stories/1/
+    - assets/media/stories/2/
+    - assets/media/stories/3/
     - assets/media/childHome/
     - assets/media/games/
   #   - images/a_dot_ham.jpeg
