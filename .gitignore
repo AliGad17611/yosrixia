@@ -45,3 +45,4 @@ firebase.json
 android/app/google-services.json
 lib/firebase_options.dart
 pubspec.lock
+lib/supabase_config.dart

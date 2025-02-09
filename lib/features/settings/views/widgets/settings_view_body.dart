@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/features/settings/views/widgets/settings_button.dart';
 
 class SettingsViewBody extends StatelessWidget {
@@ -15,7 +17,9 @@ class SettingsViewBody extends StatelessWidget {
           children: [
             SettingsButton(
                 text: 'الصفحة الشخصية',
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.childProfile);
+                },
                 icon: Icons.account_circle_outlined),
             SettingsButton(
                 text: 'مركز المساعدة', onTap: () {}, icon: Icons.support_agent),
