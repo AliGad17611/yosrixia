@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/responsive/widget_height.dart';
@@ -26,6 +27,8 @@ class ChildCategory extends StatelessWidget {
           GoRouter.of(context).push(AppRouter.droosHome);
         } else if (text == 'العاب تعليمية') {
           GoRouter.of(context).push(AppRouter.gamesHome);
+        } else if (text == 'أطباء') {
+          GoRouter.of(context).push(AppRouter.showAllDoctorsView);
         }
       },
       child: Container(
