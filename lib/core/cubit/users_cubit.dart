@@ -47,8 +47,9 @@ class UsersCubit extends Cubit<UsersState> {
       List<UserModel> users = usersSnapshot.docs.map((doc) {
         Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         return UserModel(
-          name: data['name'] ?? 'Unknown',
+          name: data['name'] ?? 'غير معرف',
           imageUrl: data['imageUrl'] ?? '',
+          uid: doc.id,
         );
       }).toList();
 

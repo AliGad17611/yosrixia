@@ -5,6 +5,7 @@ import 'package:yosrixia/features/auth/views/widgets/email_confirmation.dart';
 import 'package:yosrixia/features/auth/views/widgets/register_view.dart';
 import 'package:yosrixia/features/auth/views/select_role_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/user_information_view.dart';
+import 'package:yosrixia/features/child/doctors/views/doctor_details_view.dart';
 import 'package:yosrixia/features/child/doctors/views/show_all_doctors_view.dart';
 import 'package:yosrixia/features/child/dross/gomal/views/gomal_home_view.dart';
 import 'package:yosrixia/features/child/dross/gomal/views/gomal_level_view.dart';
@@ -57,6 +58,7 @@ abstract class AppRouter {
   // show all doctors routes
   static const String doctorHome = '/doctorHome';
   static const String childProfile = '/childProfile';
+  static const String doctorDetails = '/doctorDetails';
   static final router = GoRouter(routes: [
     // welcome routes
     GoRoute(
@@ -149,6 +151,7 @@ abstract class AppRouter {
       path: story,
       builder: (context, state) => const StoryView(),
     ),
+    // games routes
     GoRoute(
       path: wordsQuiz,
       builder: (context, state) => const WordHomeView(),
@@ -160,6 +163,11 @@ abstract class AppRouter {
     GoRoute(
       path: wordCompletionQuiz,
       builder: (context, state) => const WordCompletionView(),
+    ),
+    // show all doctors routes
+    GoRoute(
+      path: doctorDetails,
+      builder: (context, state) => const DoctorDetailsView(),
     ),
     GoRoute(
       path: doctorHome,
