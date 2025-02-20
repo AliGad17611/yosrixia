@@ -16,7 +16,7 @@ class WelcomeViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              'Welcome to',
+              'مرحبا بك في',
               style: Styles.textStyle40.copyWith(
                 color: kSecondaryColor,
               ),

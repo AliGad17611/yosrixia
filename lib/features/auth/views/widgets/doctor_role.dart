@@ -38,7 +38,7 @@ class DoctorRole extends StatelessWidget {
             Positioned(
               top: widgetHeight(context: context, height: 180),
               child: Text(
-                'Doctor',
+                'طبيب',
                 style: Styles.textStyle40Passion.copyWith(color: kBlueColor),
               ),
             )

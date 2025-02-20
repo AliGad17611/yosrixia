@@ -3,7 +3,7 @@ import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key,required this.onPressed});
+  const CustomButton({super.key, required this.onPressed});
 
   final void Function() onPressed;
   @override
@@ -17,7 +17,7 @@ class CustomButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: Text(
-            'Login',
+            'تسجيل دخول',
             style: Styles.textStyle40.copyWith(color: kSecondaryColor),
           )),
     );

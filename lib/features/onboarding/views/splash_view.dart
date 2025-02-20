@@ -9,13 +9,16 @@ class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
-  _SplashViewState createState() => _SplashViewState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
 class _SplashViewState extends State<SplashView> {
+  late BuildContext _context;
+
   @override
   void initState() {
     // Calling the function to check user role or ID
+    _context = context;
     checkUserRole();
     super.initState();
   }
@@ -25,14 +28,18 @@ class _SplashViewState extends State<SplashView> {
     if (userId == null) {
       // Use addPostFrameCallback to delay navigation until after the build
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        GoRouter.of(context).go(AppRouter.welcome);
+        if (mounted) {
+          GoRouter.of(_context).go(AppRouter.welcome);
+        }
       });
     } else {
       final role = await getCurrentUserIdAndRole();
       if (role['role'] == 'child') {
-        GoRouter.of(context).go(AppRouter.childHome);
+        if (!mounted) return;
+        GoRouter.of(_context).go(AppRouter.childHome);
       } else if (role['role'] == 'doctor') {
-        GoRouter.of(context).go(AppRouter.doctorHome);
+        if (!mounted) return;
+        GoRouter.of(_context).go(AppRouter.doctorHome);
       }
     }
   }

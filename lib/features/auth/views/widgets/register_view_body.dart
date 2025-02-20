@@ -18,75 +18,78 @@ class RegisterViewBody extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<RegisterCubit>();
 
-          return Scaffold(
-            body: SingleChildScrollView(
-              child: Form(
-                key: cubit.formKey,
-                child: Column(
-                  children: [
-                    const Yosrixia(),
-                    const SizedBox(height: 12),
-                    EmailTextFormField(
-                      labelText: extra!.toLowerCase() == 'doctor'
-                          ? 'Email'
-                          : 'Parent Email',
-                      controller: cubit.emailController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                          return 'Please enter a valid email';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    NumberTextFormField(
-                      labelText: extra!.toLowerCase() == 'doctor'
-                          ? 'Number'
-                          : 'Parent Number',
-                      controller: cubit.numberController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your number';
-                        }
-                        if (!RegExp(r'^\d{10,15}$').hasMatch(value)) {
-                          return 'Please enter a valid number';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    PasswordTextFormField(
-                      labelText: 'Password',
-                      controller: cubit.passwordController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        if (value.length < 6) {
-                          return 'Password must be at least 6 characters';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    PasswordTextFormField(
-                      labelText: 'Confirm Password',
-                      controller: cubit.confirmPasswordController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please confirm your password';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 65),
-                    CustomTextButton(
-                      onPressed: () => cubit.validateAndSubmit(context, extra!),
-                    ),
-                  ],
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: Form(
+                  key: cubit.formKey,
+                  child: Column(
+                    children: [
+                      const Yosrixia(),
+                      const SizedBox(height: 12),
+                      EmailTextFormField(
+                        labelText: 'البريد الإلكتروني',
+                        controller: cubit.emailController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل بريدك الإلكتروني';
+                          }
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                            return 'من فضلك أدخل بريدك الإلكتروني صالح';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      NumberTextFormField(
+                        labelText: 'رقم الهاتف',
+                        controller: cubit.numberController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل رقمك';
+                          }
+                          if (!RegExp(r'^\d{10,15}$').hasMatch(value)) {
+                            return 'من فضلك أدخل رقمك صالح';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      PasswordTextFormField(
+                        labelText: 'كلمة المرور',
+                        controller: cubit.passwordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل كلمة المرور';
+                          }
+                          if (value.length < 8) {
+                            return 'كلمة المرور يجب أن تكون أكثر من 8 حروف';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      PasswordTextFormField(
+                        labelText: 'تأكيد كلمة المرور',
+                        controller: cubit.confirmPasswordController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل كلمة المرور';
+                          }
+                          if (value != cubit.passwordController.text) {
+                            return 'كلمة المرور غير متطابقه';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 65),
+                      CustomTextButton(
+                        onPressed: () =>
+                            cubit.validateAndSubmit(context, extra!),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

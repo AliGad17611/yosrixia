@@ -7,9 +7,9 @@ import 'package:yosrixia/core/utils/app_router.dart';
 
 class UpdateUserInformationCubit extends Cubit<void> {
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController ageController = TextEditingController();
-  final TextEditingController genderController = TextEditingController();
+  final TextEditingController selectedCountry = TextEditingController();
+  final TextEditingController birthDateController = TextEditingController();
+  final TextEditingController selectedGender = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   UpdateUserInformationCubit() : super(null);
@@ -18,9 +18,9 @@ class UpdateUserInformationCubit extends Cubit<void> {
     if (formKey.currentState?.validate() ?? false) {
       updateUserInformation(
         nameController.text,
-        countryController.text,
-        int.parse(ageController.text),
-        genderController.text,
+        selectedCountry.text,
+        birthDateController.text,
+        selectedGender.text,
       );
 
       // Navigate to the confirmation screen

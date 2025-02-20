@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yosrixia/features/doctor/views/widgets/doctor_home_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 
 class DoctorHome extends StatelessWidget {
@@ -6,6 +7,6 @@ class DoctorHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: Center(child: Text('Doctor Home')));
+    return const BackGround(child: DoctorHomeViewBody());
   }
 }

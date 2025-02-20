@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/features/auth/cubit/login_state.dart';
 
-
-
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
 
@@ -18,20 +16,20 @@ class LoginCubit extends Cubit<LoginState> {
 
   String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Email is required';
+      return 'البريد الإلكتروني مطلوب';
     }
     if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-      return 'Enter a valid email';
+      return 'البريد الإلكتروني غير صالح';
     }
     return null;
   }
 
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return 'كلمة المرور مطلوبة';
     }
     if (value.length < 6) {
-      return 'Enter a valid password';
+      return 'كلمة المرور ضعيفة';
     }
     return null;
   }
@@ -46,7 +44,8 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
 
     try {
-      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+      final UserCredential userCredential =
+          await _auth.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
@@ -54,18 +53,21 @@ class LoginCubit extends Cubit<LoginState> {
       final String userId = userCredential.user?.uid ?? '';
 
       // Fetch user role from Firestore
-      final DocumentSnapshot userDoc = await _firestore.collection('users').doc(userId).get();
+      final DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(userId).get();
 
       if (userDoc.exists) {
         final String role = userDoc['role'] as String;
         emit(LoginSuccess(role: role));
       } else {
-        emit(LoginFailure(error: 'User role not found.'));
+        emit(LoginFailure(error: 'المستخدم غير موجود'));
       }
     } on FirebaseAuthException catch (e) {
-      emit(LoginFailure(error: e.message ?? 'An error occurred during login.'));
+      emit(LoginFailure(
+          error: e.message ?? 'فى مشكلة في تسجيل الدخول حاول فى وقت لاحق'));
     } catch (e) {
-      emit(LoginFailure(error: 'An unexpected error occurred.'));
+      emit(LoginFailure(
+          error: 'فى مشكلة غير معروفة في تسجيل الدخول حاول فى وقت لاحق'));
     }
   }
 }

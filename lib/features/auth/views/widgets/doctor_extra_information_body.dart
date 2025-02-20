@@ -17,44 +17,49 @@ class DoctorExtraInformationBody extends StatelessWidget {
         builder: (context, state) {
           final cubit = context.read<DoctorExtraInfoCubit>();
 
-          return Scaffold(
-            body: SingleChildScrollView(
-              child: Form(
-                key: cubit.formKey,
-                child: Column(
-                  children: [
-                    const Yosrixia(),
-                    const SizedBox(height: 75),
-                    CustomTextFormField(
-                      labelText: 'Organization',
-                      controller: cubit.organizationController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your organization';
-                        }
-                        if (value.length < 3) {
-                          return 'Organization must be at least 3 characters';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                    NumberTextFormField(
-                      labelText: 'Experience',
-                      controller: cubit.experienceController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your experience years';
-                        }
-
-                        return null;
-                      },
-                    ),
-                    const SizedBox(height: 167),
-                    CustomTextButton(
-                      onPressed: () => cubit.validateAndSubmit(context),
-                    ),
-                  ],
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: Form(
+                  key: cubit.formKey,
+                  child: Column(
+                    children: [
+                      const Yosrixia(),
+                      const SizedBox(height: 75),
+                      CustomTextFormField(
+                        labelText: 'المنظمة',
+                        controller: cubit.organizationController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل المنظمة';
+                          }
+                          if (value.length < 3) {
+                            return 'المنظمة يجب أن تكون على الأقل 3 حروف';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      NumberTextFormField(
+                        labelText: 'عدد سنوات الخبرة',
+                        controller: cubit.experienceController,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'من فضلك أدخل عدد سنوات الخبرة';
+                          }
+                          if (!RegExp(r'^\d+$').hasMatch(value)) {
+                            return 'العدد يجب أن يكون عددًا';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 167),
+                      CustomTextButton(
+                        onPressed: () => cubit.validateAndSubmit(context),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

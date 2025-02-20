@@ -43,6 +43,7 @@ app.*.map.json
 /android/app/release
 firebase.json
 android/app/google-services.json
+android/app/.cxx
 lib/firebase_options.dart
 pubspec.lock
 lib/supabase_config.dart

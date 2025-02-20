@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
-    super.key,  this.text='Next', required this.onPressed,
+    super.key,
+    this.text = 'التالي',
+    required this.onPressed,
   });
-  final String text ;
+  final String text;
 
   final void Function() onPressed;
   @override

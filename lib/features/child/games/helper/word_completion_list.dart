@@ -139,7 +139,7 @@ List<WordCompletion> wordList = [
   WordCompletion(
     incompleteWord: "ذ....ة",
     choices: ["ـر", "ر"],
-    correctChoice: "ـر",
+    correctChoice: "ر",
   ),
   WordCompletion(
     incompleteWord: "بحـ....",

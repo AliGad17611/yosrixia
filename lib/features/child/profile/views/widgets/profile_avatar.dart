@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/features/child/profile/views/data/cubit/image_picker_cubit.dart';
-import 'package:yosrixia/features/child/profile/views/data/cubit/image_picker_states.dart';
+import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_cubit.dart';
+import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_states.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({

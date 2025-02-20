@@ -18,16 +18,16 @@ class UserAvatar extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(35),
-        child: imageUrl == ''? 
-        role == 'doctor' ?
-        const Image(image: AssetImage(AssetsData.doctor)):
-        const Image(image: AssetImage(AssetsData.child)):
-        Image.network(
-          imageUrl,
-          height: 190,
-          width: 190,
-          fit: BoxFit.cover,
-        ),
+        child: imageUrl == ''
+            ? role == 'doctor'
+                ? const Image(image: AssetImage(AssetsData.doctor))
+                : const Image(image: AssetImage(AssetsData.child))
+            : Image.network(
+                imageUrl,
+                height: 190,
+                width: 190,
+                fit: BoxFit.cover,
+              ),
       ),
     );
   }

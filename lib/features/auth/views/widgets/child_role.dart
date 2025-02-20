@@ -38,7 +38,7 @@ class ChildRole extends StatelessWidget {
             Positioned(
               top: widgetHeight(context: context, height: 185),
               child: Text(
-                'Child',
+                'طفل',
                 style: Styles.textStyle40Passion.copyWith(color: kBlueColor),
               ),
             )

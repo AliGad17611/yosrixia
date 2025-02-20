@@ -19,14 +19,14 @@ class RegisterCubit extends Cubit<void> {
     if (formKey.currentState?.validate() ?? false) {
       if (passwordController.text != confirmPasswordController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Passwords do not match')),
+          const SnackBar(content: Text('كلمة المرور غير متطابقه')),
         );
         return;
       }
 
       signUpUser(emailController.text, passwordController.text, role, numberController.text);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registration successful')),
+        const SnackBar(content: Text('تم التسجيل بنجاح')),
       );
       // Navigate to the confirmation screen
       GoRouter.of(context).push(AppRouter.userInformation);

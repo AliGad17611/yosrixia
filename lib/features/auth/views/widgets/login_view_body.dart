@@ -48,63 +48,66 @@ class LoginViewBody extends StatelessWidget {
               return SingleChildScrollView(
                 child: Form(
                   key: cubit.formKey,
-                  child: Column(
-                    children: [
-                      const Yosrixia(),
-                      Text(
-                        'Login',
-                        style: Styles.textStyle40.copyWith(height: 0.7),
-                      ),
-                      const SizedBox(height: 40),
-                      EmailTextFormField(
-                        labelText: 'Email',
-                        controller: cubit.emailController,
-                        validator: cubit.validateEmail,
-                      ),
-                      const SizedBox(height: 24),
-                      PasswordTextFormField(
-                        labelText: 'Password',
-                        controller: cubit.passwordController,
-                        validator: cubit.validatePassword,
-                      ),
-                      const SizedBox(height: 8),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 28),
-                          child: InkWell(
-                            onTap: () {
-                              GoRouter.of(context)
-                                  .push(AppRouter.parentRegister);
-                            },
-                            child: Text(
-                              'Forgot Password?',
-                              style: Styles.textStyle24,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Column(
+                      children: [
+                        const Yosrixia(),
+                        Text(
+                          'تسجيل دخول',
+                          style: Styles.textStyle40.copyWith(height: 0.7),
+                        ),
+                        const SizedBox(height: 40),
+                        EmailTextFormField(
+                          labelText: 'البريد الإلكتروني',
+                          controller: cubit.emailController,
+                          validator: cubit.validateEmail,
+                        ),
+                        const SizedBox(height: 24),
+                        PasswordTextFormField(
+                          labelText: 'كلمة المرور',
+                          controller: cubit.passwordController,
+                          validator: cubit.validatePassword,
+                        ),
+                        const SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 28),
+                            child: InkWell(
+                              onTap: () {
+                                GoRouter.of(context)
+                                    .push(AppRouter.parentRegister);
+                              },
+                              child: Text(
+                                'نسيت كلمة المرور؟',
+                                style: Styles.textStyle24,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 33),
-                      state is LoginLoading
-                          ? const CircularProgressIndicator()
-                          : CustomButton(
-                              onPressed: () {
-                                if (cubit.validateForm()) {
-                                  cubit.loginUser();
-                                }
-                              },
-                            ),
-                      const SizedBox(height: 16),
-                      InkWell(
-                        onTap: () {
-                          GoRouter.of(context).push(AppRouter.selectRole);
-                        },
-                        child: Text(
-                          'Create Account',
-                          style: Styles.textStyle32,
+                        const SizedBox(height: 33),
+                        state is LoginLoading
+                            ? const CircularProgressIndicator()
+                            : CustomButton(
+                                onPressed: () {
+                                  if (cubit.validateForm()) {
+                                    cubit.loginUser();
+                                  }
+                                },
+                              ),
+                        const SizedBox(height: 16),
+                        InkWell(
+                          onTap: () {
+                            GoRouter.of(context).push(AppRouter.selectRole);
+                          },
+                          child: Text(
+                            'انشاء حساب جديد',
+                            style: Styles.textStyle32,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

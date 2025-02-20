@@ -30,7 +30,10 @@ class StartButton extends StatelessWidget {
                   kGridentEnd,
                 ],
               )),
-          child: Center(child: Text('Start', style: Styles.textStyle40))),
+          child: Align(
+              alignment: Alignment.center,
+              child: Text('ابدأ',
+                  style: Styles.textStyle48.copyWith(color: kPrimaryColor)))),
     );
   }
 }

@@ -22,6 +22,7 @@ import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/profile/views/child_profile_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
+import 'package:yosrixia/features/doctor/views/child_details_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
@@ -56,9 +57,13 @@ abstract class AppRouter {
   static const String imageName = '/imageName';
   static const String wordCompletionQuiz = '/wordCompletionQuiz';
   // show all doctors routes
-  static const String doctorHome = '/doctorHome';
   static const String childProfile = '/childProfile';
   static const String doctorDetails = '/doctorDetails';
+// doctor routes
+  static const String doctorHome = '/doctorHome';
+  static const String childDetails = '/childDetails';
+
+
   static final router = GoRouter(routes: [
     // welcome routes
     GoRoute(
@@ -176,6 +181,10 @@ abstract class AppRouter {
     GoRoute(
       path: childProfile,
       builder: (context, state) => const ChildProfileView(),
+    ),
+    GoRoute(
+      path: childDetails,
+      builder: (context, state) => const ChildDetailsView(),
     ),
   ]);
 }
