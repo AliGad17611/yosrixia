@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:yosrixia/features/auth/views/exam_questions_view.dart';
 import 'package:yosrixia/features/auth/views/login_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/doctor_extra_information.dart';
 import 'package:yosrixia/features/auth/views/widgets/email_confirmation.dart';
@@ -20,11 +21,13 @@ import 'package:yosrixia/features/child/games/views/image_name_view.dart';
 import 'package:yosrixia/features/child/games/views/word_completion_view.dart';
 import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/profile/views/child_profile_view.dart';
+import 'package:yosrixia/features/child/tips/views/tips_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/doctor/views/child_details_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
+import 'package:yosrixia/features/settings/views/help_center_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
 
 abstract class AppRouter {
@@ -37,6 +40,8 @@ abstract class AppRouter {
   static const String parentEmailConfirmation = '/parentEmailConfirmation';
   static const String userInformation = '/userInformation';
   static const String doctorExtraInformation = '/doctorExtraInformation';
+  static const String examQuestions = '/examQuestions';
+
   // child routes
   static const String childHome = '/childHome';
   static const String droosHome = '/droosHome';
@@ -44,6 +49,7 @@ abstract class AppRouter {
   static const String showAllDoctorsView = '/showAllDoctorsView';
   static const String tips = '/tips';
   static const String settings = '/settings';
+  static const String helpCenter = '/helpCenter';
   // droos routes
   static const String characters = '/characters';
   static const String gomalHome = '/gomalHome';
@@ -62,7 +68,6 @@ abstract class AppRouter {
 // doctor routes
   static const String doctorHome = '/doctorHome';
   static const String childDetails = '/childDetails';
-
 
   static final router = GoRouter(routes: [
     // welcome routes
@@ -100,6 +105,10 @@ abstract class AppRouter {
       builder: (context, state) => const UserInformationView(),
     ),
     GoRoute(
+      path: examQuestions,
+      builder: (context, state) => const ExamQuestionsView(),
+    ),
+    GoRoute(
         path: doctorExtraInformation,
         builder: (context, state) => const DoctorExtraInformation()),
     // child routes
@@ -121,11 +130,15 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: tips,
-      builder: (context, state) => const DoctorHome(),
+      builder: (context, state) => const TipsView(),
     ),
     GoRoute(
       path: settings,
       builder: (context, state) => const SettingsView(),
+    ),
+    GoRoute(
+      path: helpCenter,
+      builder: (context, state) => const HelpCenterView(),
     ),
     // droos routes
     GoRoute(

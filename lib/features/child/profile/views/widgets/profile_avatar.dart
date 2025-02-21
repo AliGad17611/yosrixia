@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/utils/assets_data.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_cubit.dart';
 import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_states.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
-    super.key,
+    super.key, required this.imageUrl,
   });
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +34,14 @@ class ProfileAvatar extends StatelessWidget {
                           width: 190,
                           fit: BoxFit.cover,
                         )
-                      : Image.network(
-                          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg',
+                      : (imageUrl !="")?
+                      Image.network(
+                          imageUrl,
                           height: 190,
                           width: 190,
                           fit: BoxFit.cover,
-                        ),
+                        ):
+                        Image.asset(AssetsData.child),
                 ),
                 Positioned(
                   bottom: 10,

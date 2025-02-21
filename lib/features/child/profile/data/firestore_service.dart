@@ -23,6 +23,23 @@ class FirestoreService {
     });
   }
 
+  Future<bool> doesNameExist(String userId) async {
+    try {
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(userId).get();
+
+      if (userDoc.exists) {
+        final data = userDoc.data() as Map<String, dynamic>;
+        final name = data['name'] as String?;
+        return name != null && name.trim().isNotEmpty;
+      }
+      return false;
+    } catch (e) {
+      log("Error checking name existence: $e");
+      return false;
+    }
+  }
+
   Future<ChildInfoModel> getUserData() async {
     DocumentSnapshot userDoc = await _firestore.collection("users").doc(userId).get();
     if (userDoc.exists) {

@@ -10,35 +10,34 @@ class WelcomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 130),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              'مرحبا بك في',
-              style: Styles.textStyle40.copyWith(
-                color: kSecondaryColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const Spacer(),
+          Text(
+            'مرحبا بك في',
+            style: Styles.textStyle40.copyWith(
+              color: kSecondaryColor,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Stack(children: [
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                'YOSRIXIA',
+                style: Styles.textStyle96
+                    .copyWith(color: kSecondaryColor, height: 0.65),
               ),
             ),
-            const SizedBox(height: 8),
-            Stack(children: [
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'YOSRIXIA',
-                  style: Styles.textStyle96
-                      .copyWith(color: kSecondaryColor, height: 0.65),
-                ),
-              ),
-              Image.asset(
-                AssetsData.logo,
-                width: double.infinity,
-              ),
-            ]),
-            const StartButton()
-          ],
-        ),
+            Image.asset(
+              AssetsData.logo,
+              width: double.infinity,
+            ),
+          ]),
+          const StartButton(),
+          const Spacer()
+        ],
       ),
     );
   }

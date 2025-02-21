@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
@@ -22,9 +23,17 @@ class SettingsViewBody extends StatelessWidget {
                 },
                 icon: Icons.account_circle_outlined),
             SettingsButton(
-                text: 'مركز المساعدة', onTap: () {}, icon: Icons.support_agent),
+                text: 'مركز المساعدة', onTap: () {
+                  GoRouter.of(context).push(AppRouter.helpCenter);
+                }, icon: Icons.support_agent),
             SettingsButton(
-                text: 'تسجيل الخروج', onTap: () {}, icon: Icons.logout),
+                text: 'تسجيل الخروج',
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  // ignore: use_build_context_synchronously
+                  GoRouter.of(context).go(AppRouter.login);
+                },
+                icon: Icons.logout),
           ],
         ),
       ),
