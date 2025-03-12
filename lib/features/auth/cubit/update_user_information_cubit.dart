@@ -28,7 +28,7 @@ class UpdateUserInformationCubit extends Cubit<void> {
       String? userRole = userDetails['role'] ?? '';
       if (userRole.toLowerCase() == 'child') {
         if (!context.mounted) return;
-        GoRouter.of(context).push(AppRouter.examQuestions);
+        GoRouter.of(context).push(AppRouter.childOnboarding);
       } else if (userRole.toLowerCase() == 'doctor') {
         if (!context.mounted) return;
         GoRouter.of(context).push(AppRouter.doctorExtraInformation);

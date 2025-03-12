@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:yosrixia/features/auth/views/exam_questions_view.dart';
 import 'package:yosrixia/features/auth/views/login_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/doctor_extra_information.dart';
 import 'package:yosrixia/features/auth/views/widgets/email_confirmation.dart';
@@ -23,6 +22,7 @@ import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/profile/views/child_profile_view.dart';
 import 'package:yosrixia/features/child/tips/views/tips_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
+import 'package:yosrixia/features/child/view/child_onboarding_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/doctor/views/child_details_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
@@ -40,9 +40,9 @@ abstract class AppRouter {
   static const String parentEmailConfirmation = '/parentEmailConfirmation';
   static const String userInformation = '/userInformation';
   static const String doctorExtraInformation = '/doctorExtraInformation';
-  static const String examQuestions = '/examQuestions';
 
   // child routes
+  static const String childOnboarding = '/childOnboarding';
   static const String childHome = '/childHome';
   static const String droosHome = '/droosHome';
   static const String gamesHome = '/gamesHome';
@@ -103,15 +103,15 @@ abstract class AppRouter {
     GoRoute(
       path: userInformation,
       builder: (context, state) => const UserInformationView(),
-    ),
-    GoRoute(
-      path: examQuestions,
-      builder: (context, state) => const ExamQuestionsView(),
-    ),
+    ),   
     GoRoute(
         path: doctorExtraInformation,
         builder: (context, state) => const DoctorExtraInformation()),
     // child routes
+    GoRoute(
+      path: childOnboarding,
+      builder: (context, state) => const ChildOnboardingView(),
+    ),
     GoRoute(
       path: childHome,
       builder: (context, state) => const ChildHomeView(),
