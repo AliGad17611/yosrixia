@@ -7,7 +7,8 @@ import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_st
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
-    super.key, required this.imageUrl,
+    super.key,
+    required this.imageUrl,
   });
   final String imageUrl;
 
@@ -27,40 +28,43 @@ class ProfileAvatar extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(35),
-                  child: state is ImagePickerLoaded
-                      ? Image.file(
-                          state.imageFile,
-                          height: 190,
-                          width: 190,
-                          fit: BoxFit.cover,
-                        )
-                      : (imageUrl !="")?
-                      Image.network(
+                  child: (imageUrl != "")
+                      ? Image.network(
                           imageUrl,
                           height: 190,
                           width: 190,
                           fit: BoxFit.cover,
-                        ):
-                        Image.asset(AssetsData.child),
+                        )
+                      : state is ImagePickerLoaded
+                          ? Image.file(
+                              state.imageFile,
+                              height: 190,
+                              width: 190,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(AssetsData.child),
                 ),
-                Positioned(
-                  bottom: 10,
-                  left: 10,
-                  child: InkWell(
-                    splashColor: kSecondaryColor,
-                    onTap: () {
-                      context.read<ImagePickerCubit>().pickImage();
-                    },
-                    child: const CircleAvatar(
-                      backgroundColor: kPrimaryColor,
-                      child: Icon(
-                        Icons.camera_alt,
-                        color: kSecondaryColor,
-                        size: 30,
+                if (imageUrl.isEmpty)
+                  Positioned(
+                    bottom: 10,
+                    left: 10,
+                    child: InkWell(
+                      splashColor: kSecondaryColor,
+                      onTap: () {
+                        context
+                            .read<ImagePickerCubit>()
+                            .pickImage(imageUrl.isEmpty);
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: kPrimaryColor,
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: kSecondaryColor,
+                          size: 30,
+                        ),
                       ),
                     ),
                   ),
-                ),
               ],
             ),
           );

@@ -8,11 +8,21 @@ class StorageService {
 
   Future<String?> uploadProfileImage(File file) async {
     String userId = FirebaseAuth.instance.currentUser!.uid;
-    String path = "profile_images/$userId.jpg";
+    String fileExtension = file.path.split('.').last; // Get the file extension
+    String path =
+        "profile_images/$userId.$fileExtension"; // Keep original extension
 
     try {
-      await supabase.storage.from('user_uploads').upload(path, file);
-      return supabase.storage.from('user_uploads').getPublicUrl(path);
+      await supabase.storage.from('user_uploads').upload(
+            path,
+            file,
+            fileOptions: const FileOptions(upsert: true), // Allows overwriting
+          );
+
+      String imageUrl =
+          supabase.storage.from('user_uploads').getPublicUrl(path);
+      log("Upload Successful: $imageUrl");
+      return imageUrl;
     } catch (e) {
       log("Upload Error: $e");
       return null;

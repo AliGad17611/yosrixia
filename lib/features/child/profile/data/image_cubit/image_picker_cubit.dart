@@ -10,13 +10,13 @@ class ImagePickerCubit extends Cubit<ImagePickerStates> {
 
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> pickImage() async {
+  Future<void> pickImage(bool isFirebaseImageEmpty) async {
     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
        File file = File(pickedFile.path);
       StorageService storageService = StorageService();
       String? imageUrl = await storageService.uploadProfileImage(file);
-      if (imageUrl != null) {
+      if (imageUrl != null && isFirebaseImageEmpty) {
         await FirestoreService().updateUserImage(imageUrl);
       }
       emit(ImagePickerLoaded(File(pickedFile.path)));

@@ -10,7 +10,7 @@ class ChildOnboardingCubit extends Cubit<ChildOnboardingState> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Map<int, Map<String, String>> questionsAndAnswers = {};
-  
+
   void goToNextPage(int index) {
     if (index == 4) {
       emit(ChildOnboardingExamState());
@@ -28,7 +28,7 @@ class ChildOnboardingCubit extends Cubit<ChildOnboardingState> {
       };
       if (questionIndex == examQuestions.length - 1) {
         _sendQuestionsAndAnswersToFirebase();
-        goToNextPage(5);
+        emit(ChildOnboardingOverviewState(index: 4));
       } else {
         nextQuestion();
       }
@@ -39,7 +39,8 @@ class ChildOnboardingCubit extends Cubit<ChildOnboardingState> {
     final currentState = state;
     if (currentState is ChildOnboardingExamState) {
       if (currentState.questionIndex < examQuestions.length - 1) {
-        emit(ChildOnboardingExamState(questionIndex: currentState.questionIndex + 1));
+        emit(ChildOnboardingExamState(
+            questionIndex: currentState.questionIndex + 1));
       }
     }
   }
@@ -48,7 +49,8 @@ class ChildOnboardingCubit extends Cubit<ChildOnboardingState> {
     final user = _auth.currentUser;
     if (user != null) {
       _firestore.collection('users').doc(user.uid).update({
-        'questionsAndAnswers': questionsAndAnswers.map((key, value) => MapEntry(key.toString(), value)),
+        'questionsAndAnswers': questionsAndAnswers
+            .map((key, value) => MapEntry(key.toString(), value)),
       });
     }
   }

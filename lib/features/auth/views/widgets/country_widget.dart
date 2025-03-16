@@ -35,7 +35,7 @@ class CountryWidget extends StatelessWidget {
                 border: InputBorder.none,
               ),
               value: cubit.selectedCountry.text.isEmpty
-                  ? 'مصر'
+                  ? cubit.selectedCountry.text = 'مصر'
                   : cubit.selectedCountry.text,
               items: <String>['مصر', 'السعودية', 'الإمارات', 'الأردن', 'لبنان']
                   .map<DropdownMenuItem<String>>((String value) {

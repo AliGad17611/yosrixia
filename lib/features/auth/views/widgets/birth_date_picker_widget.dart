@@ -23,8 +23,10 @@ class BirthDatePickerWidget extends StatelessWidget {
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
           context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(1900),
+          initialDate: cubit.birthDateController.text.isEmpty
+              ? DateTime.now()
+              : DateFormat('yyyy-MM-dd').parse(cubit.birthDateController.text),
+          firstDate: DateTime(1950),
           lastDate: DateTime.now(),
         );
 

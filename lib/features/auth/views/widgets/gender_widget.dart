@@ -35,7 +35,7 @@ class GenderWidget extends StatelessWidget {
                 border: InputBorder.none,
               ),
               value: cubit.selectedGender.text.isEmpty
-                  ? 'ذكر'
+                  ? cubit.selectedGender.text = 'ذكر'
                   : cubit.selectedGender.text,
               items: <String>['ذكر', 'أنثى']
                   .map<DropdownMenuItem<String>>((String value) {
