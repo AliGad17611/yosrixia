@@ -26,7 +26,9 @@ class GameHomeViewBody extends StatelessWidget {
               ),
               Category(
                 text: 'حروف',
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.handwriting);
+                },
               ),
               const SizedBox(height: 46),
               Category(

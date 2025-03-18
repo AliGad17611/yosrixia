@@ -15,6 +15,7 @@ import 'package:yosrixia/features/child/dross/words/views/aleph1.dart';
 import 'package:yosrixia/features/child/dross/words/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/sub_character_view.dart';
+import 'package:yosrixia/features/child/games/handwriting/views/handwriting_view.dart';
 import 'package:yosrixia/features/child/games/views/game_home_view.dart';
 import 'package:yosrixia/features/child/games/views/image_name_view.dart';
 import 'package:yosrixia/features/child/games/views/word_completion_view.dart';
@@ -62,6 +63,7 @@ abstract class AppRouter {
   static const String wordsQuiz = '/wordsQuiz';
   static const String imageName = '/imageName';
   static const String wordCompletionQuiz = '/wordCompletionQuiz';
+  static const String handwriting = '/handwriting';
   // show all doctors routes
   static const String childProfile = '/childProfile';
   static const String doctorDetails = '/doctorDetails';
@@ -103,7 +105,7 @@ abstract class AppRouter {
     GoRoute(
       path: userInformation,
       builder: (context, state) => const UserInformationView(),
-    ),   
+    ),
     GoRoute(
         path: doctorExtraInformation,
         builder: (context, state) => const DoctorExtraInformation()),
@@ -181,6 +183,10 @@ abstract class AppRouter {
     GoRoute(
       path: wordCompletionQuiz,
       builder: (context, state) => const WordCompletionView(),
+    ),
+    GoRoute(
+      path: handwriting,
+      builder: (context, state) => const HandwritingView(),
     ),
     // show all doctors routes
     GoRoute(
