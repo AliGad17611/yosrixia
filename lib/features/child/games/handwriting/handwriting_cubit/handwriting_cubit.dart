@@ -1,15 +1,48 @@
-// Cubit
+import 'dart:math';
 import 'dart:ui';
-
+import 'dart:developer' as dev;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mlkit_digital_ink_recognition/google_mlkit_digital_ink_recognition.dart';
-import 'package:yosrixia/features/child/games/handwriting/handwriting_cubit/handwriting_state.dart';
+import 'handwriting_state.dart';
 
 class HandwritingCubit extends Cubit<HandwritingState> {
-  final DigitalInkRecognizerModelManager _modelManager = DigitalInkRecognizerModelManager();
+  final DigitalInkRecognizerModelManager _modelManager =
+      DigitalInkRecognizerModelManager();
   final String languageCode = 'ar';
-  late DigitalInkRecognizer _digitalInkRecognizer;
+  late final DigitalInkRecognizer _digitalInkRecognizer;
   late Ink _ink;
+
+  final List<String> _arabicCharacters = [
+    'أ',
+    'ب',
+    'ت',
+    'ث',
+    'ج',
+    'ح',
+    'خ',
+    'د',
+    'ذ',
+    'ر',
+    'ز',
+    'س',
+    'ش',
+    'ص',
+    'ض',
+    'ط',
+    'ظ',
+    'ع',
+    'غ',
+    'ف',
+    'ق',
+    'ك',
+    'ل',
+    'م',
+    'ن',
+    'ه',
+    'و',
+    'ي'
+  ];
+  final Set<String> _usedCharacters = {};
 
   HandwritingCubit() : super(const HandwritingState()) {
     _digitalInkRecognizer = DigitalInkRecognizer(languageCode: languageCode);
@@ -29,6 +62,8 @@ class HandwritingCubit extends Cubit<HandwritingState> {
       emit(state.copyWith(isModelDownloaded: isDownloaded));
       if (!isDownloaded) {
         await downloadModel();
+      } else {
+        showRandomLetter();
       }
     } catch (e) {
       emit(state.copyWith(error: 'Error checking model: $e'));
@@ -39,15 +74,11 @@ class HandwritingCubit extends Cubit<HandwritingState> {
     emit(state.copyWith(isProcessing: true));
     try {
       await _modelManager.downloadModel(languageCode);
-      emit(state.copyWith(
-        isModelDownloaded: true,
-        isProcessing: false,
-      ));
+      emit(state.copyWith(isModelDownloaded: true, isProcessing: false));
+      showRandomLetter();
     } catch (e) {
       emit(state.copyWith(
-        error: 'Error downloading model: $e',
-        isProcessing: false,
-      ));
+          error: 'Error downloading model: $e', isProcessing: false));
     }
   }
 
@@ -57,56 +88,80 @@ class HandwritingCubit extends Cubit<HandwritingState> {
   }
 
   void addPointToStroke(Offset point) {
-    final timestamp = DateTime.now().millisecondsSinceEpoch;
     final strokePoint = StrokePoint(
       x: point.dx,
       y: point.dy,
-      t: timestamp,
+      t: DateTime.now().millisecondsSinceEpoch,
     );
-    
-    final updatedPoints = List<StrokePoint>.from(state.currentPoints)..add(strokePoint);
+
+    final updatedPoints = List<StrokePoint>.from(state.currentPoints)
+      ..add(strokePoint);
     emit(state.copyWith(currentPoints: updatedPoints));
   }
 
   void endStroke() {
-  if (state.currentPoints.isNotEmpty) {
-    // Create a new Stroke
-    final stroke = Stroke();
-    // Add all points to the stroke
-    stroke.points = [...state.currentPoints];
-     // Add to list of strokes
-    final updatedStrokes = List<Stroke>.from(state.strokes)..add(stroke);
-    _ink.strokes = updatedStrokes;
-    emit(state.copyWith(strokes: updatedStrokes));
+    if (state.currentPoints.isNotEmpty) {
+      final stroke = Stroke()..points = [...state.currentPoints];
+      final updatedStrokes = List<Stroke>.from(state.strokes)..add(stroke);
+      _ink.strokes = updatedStrokes;
+      emit(state.copyWith(strokes: updatedStrokes));
+    }
   }
-}
 
-  Future<void> recognizeText() async {
-    if (state.strokes.isEmpty || !state.isModelDownloaded) return;
-    
-    emit(state.copyWith(isProcessing: true));
-    
+  Future<String> recognizeText() async {
+    if (state.strokes.isEmpty || !state.isModelDownloaded) return '';
     try {
-      final List<RecognitionCandidate> candidates = await _digitalInkRecognizer.recognize(_ink);
-      
-      final recognizedText = candidates.isNotEmpty 
-          ? candidates[0].text 
-          : 'No text recognized';
-          
-      emit(state.copyWith(
-        recognizedText: recognizedText,
-        isProcessing: false,
-      ));
+      emit(state.copyWith(isProcessing: true));
+      final candidates = await _digitalInkRecognizer.recognize(_ink);
+      final recognized = candidates.isNotEmpty ? candidates[0].text : '';
+      emit(state.copyWith(isProcessing: false));
+      return recognized;
     } catch (e) {
-      emit(state.copyWith(
-        error: 'Recognition error: $e',
-        isProcessing: false,
-      ));
+      emit(state.copyWith(error: 'Recognition error: $e', isProcessing: false));
+      return '';
     }
   }
 
   void clearInk() {
     _ink.strokes = [];
-    emit(const HandwritingState());
+    emit(state.copyWith(strokes: [], currentPoints: [], isCorrect: false));
+  }
+
+  void showRandomLetter() {
+    if (_usedCharacters.length == _arabicCharacters.length) {
+      emit(state.copyWith(isfinished: true));
+      return;
+    }
+
+    final random = Random();
+    String nextChar;
+    do {
+      nextChar = _arabicCharacters[random.nextInt(_arabicCharacters.length)];
+    } while (_usedCharacters.contains(nextChar));
+
+    _usedCharacters.add(nextChar);
+    emit(state.copyWith(
+        currentLetter: nextChar,
+        strokes: [],
+        currentPoints: [],
+        isCorrect: false));
+  }
+
+  void nextLetter() async {
+    final recognized = await recognizeText();
+    dev.log(recognized);
+    if (recognized == state.currentLetter) {
+      emit(state.copyWith(isCorrect: true));
+      clearInk();
+      showRandomLetter();
+    } else {
+      emit(state.copyWith(isCorrect: false));
+    }
+  }
+
+  void resetLetters() {
+    _usedCharacters.clear();
+    emit(state.copyWith(
+        currentLetter: '', strokes: [], currentPoints: [], isCorrect: false));
   }
 }

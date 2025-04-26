@@ -1,49 +1,68 @@
-// State
 import 'package:equatable/equatable.dart';
 import 'package:google_mlkit_digital_ink_recognition/google_mlkit_digital_ink_recognition.dart';
 
 class HandwritingState extends Equatable {
+  final bool isModelDownloaded;
+  final bool isProcessing;
+  final String error;
   final List<Stroke> strokes;
   final List<StrokePoint> currentPoints;
-  final String recognizedText;
-  final bool isProcessing;
-  final bool isModelDownloaded;
-  final String error;
+  final String currentLetter;
+  final bool isCorrect;
+  final bool isfinished;
 
-  const HandwritingState({
+  const HandwritingState( {
+    this.isfinished = false,
+    this.isModelDownloaded = false,
+    this.isProcessing = false,
+    this.error = '',
     this.strokes = const [],
     this.currentPoints = const [],
-    this.recognizedText = '',
-    this.isProcessing = false,
-    this.isModelDownloaded = false,
-    this.error = '',
+    this.currentLetter = '',
+    this.isCorrect = false,
   });
 
   HandwritingState copyWith({
+    bool? isModelDownloaded,
+    bool? isProcessing,
+    String? error,
     List<Stroke>? strokes,
     List<StrokePoint>? currentPoints,
-    String? recognizedText,
-    bool? isProcessing,
-    bool? isModelDownloaded,
-    String? error,
+    String? currentLetter,
+    bool? isCorrect,
+    bool? isfinished,
   }) {
     return HandwritingState(
+      isModelDownloaded: isModelDownloaded ?? this.isModelDownloaded,
+      isProcessing: isProcessing ?? this.isProcessing,
+      error: error ?? this.error,
       strokes: strokes ?? this.strokes,
       currentPoints: currentPoints ?? this.currentPoints,
-      recognizedText: recognizedText ?? this.recognizedText,
-      isProcessing: isProcessing ?? this.isProcessing,
-      isModelDownloaded: isModelDownloaded ?? this.isModelDownloaded,
-      error: error ?? this.error,
+      currentLetter: currentLetter ?? this.currentLetter,
+      isCorrect: isCorrect ?? this.isCorrect,
+      isfinished: isfinished ?? this.isfinished,
     );
   }
 
   @override
   List<Object?> get props => [
+        isModelDownloaded,
+        isProcessing,
+        error,
         strokes,
         currentPoints,
-        recognizedText,
-        isProcessing,
-        isModelDownloaded,
-        error,
+        currentLetter,
+        isCorrect,
+        isfinished,
       ];
+}
+
+class NextCharacterState extends HandwritingState {
+  final String nextCharacter;
+
+  const NextCharacterState({required this.nextCharacter})
+      : super(currentLetter: nextCharacter, isfinished: false);
+
+  @override
+  List<Object?> get props => [...super.props, nextCharacter];
 }

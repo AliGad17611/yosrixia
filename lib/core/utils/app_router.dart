@@ -16,8 +16,10 @@ import 'package:yosrixia/features/child/dross/words/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/sub_character_view.dart';
 import 'package:yosrixia/features/child/games/handwriting/views/handwriting_view.dart';
+import 'package:yosrixia/features/child/games/puzzel/views/puzzel_view.dart';
 import 'package:yosrixia/features/child/games/views/game_home_view.dart';
 import 'package:yosrixia/features/child/games/views/image_name_view.dart';
+import 'package:yosrixia/features/child/games/views/letters_quiz_view.dart';
 import 'package:yosrixia/features/child/games/views/word_completion_view.dart';
 import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/profile/views/child_profile_view.dart';
@@ -61,9 +63,11 @@ abstract class AppRouter {
   static const String story = '/story';
   // games routes
   static const String wordsQuiz = '/wordsQuiz';
+  static const String lettersQuiz = '/lettersQuiz';
   static const String imageName = '/imageName';
   static const String wordCompletionQuiz = '/wordCompletionQuiz';
   static const String handwriting = '/handwriting';
+  static const String puzzel = '/puzzel';
   // show all doctors routes
   static const String childProfile = '/childProfile';
   static const String doctorDetails = '/doctorDetails';
@@ -177,6 +181,10 @@ abstract class AppRouter {
       builder: (context, state) => const WordHomeView(),
     ),
     GoRoute(
+      path: lettersQuiz,
+      builder: (context, state) => const LettersQuizView(),
+    ),
+    GoRoute(
       path: imageName,
       builder: (context, state) => const ImageNameView(),
     ),
@@ -187,6 +195,10 @@ abstract class AppRouter {
     GoRoute(
       path: handwriting,
       builder: (context, state) => const HandwritingView(),
+    ),
+    GoRoute(
+      path: puzzel,
+      builder: (context, state) => const PuzzelView(),
     ),
     // show all doctors routes
     GoRoute(

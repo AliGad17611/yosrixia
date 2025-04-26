@@ -10,9 +10,6 @@ class HandwritingViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Handwriting to Text'),
-      ),
       body: BlocConsumer<HandwritingCubit, HandwritingState>(
         listener: (context, state) {
           if (state.error.isNotEmpty) {
@@ -22,6 +19,14 @@ class HandwritingViewBody extends StatelessWidget {
           }
         },
         builder: (context, state) {
+          if (state.isfinished == true) {
+            return const Center(
+              child: Text(
+                'تم الانتهاء من جميع الحروف',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            );
+          }
           return Column(
             children: [
               // Drawing Canvas
@@ -33,87 +38,71 @@ class HandwritingViewBody extends StatelessWidget {
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: GestureDetector(
-                    onPanStart: (details) {
-                      context.read<HandwritingCubit>().startNewStroke(details.localPosition);
-                    },
-                    onPanUpdate: (details) {
-                      context.read<HandwritingCubit>().addPointToStroke(details.localPosition);
-                    },
-                    onPanEnd: (details) {
-                      context.read<HandwritingCubit>().endStroke();
-                    },
-                    child: CustomPaint(
-                      painter: InkPainter(
-                        strokes: state.strokes,
-                        currentPoints: state.currentPoints,
+                  child: Stack(
+                    children: [
+                      // Background Letter
+                      Center(
+                        child: Text(
+                          state
+                              .currentLetter, // <-- Replace this with your current letter
+                          style: TextStyle(
+                            fontSize: 200,
+                            color: Colors.white.withValues(alpha: 0.3),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      size: Size.infinite,
-                    ),
+
+                      // Drawing Canvas
+                      GestureDetector(
+                        onPanStart: (details) {
+                          context
+                              .read<HandwritingCubit>()
+                              .startNewStroke(details.localPosition);
+                        },
+                        onPanUpdate: (details) {
+                          context
+                              .read<HandwritingCubit>()
+                              .addPointToStroke(details.localPosition);
+                        },
+                        onPanEnd: (details) {
+                          context.read<HandwritingCubit>().endStroke();
+                        },
+                        child: CustomPaint(
+                          painter: InkPainter(
+                            strokes: state.strokes,
+                            currentPoints: state.currentPoints,
+                          ),
+                          size: Size.infinite,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              
-              // Recognized Text Display
-              Container(
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Recognized Text:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      state.recognizedText.isEmpty ? 'Write something...' : state.recognizedText,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: state.recognizedText.isEmpty ? Colors.grey : Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              
               // Buttons
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
-                      onPressed: state.isProcessing 
-                          ? null 
+                      onPressed: state.isProcessing
+                          ? null
                           : () => context.read<HandwritingCubit>().clearInk(),
-                      child: const Text('Clear'),
+                      child: const Text(
+                        'مسح',
+                      ),
                     ),
                     ElevatedButton(
-                      onPressed: state.isProcessing || !state.isModelDownloaded 
-                          ? null 
-                          : () => context.read<HandwritingCubit>().recognizeText(),
+                      onPressed: state.isProcessing || !state.isModelDownloaded
+                          ? null
+                          : () => context.read<HandwritingCubit>().nextLetter(),
                       child: state.isProcessing
                           ? const CircularProgressIndicator()
-                          : const Text('Recognize'),
+                          : const Text('التالي'),
                     ),
-                    if (!state.isModelDownloaded)
-                      ElevatedButton(
-                        onPressed: state.isProcessing 
-                            ? null 
-                            : () => context.read<HandwritingCubit>().downloadModel(),
-                        child: state.isProcessing
-                            ? const CircularProgressIndicator()
-                            : const Text('Download Model'),
-                      ),
                   ],
                 ),
               ),

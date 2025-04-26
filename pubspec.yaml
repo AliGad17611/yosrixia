@@ -112,6 +112,34 @@ flutter:
     - assets/media/childHome/
     - assets/media/games/
     - assets/media/childOnboarding/
+    -  assets/puzzle/ain/
+    - assets/puzzle/alef/
+    - assets/puzzle/ba/
+    - assets/puzzle/daal/
+    - assets/puzzle/dad/
+    - assets/puzzle/faa/
+    - assets/puzzle/ghain/
+    - assets/puzzle/h/
+    - assets/puzzle/ha/
+    - assets/puzzle/jeem/
+    - assets/puzzle/kaf/
+    - assets/puzzle/khaa/
+    - assets/puzzle/lam/
+    - assets/puzzle/meem/
+    - assets/puzzle/noon/
+    - assets/puzzle/qaf/
+    - assets/puzzle/raa/
+    - assets/puzzle/sad/
+    - assets/puzzle/seen/
+    - assets/puzzle/sheen/
+    - assets/puzzle/ta/
+    - assets/puzzle/tah/
+    - assets/puzzle/tha/
+    - assets/puzzle/thal/
+    - assets/puzzle/waw/
+    - assets/puzzle/yaa/
+    - assets/puzzle/zaa/
+    - assets/puzzle/zah/
 
   #   - images/a_dot_ham.jpeg
 
