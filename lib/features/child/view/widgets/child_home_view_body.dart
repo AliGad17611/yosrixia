@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yosrixia/core/utils/assets_data.dart';
 import 'package:yosrixia/features/child/view/widgets/child_category.dart';
 import 'package:yosrixia/features/child/view/widgets/dyslexia_widget.dart';
@@ -8,17 +9,17 @@ class ChildHomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 40, right: 23, left: 23),
+        padding: const EdgeInsets.only(top: 40, right: 23, left: 23),
         child: Column(
           children: [
-            DyslexiaWidget(),
+            const DyslexiaWidget(),
             Center(
               child: Column(
                 children: [
-                  SizedBox(height: 89),
-                  Row(
+                  SizedBox(height: 89.h),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ChildCategory(
@@ -34,8 +35,8 @@ class ChildHomeViewBody extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 50),
-                  Row(
+                  const SizedBox(height: 50),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ChildCategory(
