@@ -16,12 +16,12 @@ class NameWidget extends StatelessWidget {
       labelText: 'الاسم بالكامل',
       controller: cubit.nameController,
       validator: (value) {
-        RegExp arabicNameRegExp =
-            RegExp(r'^[\u0621-\u064A\s]+$'); // التحقق من أن النص مكتوب بالعربية
+        // RegExp arabicNameRegExp =
+        //     RegExp(r'^[\u0621-\u064A\s]+$'); // التحقق من أن النص مكتوب بالعربية
         if (value!.isEmpty) {
           return 'الرجاء إدخال اسمك الكامل';
-        } else if (!arabicNameRegExp.hasMatch(value)) {
-          return 'الاسم يجب أن يكون باللغة العربية';
+          // } else if (!arabicNameRegExp.hasMatch(value)) {
+          //   return 'الاسم يجب أن يكون باللغة العربية';
         } else if (!value.contains(' ') || value.split(' ').length < 2) {
           return 'الرجاء إدخال الاسم بالكامل';
         }
