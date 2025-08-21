@@ -16,18 +16,18 @@ class IdenticalCharacterCardBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: isMatched ? Colors.green : kSecondaryColor,
+        color: isMatched ? Colors.green : kPrimaryColor,
         borderRadius: BorderRadius.circular(35),
         border: Border.all(
-          color: isMatched ? Colors.green.shade700 : kPrimaryColor,
-          width: 3,
+          color: isMatched ? Colors.green.shade700 : kSecondaryColor,
+          width: 2,
         ),
       ),
       child: Center(
         child: Text(
           character,
           style: Styles.textStyle64Passion.copyWith(
-            color: Colors.white,
+            color: kBlackColor,
             fontWeight: FontWeight.bold,
           ),
         ),
