@@ -4,7 +4,7 @@ import 'package:yosrixia/core/responsive/widget_height.dart';
 import 'package:yosrixia/core/responsive/widget_width.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/sub_character_tutorial/widgets/mic_i_con.dart';
+import 'package:yosrixia/features/child/dross/tutorial/widgets/mic_icon.dart';
 
 class CharacterTutorialWidget extends StatelessWidget {
   const CharacterTutorialWidget({super.key, required this.subLetter});
@@ -29,7 +29,7 @@ class CharacterTutorialWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          const MicICon(),
+          const MicIcon(),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 
-class MicICon extends StatelessWidget {
-  const MicICon({
+class MicIcon extends StatelessWidget {
+  const MicIcon({
     super.key,
   });
 

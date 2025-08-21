@@ -5,8 +5,8 @@ import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/helper/sub_characters_map.dart';
 import 'package:yosrixia/core/models/character_model.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/sub_character_tutorial/widgets/character_tutorial_widget.dart';
-import 'package:yosrixia/features/child/dross/sub_character_tutorial/widgets/showcase_character_taturial.dart';
+import 'package:yosrixia/features/child/dross/tutorial/widgets/character_tutorial_widget.dart';
+import 'package:yosrixia/features/child/dross/tutorial/widgets/showcase_character_taturial.dart';
 import 'package:yosrixia/features/child/dross/words/views/widgets/letter_to_word.dart';
 
 class SubCharacterTutorialViewBody extends StatefulWidget {

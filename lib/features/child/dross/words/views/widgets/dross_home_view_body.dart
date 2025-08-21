@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/dross/tutorial/cubit/tutorial_cubit.dart';
-import 'package:yosrixia/features/child/dross/tutorial/cubit/tutorial_state.dart';
-import 'package:yosrixia/features/child/dross/tutorial/widgets/tutorial_overlay.dart';
+  import 'package:yosrixia/features/child/dross/tutorial/cubit/tutorial_cubit.dart';
+  import 'package:yosrixia/features/child/dross/tutorial/cubit/tutorial_state.dart';
+import 'package:yosrixia/features/child/home_tutorial/widgets/child_home_tutorial_overlay.dart';
 import 'package:yosrixia/features/widgets/category.dart';
 
 class DrossHomeViewBody extends StatefulWidget {
@@ -61,7 +61,7 @@ class _DrossHomeViewBodyState extends State<DrossHomeViewBody> {
               BlocBuilder<TutorialCubit, TutorialState>(
                 builder: (context, state) {
                   if (state is TutorialVisible) {
-                    return const TutorialOverlay();
+                    return const ChildHomeTutorialOverlay();
                   }
                   return const SizedBox.shrink();
                 },

@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:yosrixia/features/child/dross/sub_character_tutorial/cubit/sub_character_tutorial_cubit.dart';
-import 'package:yosrixia/features/child/dross/sub_character_tutorial/widgets/sub_character_tutorial_view_body.dart';
 import 'package:yosrixia/features/child/dross/tutorial/cubit/tutorial_state.dart';
+import 'package:yosrixia/features/child/dross/tutorial/sub_character_tutorial_cubit/sub_character_tutorial_cubit.dart';
+import 'package:yosrixia/features/child/dross/tutorial/widgets/sub_character_tutorial_view_body.dart';
 import 'package:yosrixia/features/child/dross/words/views/widgets/sub_character_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 
