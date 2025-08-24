@@ -49,4 +49,7 @@ final class IdenticalCharacterGameState extends IdenticalCharacterState {
       isProcessing: isProcessing ?? this.isProcessing,
     );
   }
+
+  // check if the game is finished
+  bool get isGameFinished => matchedCards.every((matched) => matched);
 }
