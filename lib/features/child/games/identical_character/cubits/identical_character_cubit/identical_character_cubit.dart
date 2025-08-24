@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/helper/global_variable.dart';
 
 part 'identical_character_state.dart';
 
@@ -12,20 +15,19 @@ class IdenticalCharacterCubit extends Cubit<IdenticalCharacterState> {
 
   void initializeGame() {
     // Create pairs of characters for the matching game
-    final List<String> characters = [
-      'أ',
-      'ب',
-      'ت',
-      'ث',
-      'ج',
-      'ح',
-      'أ',
-      'ب',
-      'ت',
-      'ث',
-      'ج',
-      'ح',
-    ];
+    final random = Random();
+
+    // pick 6 unique random characters
+    final List<String> selected = [];
+    while (selected.length < 6) {
+      final char = allArabicChars[random.nextInt(allArabicChars.length)];
+      if (!selected.contains(char)) {
+        selected.add(char);
+      }
+    }
+
+    // duplicate them to make pairs
+    final List<String> characters = [...selected, ...selected];
 
     // Shuffle the characters
     characters.shuffle();
@@ -122,6 +124,11 @@ class IdenticalCharacterCubit extends Cubit<IdenticalCharacterState> {
       currentFlippedIndexes: [],
       isProcessing: false,
     ));
+  }
+
+  void restartGame() {
+    _flipBackTimer?.cancel();
+    initializeGame();
   }
 
   @override

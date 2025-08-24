@@ -42,6 +42,9 @@ class _IdenticalCharacterCardState extends State<IdenticalCharacterCard> {
   }
 
   void _handleTap() {
+    // Don't allow tapping if the card is matched
+    if (widget.isMatched) return;
+
     setState(() {
       _isFlipped = !_isFlipped;
     });
@@ -51,7 +54,7 @@ class _IdenticalCharacterCardState extends State<IdenticalCharacterCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _handleTap,
+      onTap: widget.isMatched ? null : _handleTap,
       child: AnimatedFlipContainer(
         isFlipped: _isFlipped,
         frontChild: Container(

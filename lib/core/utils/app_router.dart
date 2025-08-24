@@ -77,7 +77,7 @@ abstract class AppRouter {
   static const String doctorHome = '/doctorHome';
   static const String childDetails = '/childDetails';
 
-  static final router = GoRouter(initialLocation: '/identicalCharacter',routes: [
+  static final router = GoRouter(routes: [
     // welcome routes
     GoRoute(
       path: splash,
