@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/features/child/games/identical_character/views/widgets/identical_character_card.dart';
-import 'package:yosrixia/features/child/games/identical_character/cubits/identical_character_cubit.dart';
+import 'package:yosrixia/features/child/games/identical_character/cubits/identical_character_cubit/identical_character_cubit.dart';
 import 'package:yosrixia/features/child/games/identical_character/views/widgets/game_finished_dialog.dart';
 
 class IdenticalCharacterViewBody extends StatelessWidget {

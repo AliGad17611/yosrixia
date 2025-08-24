@@ -17,6 +17,9 @@ class LettersQuizViewBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Spacer(
+                flex: 2,
+              ),
               Text(
                 'حروف',
                 style: Styles.textStyle96,
@@ -30,11 +33,25 @@ class LettersQuizViewBody extends StatelessWidget {
                   GoRouter.of(context).push(AppRouter.puzzel);
                 },
               ),
-              const SizedBox(height: 46),
+              const SizedBox(height: 30),
               Category(
                 text: 'كتابة الحرف',
                 onTap: () {
                   GoRouter.of(context).push(AppRouter.handwriting);
+                },
+              ),
+              const SizedBox(height: 30),
+              Category(
+                text: 'مطابقة البطاقات',
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.identicalCharacter);
+                },
+              ),
+              const SizedBox(height: 30),
+              Category(
+                text: 'البحث عن الحرف',
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.identicalCharacter);
                 },
               ),
               const Spacer(
