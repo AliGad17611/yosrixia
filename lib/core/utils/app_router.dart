@@ -15,6 +15,7 @@ import 'package:yosrixia/features/child/dross/words/views/aleph1.dart';
 import 'package:yosrixia/features/child/dross/words/views/characters_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/dross_home_view.dart';
 import 'package:yosrixia/features/child/dross/words/views/sub_character_view.dart';
+import 'package:yosrixia/features/child/games/find_character_game/views/find_character_view.dart';
 import 'package:yosrixia/features/child/games/handwriting/views/handwriting_view.dart';
 import 'package:yosrixia/features/child/games/identical_character/views/identical_character_view.dart';
 import 'package:yosrixia/features/child/games/puzzel/views/puzzel_view.dart';
@@ -70,6 +71,7 @@ abstract class AppRouter {
   static const String handwriting = '/handwriting';
   static const String puzzel = '/puzzel';
   static const String identicalCharacter = '/identicalCharacter';
+  static const String findCharacter = '/findCharacter';
   // show all doctors routes
   static const String childProfile = '/childProfile';
   static const String doctorDetails = '/doctorDetails';
@@ -205,6 +207,10 @@ abstract class AppRouter {
     GoRoute(
       path: identicalCharacter,
       builder: (context, state) => const IdenticalCharacterView(),
+    ),
+    GoRoute(
+      path: findCharacter,
+      builder: (context, state) => const FindCharacterView(),
     ),
     // show all doctors routes
     GoRoute(

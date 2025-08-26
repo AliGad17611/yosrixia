@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/utils/constants.dart';
+import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/features/child/games/handwriting/handwriting_cubit/handwriting_cubit.dart';
 import 'package:yosrixia/features/child/games/handwriting/handwriting_cubit/handwriting_state.dart';
 import 'package:yosrixia/features/child/games/handwriting/helper/ink_painter.dart';
@@ -91,17 +93,29 @@ class HandwritingViewBody extends StatelessWidget {
                       onPressed: state.isProcessing
                           ? null
                           : () => context.read<HandwritingCubit>().clearInk(),
-                      child: const Text(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kPrimaryColor,
+                        foregroundColor: kSecondaryColor,
+                      ),
+                      child: Text(
                         'مسح',
+                        style: Styles.textStyle24,
                       ),
                     ),
                     ElevatedButton(
                       onPressed: state.isProcessing || !state.isModelDownloaded
                           ? null
                           : () => context.read<HandwritingCubit>().nextLetter(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: kPrimaryColor,
+                        foregroundColor: kSecondaryColor,
+                      ),
                       child: state.isProcessing
                           ? const CircularProgressIndicator()
-                          : const Text('التالي'),
+                          : Text(
+                              'التالي',
+                              style: Styles.textStyle24,
+                            ),
                     ),
                   ],
                 ),

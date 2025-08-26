@@ -51,7 +51,7 @@ class LettersQuizViewBody extends StatelessWidget {
               Category(
                 text: 'البحث عن الحرف',
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.identicalCharacter);
+                  GoRouter.of(context).push(AppRouter.findCharacter);
                 },
               ),
               const Spacer(
