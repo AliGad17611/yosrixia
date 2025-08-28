@@ -3,11 +3,12 @@ import 'package:yosrixia/core/responsive/widget_height.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
-class TipsTitle extends StatelessWidget {
-  const TipsTitle({
+class TitleWidget extends StatelessWidget {
+  const TitleWidget({
     super.key,
-
+    required this.title,
   });
+  final String title;
 
 
   @override
@@ -21,7 +22,7 @@ class TipsTitle extends StatelessWidget {
       ),
       child: Align(
           alignment: Alignment.center,
-          child: Text('نصائح وأنشطة إضافية',
+          child: Text(title,
               style: Styles.textStyle36Passion.copyWith(color: kBlackColor))),
     );
   }

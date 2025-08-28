@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/tips/views/tips_title.dart';
+import 'package:yosrixia/core/widgets/title_widget.dart';
 
 class TipsViewBody extends StatelessWidget {
   const TipsViewBody({super.key});
@@ -17,7 +17,7 @@ class TipsViewBody extends StatelessWidget {
               spacing: 15,
               children: [
                 const SizedBox(height: 20),
-                const TipsTitle(),
+                const TitleWidget(title: 'نصائح وأنشطة إضافية'),
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.symmetric(vertical: 16),

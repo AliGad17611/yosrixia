@@ -16,14 +16,12 @@ class SubCharacterView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackGround(
       child: BlocProvider(
-        create: (context) => SubCharacterTutorialCubit(),
+        create: (context) => SubCharacterTutorialCubit()..checkTutorialStatus(),
         child: BlocBuilder<SubCharacterTutorialCubit, TutorialState>(
           builder: (context, state) {
-            if (state is TutorialCompleted) {
-              return const SubCharacterViewBody();
-            }
             // Wrap tutorial view with ShowCaseWidget
-            return ShowCaseWidget(
+            if (state is TutorialVisible) {
+               return ShowCaseWidget(
               builder: (context) => const SubCharacterTutorialViewBody(),
               onComplete: (index, key) {
                 log('index is $index');
@@ -33,6 +31,9 @@ class SubCharacterView extends StatelessWidget {
                 }
               },
             );
+            }
+              return const SubCharacterViewBody();
+           
           },
         ),
       ),
