@@ -1,3 +1,5 @@
+import 'dart:developer' as debug;
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,17 +14,21 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   FindCharacterCubit() : super(FindCharacterInitial());
 
   final Random _random = Random();
+  List<String> showedCharacters = [];
 
   /// Initialize a new game with random character and background
   void initializeGame(BuildContext context) {
+    emit(FindCharacterLoading());
+    navigateToNextScreen(context);
+  }
+
+  void navigateToNextScreen(BuildContext context) {
     try {
-      emit(FindCharacterLoading());
-
-      // Select random character and background
-      final currentCharacter =
-          allArabicChars[_random.nextInt(allArabicChars.length)];
+      debug.log("showedCharacters: $showedCharacters");
+      // Select random character from list
+      final currentCharacter = getRandomCharacter();
+      // Select random background image from list
       final backgroundImage = imagesList[_random.nextInt(imagesList.length)];
-
       // Generate character positions
       final characterPositions = _generateCharacterPositions(context);
 
@@ -36,6 +42,32 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
       emit(FindCharacterError(
           message: 'Failed to initialize game: ${e.toString()}'));
     }
+  }
+
+  /// Reset the game with new character and positions
+  void resetGame(BuildContext context) {
+    initializeGame(context);
+  }
+
+  void resetCharactersPositions(BuildContext context) {
+    // re-generate character positions
+    final characterPositions = _generateCharacterPositions(context);
+    final currentState = state;
+
+    if (currentState is FindCharacterGameState) {
+      emit(currentState.copyWith(
+          characterPositions: characterPositions, remainingCharacters: 4));
+    }
+  }
+
+  /// Get random character from list
+  String getRandomCharacter() {
+    String currentCharacter;
+    do {
+      currentCharacter = allArabicChars[_random.nextInt(allArabicChars.length)];
+    } while (showedCharacters.contains(currentCharacter));
+    showedCharacters.add(currentCharacter);
+    return currentCharacter;
   }
 
   /// Generate random positions for characters on screen
@@ -80,7 +112,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Handle character tap - hide character and update remaining count
-  void onCharacterTapped(int characterId) {
+  void onCharacterTapped(BuildContext context, int characterId) {
     final currentState = state;
     if (currentState is! FindCharacterGameState) return;
 
@@ -97,11 +129,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
 
       // Check if game is completed
       if (newRemainingCount <= 0) {
-        emit(currentState.copyWith(
-          characterPositions: updatedPositions,
-          remainingCharacters: newRemainingCount,
-          isGameCompleted: true,
-        ));
+        navigateToNextScreen(context);
       } else {
         emit(currentState.copyWith(
           characterPositions: updatedPositions,
@@ -112,11 +140,6 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
       emit(FindCharacterError(
           message: 'Failed to process character tap: ${e.toString()}'));
     }
-  }
-
-  /// Reset the game with new character and positions
-  void resetGame(BuildContext context) {
-    initializeGame(context);
   }
 
   /// Get current game progress as percentage
