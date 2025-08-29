@@ -1,7 +1,6 @@
 import 'dart:developer' as debug;
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:math';
 import 'package:yosrixia/core/helper/global_variable.dart';
@@ -17,12 +16,12 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   List<String> showedCharacters = [];
 
   /// Initialize a new game with random character and background
-  void initializeGame(BuildContext context) {
+  void initializeGame(double screenWidth, double screenHeight) {
     emit(FindCharacterLoading());
-    navigateToNextScreen(context);
+    navigateToNextScreen(screenWidth, screenHeight);
   }
 
-  void navigateToNextScreen(BuildContext context) {
+  void navigateToNextScreen(double screenWidth, double screenHeight) {
     try {
       debug.log("showedCharacters: $showedCharacters");
       // Select random character from list
@@ -30,7 +29,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
       // Select random background image from list
       final backgroundImage = imagesList[_random.nextInt(imagesList.length)];
       // Generate character positions
-      final characterPositions = _generateCharacterPositions(context);
+      final characterPositions = _generateCharacterPositions(screenWidth, screenHeight);
 
       emit(FindCharacterGameState(
         currentCharacter: currentCharacter,
@@ -45,13 +44,13 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Reset the game with new character and positions
-  void resetGame(BuildContext context) {
-    initializeGame(context);
+  void resetGame(double screenWidth, double screenHeight) {
+    initializeGame(screenWidth, screenHeight);
   }
 
-  void resetCharactersPositions(BuildContext context) {
+  void resetCharactersPositions(double screenWidth, double screenHeight) {
     // re-generate character positions
-    final characterPositions = _generateCharacterPositions(context);
+    final characterPositions = _generateCharacterPositions(screenWidth, screenHeight);
     final currentState = state;
 
     if (currentState is FindCharacterGameState) {
@@ -71,10 +70,8 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Generate random positions for characters on screen
-  List<CharacterPosition> _generateCharacterPositions(BuildContext context) {
+  List<CharacterPosition> _generateCharacterPositions(double screenWidth, double screenHeight) {
     final characterPositions = <CharacterPosition>[];
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
 
     // Define safe areas to avoid overlapping with title
     const safeTop = 200.0; // Below the title and counter
@@ -112,7 +109,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Handle character tap - hide character and update remaining count
-  void onCharacterTapped(BuildContext context, int characterId) {
+  void onCharacterTapped(double screenWidth, double screenHeight, int characterId) {
     final currentState = state;
     if (currentState is! FindCharacterGameState) return;
 
@@ -127,9 +124,17 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
 
       final newRemainingCount = currentState.remainingCharacters - 1;
 
-      // Check if game is completed
+      // Check if there is no remaining character, navigate to next screen
       if (newRemainingCount <= 0) {
-        navigateToNextScreen(context);
+        if (showedCharacters.length == 3) {
+          // game completed
+          emit(FindCharacterSuccess(
+            completedCharacter: showedCharacters.last,
+            totalCharactersFound: showedCharacters.length,
+          ));
+        } else {
+        navigateToNextScreen(screenWidth, screenHeight);
+        }
       } else {
         emit(currentState.copyWith(
           characterPositions: updatedPositions,

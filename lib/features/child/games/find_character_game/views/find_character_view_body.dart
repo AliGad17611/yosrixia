@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/core/utils/spacing.dart';
-import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/core/widgets/title_widget.dart';
 import 'package:yosrixia/features/child/games/find_character_game/manger/find_character_cubit/find_character_cubit.dart';
 import 'package:yosrixia/features/child/games/find_character_game/manger/helper/images_list.dart';
+import 'package:yosrixia/features/child/games/find_character_game/views/widgets/progress_and_refresh_row.dart';
 
 class FindCharacterViewBody extends StatefulWidget {
   const FindCharacterViewBody({super.key});
@@ -16,6 +14,8 @@ class FindCharacterViewBody extends StatefulWidget {
 
 class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
   bool _imagesPrecached = false;
+  double screenWidth = 0;
+  double screenHeight = 0;
 
   @override
   void initState() {
@@ -34,7 +34,8 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
     }
   }
 
-  void showSuccessMessage(BuildContext context, String character) {
+  void showSuccessMessage(BuildContext context, String character,
+      double screenWidth, double screenHeight) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -99,7 +100,7 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
                               Navigator.of(context).pop();
                               context
                                   .read<FindCharacterCubit>()
-                                  .initializeGame(context);
+                                  .initializeGame(screenWidth, screenHeight);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green,
@@ -155,10 +156,13 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
     return BlocListener<FindCharacterCubit, FindCharacterState>(
       listener: (context, state) {
-        if (state is FindCharacterGameState && state.isGameCompleted) {
-          showSuccessMessage(context, state.currentCharacter);
+        if (state is FindCharacterSuccess) {
+          showSuccessMessage(
+              context, state.completedCharacter, screenWidth, screenHeight);
         } else if (state is FindCharacterError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -173,7 +177,9 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
           // Initialize game on first build
           if (state is FindCharacterInitial) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.read<FindCharacterCubit>().initializeGame(context);
+              context
+                  .read<FindCharacterCubit>()
+                  .initializeGame(screenWidth, screenHeight);
             });
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
@@ -206,7 +212,7 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
                       onPressed: () {
                         context
                             .read<FindCharacterCubit>()
-                            .initializeGame(context);
+                            .initializeGame(screenWidth, screenHeight);
                       },
                       child: const Text('إعادة المحاولة'),
                     ),
@@ -237,65 +243,11 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
                         title: 'ابحث عن حرف ال ${state.currentCharacter}'),
                   ),
 
-                  // Counter Display
-                  Positioned(
-                    top: 150,
-                    left: 24,
-                    right: 24,
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              height: 50,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: kLightWhiteColor,
-                                borderRadius: BorderRadius.circular(25),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.2),
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 5),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'المتبقي : ${state.remainingCharacters}',
-                                  style: Styles.textStyle20.copyWith(
-                                      color: kLightBlackColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ),
-                          ),
-                          horizontalSpace(30),
-                          IconButton(
-                            onPressed: () {
-                              context
-                                  .read<FindCharacterCubit>()
-                                  .resetCharactersPositions(context);
-                            },
-                            style: IconButton.styleFrom(
-                              backgroundColor: kLightWhiteColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                            ),
-                            icon: const Icon(
-                              Icons.refresh,
-                              color: kLightBlackColor,
-                              size: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // Game Progress Display
+                  ProgressAndRefreshRow(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      remainingCharacters: state.remainingCharacters),
 
                   // Characters positioned randomly
                   ...state.characterPositions.map(
@@ -310,7 +262,8 @@ class _FindCharacterViewBodyState extends State<FindCharacterViewBody> {
                         child: GestureDetector(
                           onTap: () => context
                               .read<FindCharacterCubit>()
-                              .onCharacterTapped(context, position.id),
+                              .onCharacterTapped(
+                                  screenWidth, screenHeight, position.id),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 200),
                             child: Text(
