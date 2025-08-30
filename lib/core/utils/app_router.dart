@@ -5,6 +5,7 @@ import 'package:yosrixia/features/auth/views/widgets/email_confirmation.dart';
 import 'package:yosrixia/features/auth/views/widgets/register_view.dart';
 import 'package:yosrixia/features/auth/views/select_role_view.dart';
 import 'package:yosrixia/features/auth/views/widgets/user_information_view.dart';
+import 'package:yosrixia/features/child/chat/views/chat_view.dart';
 import 'package:yosrixia/features/child/doctors/views/doctor_details_view.dart';
 import 'package:yosrixia/features/child/doctors/views/show_all_doctors_view.dart';
 import 'package:yosrixia/features/child/dross/gomal/views/gomal_home_view.dart';
@@ -55,6 +56,7 @@ abstract class AppRouter {
   static const String tips = '/tips';
   static const String settings = '/settings';
   static const String helpCenter = '/helpCenter';
+  static const String chat = '/chat';
   // droos routes
   static const String characters = '/characters';
   static const String gomalHome = '/gomalHome';
@@ -79,7 +81,7 @@ abstract class AppRouter {
   static const String doctorHome = '/doctorHome';
   static const String childDetails = '/childDetails';
 
-  static final router = GoRouter(routes: [
+  static final router = GoRouter(initialLocation: chat, routes: [
     // welcome routes
     GoRoute(
       path: splash,
@@ -149,6 +151,10 @@ abstract class AppRouter {
     GoRoute(
       path: helpCenter,
       builder: (context, state) => const HelpCenterView(),
+    ),
+    GoRoute(
+      path: chat,
+      builder: (context, state) => const ChatView(),
     ),
     // droos routes
     GoRoute(
