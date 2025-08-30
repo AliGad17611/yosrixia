@@ -59,7 +59,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
                     style: Styles.textStyle18.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: kPrimaryColor.withValues(alpha:0.9),
+                      color: kPrimaryColor.withValues(alpha: 0.9),
                     ),
                   ),
                 ),
@@ -76,7 +76,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha:0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -88,7 +88,7 @@ class _TypingIndicatorState extends State<TypingIndicator>
                       Text(
                         'يكتب',
                         style: Styles.textStyle18.copyWith(
-                          color: kSecondaryColor.withValues(alpha:0.7),
+                          color: kSecondaryColor.withValues(alpha: 0.7),
                         ),
                       ),
                       const SizedBox(width: 8),
@@ -102,8 +102,8 @@ class _TypingIndicatorState extends State<TypingIndicator>
                                 width: 6,
                                 height: 6,
                                 decoration: BoxDecoration(
-                                  color: kBlueColor.withValues(alpha:
-                                    0.3 + (_animation.value * 0.7),
+                                  color: kBlueColor.withValues(
+                                    alpha: 0.3 + (_animation.value * 0.7),
                                   ),
                                   shape: BoxShape.circle,
                                 ),
@@ -130,12 +130,12 @@ class _TypingIndicatorState extends State<TypingIndicator>
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: kPrimaryColor.withValues(alpha:0.3),
+          color: kPrimaryColor.withValues(alpha: 0.3),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
