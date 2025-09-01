@@ -39,7 +39,7 @@ class _ChatInputState extends State<ChatInput> {
         color: kPrimaryColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, -2),
           ),
@@ -54,7 +54,7 @@ class _ChatInputState extends State<ChatInput> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(25),
                   border: Border.all(
-                    color: kBlueColor.withValues(alpha:0.3),
+                    color: kBlueColor.withValues(alpha: 0.3),
                     width: 1,
                   ),
                 ),
@@ -66,7 +66,7 @@ class _ChatInputState extends State<ChatInput> {
                   decoration: InputDecoration(
                     hintText: 'اكتب رسالتك هنا...',
                     hintStyle: Styles.textStyle18.copyWith(
-                      color: kSecondaryColor.withValues(alpha:0.5),
+                      color: kSecondaryColor.withValues(alpha: 0.5),
                     ),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
@@ -76,7 +76,7 @@ class _ChatInputState extends State<ChatInput> {
                   ),
                   textInputAction: TextInputAction.send,
                   onSubmitted: (_) => _sendMessage(),
-                  maxLines: null,
+                  maxLines: 4,
                   minLines: 1,
                 ),
               ),
@@ -92,7 +92,7 @@ class _ChatInputState extends State<ChatInput> {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: kBlueColor.withValues(alpha:0.3),
+                      color: kBlueColor.withValues(alpha: 0.3),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),

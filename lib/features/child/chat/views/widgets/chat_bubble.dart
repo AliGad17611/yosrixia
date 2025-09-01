@@ -36,11 +36,11 @@ class ChatBubble extends StatelessWidget {
                     padding:
                         const EdgeInsets.only(bottom: 4, right: 8, left: 8),
                     child: Text(
-                      message.senderName,
+                      message.senderName!,
                       style: Styles.textStyle18.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: kPrimaryColor.withValues(alpha:0.9),
+                        color: kPrimaryColor.withValues(alpha: 0.9),
                       ),
                     ),
                   ),
@@ -58,15 +58,15 @@ class ChatBubble extends StatelessWidget {
                       topLeft: const Radius.circular(20),
                       topRight: const Radius.circular(20),
                       bottomLeft: message.isFromUser
-                          ? const Radius.circular(20)
-                          : const Radius.circular(4),
-                      bottomRight: message.isFromUser
                           ? const Radius.circular(4)
                           : const Radius.circular(20),
+                      bottomRight: message.isFromUser
+                          ? const Radius.circular(20)
+                          : const Radius.circular(4),
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha:0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 4,
                         offset: const Offset(0, 2),
                       ),
@@ -94,8 +94,8 @@ class ChatBubble extends StatelessWidget {
                         style: Styles.textStyle18.copyWith(
                           fontSize: 12,
                           color: message.isFromUser
-                              ? kPrimaryColor.withValues(alpha:0.7)
-                              : kSecondaryColor.withValues(alpha:0.6),
+                              ? kPrimaryColor.withValues(alpha: 0.7)
+                              : kSecondaryColor.withValues(alpha: 0.6),
                         ),
                       ),
                     ],
@@ -117,35 +117,35 @@ class ChatBubble extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: kPrimaryColor.withValues(alpha:0.3),
+          color: kPrimaryColor.withValues(alpha: 0.3),
           width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha:0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 4,
             offset: const Offset(0, 2),
           ),
         ],
       ),
       child: ClipOval(
-        child: message.senderImageUrl.isNotEmpty
-            ? (message.senderImageUrl.startsWith('assets/')
+        child: message.senderImageUrl?.isNotEmpty ?? false
+            ? (message.senderImageUrl?.startsWith('assets/') ?? false)
                 ? Image.asset(
-                    message.senderImageUrl,
+                    message.senderImageUrl!,
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
                   )
                 : Image.network(
-                    message.senderImageUrl,
+                    message.senderImageUrl!,
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
                       return _buildDefaultAvatar();
                     },
-                  ))
+                  )
             : _buildDefaultAvatar(),
       ),
     );
