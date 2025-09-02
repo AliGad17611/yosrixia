@@ -1,56 +1,50 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yosrixia/core/utils/assets_data.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:yosrixia/core/database/firebase_services.dart';
+import 'package:yosrixia/features/child/chat/models/chat_message.dart';
 
 class ChatUserService {
-  static const String _defaultUserName = 'أنت';
-  static const String _defaultAIName = 'مساعد يسر';
-  static const String _defaultAIImage = AssetsData.logo;
+  var box = Hive.box('chat');
 
-  /// Get current user's display information
-  static Future<Map<String, String>> getCurrentUserInfo() async {
-    try {
-      final user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
-        return {
-          'name': _defaultUserName,
-          'imageUrl': '',
-        };
-      }
-
-      // Try to get user info from Firestore
-      final userDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .get();
-
-      if (userDoc.exists) {
-        final data = userDoc.data() as Map<String, dynamic>;
-        return {
-          'name': data['name'] ?? user.displayName ?? _defaultUserName,
-          'imageUrl': data['imageUrl'] ?? user.photoURL ?? '',
-        };
-      }
-
-      // Fallback to Firebase Auth user info
-      return {
-        'name': user.displayName ?? _defaultUserName,
-        'imageUrl': user.photoURL ?? '',
-      };
-    } catch (e) {
-      // Return default values if there's any error
-      return {
-        'name': _defaultUserName,
-        'imageUrl': '',
-      };
-    }
+  /// send message to chat
+  Future<void> sendMessage(String text) async {
+    await FirebaseServices.instance.firestore.collection('chats').add({
+      'senderId': FirebaseServices.instance.userId,
+      'text': text,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
   }
 
-  /// Get AI assistant information
-  static Map<String, String> getAIInfo() {
-    return {
-      'name': _defaultAIName,
-      'imageUrl': _defaultAIImage,
-    };
+  /// listen to chat
+  Stream<List<ChatMessage>> getMessages() {
+    return FirebaseServices.instance.firestore
+        .collection('chats')
+        .orderBy('timestamp', descending: false)
+        .snapshots()
+        .asyncMap((event) async {
+      final messages = await Future.wait(event.docs.map((doc) async {
+        final userData = await getUserImageUrlAndName(doc['senderId']);
+        return ChatMessage(
+          id: doc.id,
+          message: doc['text'],
+          isFromUser: doc['senderId'] == FirebaseServices.instance.userId,
+          senderName: userData['name'],
+          senderImageUrl: userData['imageUrl'],
+          timestamp: doc['timestamp'].toDate(),
+        );
+      }));
+      return messages;
+    });
+  }
+
+  /// get user imageUrl and name with userId from local storage
+  Future<Map<String, dynamic>> getUserImageUrlAndName(String userId) async {
+    if (box.containsKey(userId)) {
+      return box.get(userId) as Map<String, dynamic>;
+    } else {
+      final user = await FirebaseServices.instance.getCustomUserData(userId);
+      box.put(userId, {'name': user['name'], 'imageUrl': user['imageUrl']});
+      return {'name': user['name'], 'imageUrl': user['imageUrl']};
+    }
   }
 }

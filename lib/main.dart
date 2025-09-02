@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/firebase_options.dart';
@@ -12,6 +13,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
   await SupabaseConfig.init();
   runApp(const MyApp());
 }
