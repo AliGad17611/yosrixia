@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/core/utils/styles.dart';
 import '../../manger/models/chat_message.dart';
-import '../../manger/cubit/chat_cubit.dart';
+import 'chat_avatar.dart';
+import 'message_bubble.dart';
+import 'chat_bubble_theme.dart';
+import '../../utils/time_formatter.dart';
 
+/// Refactored ChatBubble widget with improved performance and modularity
 class ChatBubble extends StatefulWidget {
   final ChatMessage message;
 
@@ -26,17 +27,29 @@ class _ChatBubbleState extends State<ChatBubble> {
   void initState() {
     super.initState();
     _updateTimeString();
-    _startTimer();
+    _startTimerIfNeeded();
   }
 
-  void _startTimer() {
-    // Since we're showing actual time, we only need to update when the day changes
-    // Update every hour to handle day transitions (today -> yesterday)
-    _timer = Timer.periodic(const Duration(hours: 1), (_) {
-      if (mounted) {
-        _updateTimeString();
-      }
-    });
+  @override
+  void didUpdateWidget(ChatBubble oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.message.timestamp != widget.message.timestamp) {
+      _updateTimeString();
+      _startTimerIfNeeded();
+    }
+  }
+
+  void _startTimerIfNeeded() {
+    _timer?.cancel();
+
+    // Only start timer if the timestamp might need updating
+    if (TimeFormatter.shouldUpdateTime(widget.message.timestamp)) {
+      _timer = Timer.periodic(const Duration(hours: 1), (_) {
+        if (mounted) {
+          _updateTimeString();
+        }
+      });
+    }
   }
 
   @override
@@ -46,245 +59,81 @@ class _ChatBubbleState extends State<ChatBubble> {
   }
 
   void _updateTimeString() {
-    setState(() {
-      _timeString = _formatTime(widget.message.timestamp);
-    });
+    final newTimeString =
+        TimeFormatter.formatMessageTime(widget.message.timestamp);
+    if (_timeString != newTimeString) {
+      setState(() {
+        _timeString = newTimeString;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: widget.message.isFromUser
-            ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
-        children: [
-          if (!widget.message.isFromUser) ...[
-            _buildAvatar(),
-            const SizedBox(width: 8),
-          ],
-          Flexible(
-            child: Column(
-              crossAxisAlignment: widget.message.isFromUser
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
-              children: [
-                if (!widget.message.isFromUser)
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(bottom: 4, right: 8, left: 8),
-                    child: Text(
-                      widget.message.senderName!,
-                      style: Styles.textStyle18.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: kPrimaryColor.withValues(alpha: 0.9),
-                      ),
-                    ),
+    return Semantics(
+      label: _buildSemanticLabel(),
+      child: Container(
+        margin: ChatBubbleTheme.bubbleMargin,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: widget.message.isFromUser
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.start,
+          children: [
+            if (!widget.message.isFromUser) ...[
+              ChatAvatar(message: widget.message),
+              const SizedBox(width: 8),
+            ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: widget.message.isFromUser
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (!widget.message.isFromUser &&
+                      widget.message.senderName != null)
+                    _buildSenderName(),
+                  MessageBubble(
+                    message: widget.message,
+                    timeString: _timeString,
                   ),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.7,
-                  ),
-                  decoration: BoxDecoration(
-                    color: widget.message.isFromUser
-                        ? kSecondaryColor.withValues(alpha: 0.5)
-                        : kPrimaryColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: const Radius.circular(20),
-                      topRight: const Radius.circular(20),
-                      bottomLeft: widget.message.isFromUser
-                          ? const Radius.circular(4)
-                          : const Radius.circular(20),
-                      bottomRight: widget.message.isFromUser
-                          ? const Radius.circular(20)
-                          : const Radius.circular(4),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: widget.message.isFromUser
-                        ? CrossAxisAlignment.end
-                        : CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.message.message,
-                        style: Styles.textStyle18.copyWith(
-                          color: widget.message.isFromUser
-                              ? kPrimaryColor
-                              : kSecondaryColor,
-                        ),
-                        textAlign: widget.message.isFromUser
-                            ? TextAlign.right
-                            : TextAlign.left,
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            _timeString,
-                            style: Styles.textStyle18.copyWith(
-                              fontSize: 12,
-                              color: widget.message.isFromUser
-                                  ? kPrimaryColor.withValues(alpha: 0.7)
-                                  : kSecondaryColor.withValues(alpha: 0.6),
-                            ),
-                          ),
-                          if (widget.message.isFromUser) ...[
-                            const SizedBox(width: 4),
-                            _buildStatusIndicator(),
-                          ],
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          // No avatar for user messages
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAvatar() {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: kPrimaryColor.withValues(alpha: 0.3),
-          width: 2,
+          ],
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: ClipOval(
-        child: widget.message.senderImageUrl?.isNotEmpty ?? false
-            ? (widget.message.senderImageUrl?.startsWith('assets/') ?? false)
-                ? Image.asset(
-                    widget.message.senderImageUrl!,
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                  )
-                : Image.network(
-                    widget.message.senderImageUrl!,
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return _buildDefaultAvatar();
-                    },
-                  )
-            : _buildDefaultAvatar(),
       ),
     );
   }
 
-  Widget _buildDefaultAvatar() {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: widget.message.isFromUser ? kBlueColor : kPurpleColor,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(
-        widget.message.isFromUser ? Icons.person : Icons.smart_toy,
-        color: kPrimaryColor,
-        size: 24,
+  Widget _buildSenderName() {
+    return Padding(
+      padding: ChatBubbleTheme.senderNamePadding,
+      child: Text(
+        widget.message.senderName!,
+        style: ChatBubbleTheme.senderNameTextStyle,
       ),
     );
   }
 
-  Widget _buildStatusIndicator() {
+/// build semantic label to make the widget more accessible for screen readers 
+  String _buildSemanticLabel() {
+    final sender = widget.message.isFromUser
+        ? 'أنت'
+        : widget.message.senderName ?? 'مجهول';
+    final status = _getStatusLabel();
+    return 'رسالة من $sender: ${widget.message.message}. الوقت: $_timeString. $status';
+  }
+/// get status label to make the semantic label more accurate appear in the screen reader 
+  String _getStatusLabel() {
     switch (widget.message.status) {
       case MessageStatus.sending:
-        return SizedBox(
-          width: 12,
-          height: 12,
-          child: CircularProgressIndicator(
-            strokeWidth: 1.5,
-            valueColor: AlwaysStoppedAnimation<Color>(
-              kPrimaryColor.withValues(alpha: 0.7),
-            ),
-          ),
-        );
+        return 'جاري الإرسال';
       case MessageStatus.sent:
-        return Icon(
-          Icons.check,
-          size: 14,
-          color: kPrimaryColor.withValues(alpha: 0.7),
-        );
+        return 'تم الإرسال';
       case MessageStatus.failed:
-        return GestureDetector(
-          onTap: () {
-            // Retry sending the message
-            context.read<ChatCubit>().retryMessage(widget.message.id);
-          },
-          child: Container(
-            padding: const EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              color: Colors.red.withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.refresh,
-              size: 12,
-              color: Colors.red.withValues(alpha: 0.8),
-            ),
-          ),
-        );
-    }
-  }
-
-  String _formatTime(DateTime timestamp) {
-    final now = DateTime.now();
-    final isToday = now.day == timestamp.day &&
-        now.month == timestamp.month &&
-        now.year == timestamp.year;
-
-    final isYesterday =
-        now.subtract(const Duration(days: 1)).day == timestamp.day &&
-            now.subtract(const Duration(days: 1)).month == timestamp.month &&
-            now.subtract(const Duration(days: 1)).year == timestamp.year;
-
-    // Format time in 12-hour format
-    final hour = timestamp.hour == 0
-        ? 12
-        : (timestamp.hour > 12 ? timestamp.hour - 12 : timestamp.hour);
-    final minute = timestamp.minute.toString().padLeft(2, '0');
-    final period = timestamp.hour < 12 ? 'ص' : 'م';
-    final timeString = '$hour:$minute $period';
-
-    if (isToday) {
-      return timeString;
-    } else if (isYesterday) {
-      return 'أمس $timeString';
-    } else {
-      // For older messages, show date and time
-      final day = timestamp.day.toString().padLeft(2, '0');
-      final month = timestamp.month.toString().padLeft(2, '0');
-      return '$day/$month $timeString';
+        return 'فشل الإرسال، انقر لإعادة المحاولة';
     }
   }
 }

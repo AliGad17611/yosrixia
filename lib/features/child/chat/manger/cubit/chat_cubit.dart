@@ -59,15 +59,10 @@ class ChatCubit extends Cubit<ChatState> {
             newState is ChatErrorState;
 
       case const (ChatLoaded):
-        // From Loaded, we can go to SendingMessage, Loading (refresh), or Error states
-        return newState is ChatSendingMessage ||
-            newState is ChatLoaded || // Allow updates to loaded state
+        // From Loaded, we can go to Loading (refresh), or Error states
+        return newState is ChatLoaded || // Allow updates to loaded state
             newState is ChatLoading ||
             newState is ChatErrorState;
-
-      case const (ChatSendingMessage):
-        // From SendingMessage, we can go to Loaded or Error states
-        return newState is ChatLoaded || newState is ChatErrorState;
 
       default:
         // From any error state, we can transition to any other state (recovery)

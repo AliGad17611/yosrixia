@@ -52,20 +52,6 @@ class ChatLoaded extends ChatState {
   }
 }
 
-/// State when sending a message (shows typing indicator)
-class ChatSendingMessage extends ChatState {
-  final List<ChatMessage> messages;
-  final String pendingMessage;
-
-  const ChatSendingMessage({
-    required this.messages,
-    required this.pendingMessage,
-  });
-
-  @override
-  List<Object?> get props => [messages, pendingMessage];
-}
-
 /// Base error state
 abstract class ChatErrorState extends ChatState {
   final String message;
