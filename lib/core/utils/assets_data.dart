@@ -17,5 +17,7 @@ class AssetsData {
       'assets/media/childOnboarding/4.png';
   static const String childOnboardingPage5 =
       'assets/media/childOnboarding/5.png';
-  static const String identicalCharacter = 'assets/media/games/identical_character.png';
+  static const String identicalCharacter =
+      'assets/media/games/identical_character.png';
+  static const String chat = 'assets/media/childHome/chat.png';
 }

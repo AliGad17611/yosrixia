@@ -34,7 +34,7 @@ class CountryWidget extends StatelessWidget {
               decoration: const InputDecoration(
                 border: InputBorder.none,
               ),
-              value: cubit.selectedCountry.text.isEmpty
+              initialValue: cubit.selectedCountry.text.isEmpty
                   ? cubit.selectedCountry.text = 'مصر'
                   : cubit.selectedCountry.text,
               items: <String>['مصر', 'السعودية', 'الإمارات', 'الأردن', 'لبنان']

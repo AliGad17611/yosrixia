@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/database/firebase_services.dart';
 import 'package:yosrixia/core/helper/get_current_id_and_role.dart';
-import 'package:yosrixia/core/helper/get_current_user_id.dart';
 import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
@@ -22,8 +22,8 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> checkUserRole() async {
-    final userId = getCurrentUserId();
-    if (userId == null) {
+    final userId = FirebaseServices.instance.userId;
+    if (userId.isEmpty) {
       if (!mounted) return;
       GoRouter.of(context).go(AppRouter.welcome);
       return;

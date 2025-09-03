@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/database/firebase_services.dart';
 import 'package:yosrixia/core/models/user_model.dart';
 
 part 'users_state.dart';
@@ -12,8 +12,8 @@ class UsersCubit extends Cubit<UsersState> {
   UsersCubit() : super(UsersInitial());
   Future<void> getUsersBasedOnRole() async {
     try {
-      final user = FirebaseAuth.instance.currentUser;
-      if (user == null) {
+      final user = FirebaseServices.instance.user;
+      if (user.uid.isEmpty) {
         emit(const UsersFailure(error: 'User not authenticated'));
         return;
       }
