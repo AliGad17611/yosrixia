@@ -34,7 +34,6 @@ class ChatUserService {
           final timestamp = data['timestamp'];
 
           final userData = await getUserImageUrlAndName(senderId);
-
           DateTime messageTimestamp;
           try {
             messageTimestamp = timestamp?.toDate() ?? DateTime.now();
@@ -63,7 +62,10 @@ class ChatUserService {
   /// get user imageUrl and name with userId from local storage
   Future<Map<String, dynamic>> getUserImageUrlAndName(String userId) async {
     if (box.containsKey(userId)) {
-      return box.get(userId) as Map<String, dynamic>;
+      return {
+        'name': box.get(userId)['name'],
+        'imageUrl': box.get(userId)['imageUrl']
+      };
     } else {
       final user = await FirebaseServices.instance.getCustomUserData(userId);
       box.put(userId, {'name': user['name'], 'imageUrl': user['imageUrl']});

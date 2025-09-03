@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 import '../../manger/models/chat_message.dart';
+import '../../manger/cubit/chat_cubit.dart';
 
 class ChatBubble extends StatefulWidget {
   final ChatMessage message;
@@ -127,14 +129,23 @@ class _ChatBubbleState extends State<ChatBubble> {
                             : TextAlign.left,
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        _timeString,
-                        style: Styles.textStyle18.copyWith(
-                          fontSize: 12,
-                          color: widget.message.isFromUser
-                              ? kPrimaryColor.withValues(alpha: 0.7)
-                              : kSecondaryColor.withValues(alpha: 0.6),
-                        ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            _timeString,
+                            style: Styles.textStyle18.copyWith(
+                              fontSize: 12,
+                              color: widget.message.isFromUser
+                                  ? kPrimaryColor.withValues(alpha: 0.7)
+                                  : kSecondaryColor.withValues(alpha: 0.6),
+                            ),
+                          ),
+                          if (widget.message.isFromUser) ...[
+                            const SizedBox(width: 4),
+                            _buildStatusIndicator(),
+                          ],
+                        ],
                       ),
                     ],
                   ),
@@ -203,6 +214,47 @@ class _ChatBubbleState extends State<ChatBubble> {
         size: 24,
       ),
     );
+  }
+
+  Widget _buildStatusIndicator() {
+    switch (widget.message.status) {
+      case MessageStatus.sending:
+        return SizedBox(
+          width: 12,
+          height: 12,
+          child: CircularProgressIndicator(
+            strokeWidth: 1.5,
+            valueColor: AlwaysStoppedAnimation<Color>(
+              kPrimaryColor.withValues(alpha: 0.7),
+            ),
+          ),
+        );
+      case MessageStatus.sent:
+        return Icon(
+          Icons.check,
+          size: 14,
+          color: kPrimaryColor.withValues(alpha: 0.7),
+        );
+      case MessageStatus.failed:
+        return GestureDetector(
+          onTap: () {
+            // Retry sending the message
+            context.read<ChatCubit>().retryMessage(widget.message.id);
+          },
+          child: Container(
+            padding: const EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              color: Colors.red.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.refresh,
+              size: 12,
+              color: Colors.red.withValues(alpha: 0.8),
+            ),
+          ),
+        );
+    }
   }
 
   String _formatTime(DateTime timestamp) {
