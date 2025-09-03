@@ -22,23 +22,25 @@ class DateSeparator extends StatelessWidget {
               color: kPrimaryColor.withValues(alpha: 0.2),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: kPrimaryColor.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: kPrimaryColor.withValues(alpha: 0.2),
-                width: 1,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: kPrimaryColor.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: kPrimaryColor.withValues(alpha: 0.2),
+                  width: 1,
+                ),
               ),
-            ),
-            child: Text(
-              _formatDate(date),
-              style: Styles.textStyle18.copyWith(
-                fontSize: 14,
-                color: kPrimaryColor.withValues(alpha: 0.8),
-                fontWeight: FontWeight.w600,
+              child: Text(
+                _formatDate(date),
+                style: Styles.textStyle18.copyWith(
+                  fontSize: 14,
+                  color: kPrimaryColor.withValues(alpha: 0.8),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -64,42 +66,48 @@ class DateSeparator extends StatelessWidget {
     } else if (messageDate == yesterday) {
       return 'أمس';
     } else {
-      // Arabic day names
-      const dayNames = [
-        'الاثنين',
-        'الثلاثاء',
-        'الأربعاء',
-        'الخميس',
-        'الجمعة',
-        'السبت',
-        'الأحد',
-      ];
-
-      // Arabic month names
-      const monthNames = [
-        'يناير',
-        'فبراير',
-        'مارس',
-        'أبريل',
-        'مايو',
-        'يونيو',
-        'يوليو',
-        'أغسطس',
-        'سبتمبر',
-        'أكتوبر',
-        'نوفمبر',
-        'ديسمبر',
-      ];
-
-      final dayName = dayNames[date.weekday - 1];
-      final monthName = monthNames[date.month - 1];
-
-      // Check if it's this year
-      if (date.year == now.year) {
-        return '$dayName، ${date.day} $monthName';
+      // Check if it's within this week
+      final daysAgo = today.difference(messageDate).inDays;
+      if (daysAgo <= 7) {
+        return _getArabicWeekday(date.weekday);
+      } else if (date.year == now.year) {
+        // Same year, show month and day
+        return '${date.day} ${_getArabicMonth(date.month)}';
       } else {
-        return '$dayName، ${date.day} $monthName ${date.year}';
+        // Different year, show full date
+        return '${date.day} ${_getArabicMonth(date.month)} ${date.year}';
       }
     }
+  }
+
+  String _getArabicWeekday(int weekday) {
+    const weekdays = [
+      'الاثنين', // Monday
+      'الثلاثاء', // Tuesday
+      'الأربعاء', // Wednesday
+      'الخميس', // Thursday
+      'الجمعة', // Friday
+      'السبت', // Saturday
+      'الأحد', // Sunday
+    ];
+    return weekdays[weekday - 1];
+  }
+
+  String _getArabicMonth(int month) {
+    const months = [
+      'يناير', // January
+      'فبراير', // February
+      'مارس', // March
+      'أبريل', // April
+      'مايو', // May
+      'يونيو', // June
+      'يوليو', // July
+      'أغسطس', // August
+      'سبتمبر', // September
+      'أكتوبر', // October
+      'نوفمبر', // November
+      'ديسمبر', // December
+    ];
+    return months[month - 1];
   }
 }

@@ -10,6 +10,7 @@ import '../manger/cubit/chat_cubit.dart';
 import '../manger/models/chat_message.dart';
 import 'widgets/chat_bubble.dart';
 import 'widgets/chat_input.dart';
+import 'widgets/date_separator.dart';
 
 class ChatViewBody extends StatelessWidget {
   const ChatViewBody({super.key});
@@ -113,16 +114,65 @@ class ChatViewContent extends StatelessWidget {
 
         subscription.cancel();
       },
-      child: ListView.builder(
-        reverse: true,
-        padding: const EdgeInsets.only(bottom: 16),
-        itemCount: messages.length,
-        itemBuilder: (context, index) {
-          final messageIndex = messages.length - 1 - index;
-          return ChatBubble(message: messages[messageIndex]);
-        },
-      ),
+      child: _buildMessagesListWithSeparators(messages),
     );
+  }
+
+  Widget _buildMessagesListWithSeparators(List<ChatMessage> messages) {
+    final items = _buildChatItems(messages);
+
+    return ListView.builder(
+      reverse: true,
+      padding: const EdgeInsets.only(bottom: 16),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final reversedIndex = items.length - 1 - index;
+        final item = items[reversedIndex];
+
+        if (item is ChatMessage) {
+          return ChatBubble(message: item);
+        } else if (item is DateTime) {
+          return DateSeparator(date: item);
+        }
+
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
+  List<dynamic> _buildChatItems(List<ChatMessage> messages) {
+    if (messages.isEmpty) return [];
+
+    final List<dynamic> items = [];
+    DateTime? lastDate;
+
+    // Sort messages by timestamp (oldest first for processing)
+    final sortedMessages = List<ChatMessage>.from(messages)
+      ..sort((a, b) => a.timestamp.compareTo(b.timestamp));
+
+    for (final message in sortedMessages) {
+      final messageDate = DateTime(
+        message.timestamp.year,
+        message.timestamp.month,
+        message.timestamp.day,
+      );
+
+      // Add date separator if this is a new day
+      if (lastDate == null || !_isSameDay(lastDate, messageDate)) {
+        items.add(messageDate);
+        lastDate = messageDate;
+      }
+
+      items.add(message);
+    }
+
+    return items;
+  }
+
+  bool _isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
   }
 
   Widget _buildErrorWidget(BuildContext context, ChatErrorState errorState) {
