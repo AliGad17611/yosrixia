@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:yosrixia/core/database/firebase_services.dart';
 
 class StorageService {
   final SupabaseClient supabase = Supabase.instance.client;
 
   Future<String?> uploadProfileImage(File file) async {
-    String userId = FirebaseAuth.instance.currentUser!.uid;
+    String userId = FirebaseServices.instance.userId;
     String fileExtension = file.path.split('.').last; // Get the file extension
     String path =
         "profile_images/$userId.$fileExtension"; // Keep original extension

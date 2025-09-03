@@ -55,8 +55,8 @@ class _ChildHomeViewBodyState extends State<ChildHomeViewBody> {
                           children: [
                             ChildCategory(
                               scale: 0.9,
-                              image: AssetsData.doctors,
-                              text: 'أطباء',
+                              image: AssetsData.chat,
+                              text: 'صحابى',
                             ),
                             ChildCategory(
                               scale: 0.9,

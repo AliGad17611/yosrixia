@@ -34,7 +34,7 @@ class GenderWidget extends StatelessWidget {
               decoration: const InputDecoration(
                 border: InputBorder.none,
               ),
-              value: cubit.selectedGender.text.isEmpty
+              initialValue: cubit.selectedGender.text.isEmpty
                   ? cubit.selectedGender.text = 'ذكر'
                   : cubit.selectedGender.text,
               items: <String>['ذكر', 'أنثى']

@@ -28,53 +28,30 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  #audioPlayers for sound effect and voice
   audioplayers: ^6.1.0
-  #cloud firestore for database
-  cloud_firestore: ^5.5.1
-  #cupertino icons for icons
   cupertino_icons: ^1.0.8
-  #equatable for equal comparison
   equatable: ^2.0.7
-  #firebase auth for authentication
-  firebase_auth: ^5.3.4
-  #firebase core for firebase services
-  firebase_core: ^3.8.1
+  firebase_core: ^4.1.0
+  firebase_auth: ^6.0.2
+  cloud_firestore: ^6.0.1
   flutter:
     sdk: flutter
-  #flutter bloc for state management
   flutter_bloc: ^9.0.0
-  #flutter screenutil for responsive design
   flutter_screenutil: ^5.9.3
-  #go router for navigation
   go_router: ^14.6.1
-  #google fonts for fonts
   google_fonts: ^6.2.1
-  #google mlkit for digital ink recognition
   google_mlkit_digital_ink_recognition: ^0.13.0
-  #image picker for image picking
-  image_picker: ^1.1.2
-  #intl for internationalization of time and date formats like yyyy-MM-dd
-  intl: ^0.20.2
-  #rename for renaming the app
-  rename: ^3.0.2
-  #showcaseview for showing the features of the app [tutorial]
-  showcaseview: ^4.0.1
-  #speech to text for speech to text recognition
-  speech_to_text: ^7.0.0
-  #supabase for database
-  supabase_flutter: ^2.8.3
-  #hive for local storage
   hive: ^2.2.3
-  #hive flutter for hive flutter
   hive_flutter: ^1.1.0
+  image_picker: ^1.1.2
+  intl: ^0.20.2
+  rename: ^3.0.2
+  showcaseview: ^4.0.1
+  skeletonizer: ^2.1.0+1
+  speech_to_text: ^7.0.0
+  supabase_flutter: ^2.8.3
 
 dev_dependencies:
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter

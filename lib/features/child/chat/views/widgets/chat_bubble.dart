@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import '../../models/chat_message.dart';
+import '../../manger/models/chat_message.dart';
 
-class ChatBubble extends StatelessWidget {
+class ChatBubble extends StatefulWidget {
   final ChatMessage message;
 
   const ChatBubble({
@@ -12,31 +13,68 @@ class ChatBubble extends StatelessWidget {
   });
 
   @override
+  State<ChatBubble> createState() => _ChatBubbleState();
+}
+
+class _ChatBubbleState extends State<ChatBubble> {
+  Timer? _timer;
+  String _timeString = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _updateTimeString();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    // Since we're showing actual time, we only need to update when the day changes
+    // Update every hour to handle day transitions (today -> yesterday)
+    _timer = Timer.periodic(const Duration(hours: 1), (_) {
+      if (mounted) {
+        _updateTimeString();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _updateTimeString() {
+    setState(() {
+      _timeString = _formatTime(widget.message.timestamp);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: message.isFromUser
+        mainAxisAlignment: widget.message.isFromUser
             ? MainAxisAlignment.end
             : MainAxisAlignment.start,
         children: [
-          if (!message.isFromUser) ...[
+          if (!widget.message.isFromUser) ...[
             _buildAvatar(),
             const SizedBox(width: 8),
           ],
           Flexible(
             child: Column(
-              crossAxisAlignment: message.isFromUser
+              crossAxisAlignment: widget.message.isFromUser
                   ? CrossAxisAlignment.end
                   : CrossAxisAlignment.start,
               children: [
-                if (!message.isFromUser)
+                if (!widget.message.isFromUser)
                   Padding(
                     padding:
                         const EdgeInsets.only(bottom: 4, right: 8, left: 8),
                     child: Text(
-                      message.senderName!,
+                      widget.message.senderName!,
                       style: Styles.textStyle18.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -51,16 +89,16 @@ class ChatBubble extends StatelessWidget {
                     maxWidth: MediaQuery.of(context).size.width * 0.7,
                   ),
                   decoration: BoxDecoration(
-                    color: message.isFromUser
+                    color: widget.message.isFromUser
                         ? kSecondaryColor.withValues(alpha: 0.5)
                         : kPrimaryColor,
                     borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(20),
                       topRight: const Radius.circular(20),
-                      bottomLeft: message.isFromUser
+                      bottomLeft: widget.message.isFromUser
                           ? const Radius.circular(4)
                           : const Radius.circular(20),
-                      bottomRight: message.isFromUser
+                      bottomRight: widget.message.isFromUser
                           ? const Radius.circular(20)
                           : const Radius.circular(4),
                     ),
@@ -73,27 +111,27 @@ class ChatBubble extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    crossAxisAlignment: message.isFromUser
+                    crossAxisAlignment: widget.message.isFromUser
                         ? CrossAxisAlignment.end
                         : CrossAxisAlignment.start,
                     children: [
                       Text(
-                        message.message,
+                        widget.message.message,
                         style: Styles.textStyle18.copyWith(
-                          color: message.isFromUser
+                          color: widget.message.isFromUser
                               ? kPrimaryColor
                               : kSecondaryColor,
                         ),
-                        textAlign: message.isFromUser
+                        textAlign: widget.message.isFromUser
                             ? TextAlign.right
                             : TextAlign.left,
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        _formatTime(message.timestamp),
+                        _timeString,
                         style: Styles.textStyle18.copyWith(
                           fontSize: 12,
-                          color: message.isFromUser
+                          color: widget.message.isFromUser
                               ? kPrimaryColor.withValues(alpha: 0.7)
                               : kSecondaryColor.withValues(alpha: 0.6),
                         ),
@@ -129,16 +167,16 @@ class ChatBubble extends StatelessWidget {
         ],
       ),
       child: ClipOval(
-        child: message.senderImageUrl?.isNotEmpty ?? false
-            ? (message.senderImageUrl?.startsWith('assets/') ?? false)
+        child: widget.message.senderImageUrl?.isNotEmpty ?? false
+            ? (widget.message.senderImageUrl?.startsWith('assets/') ?? false)
                 ? Image.asset(
-                    message.senderImageUrl!,
+                    widget.message.senderImageUrl!,
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
                   )
                 : Image.network(
-                    message.senderImageUrl!,
+                    widget.message.senderImageUrl!,
                     width: 40,
                     height: 40,
                     fit: BoxFit.cover,
@@ -156,11 +194,11 @@ class ChatBubble extends StatelessWidget {
       width: 40,
       height: 40,
       decoration: BoxDecoration(
-        color: message.isFromUser ? kBlueColor : kPurpleColor,
+        color: widget.message.isFromUser ? kBlueColor : kPurpleColor,
         shape: BoxShape.circle,
       ),
       child: Icon(
-        message.isFromUser ? Icons.person : Icons.smart_toy,
+        widget.message.isFromUser ? Icons.person : Icons.smart_toy,
         color: kPrimaryColor,
         size: 24,
       ),
@@ -169,16 +207,32 @@ class ChatBubble extends StatelessWidget {
 
   String _formatTime(DateTime timestamp) {
     final now = DateTime.now();
-    final difference = now.difference(timestamp);
+    final isToday = now.day == timestamp.day &&
+        now.month == timestamp.month &&
+        now.year == timestamp.year;
 
-    if (difference.inMinutes < 1) {
-      return 'الآن';
-    } else if (difference.inHours < 1) {
-      return '${difference.inMinutes} د';
-    } else if (difference.inDays < 1) {
-      return '${difference.inHours} س';
+    final isYesterday =
+        now.subtract(const Duration(days: 1)).day == timestamp.day &&
+            now.subtract(const Duration(days: 1)).month == timestamp.month &&
+            now.subtract(const Duration(days: 1)).year == timestamp.year;
+
+    // Format time in 12-hour format
+    final hour = timestamp.hour == 0
+        ? 12
+        : (timestamp.hour > 12 ? timestamp.hour - 12 : timestamp.hour);
+    final minute = timestamp.minute.toString().padLeft(2, '0');
+    final period = timestamp.hour < 12 ? 'ص' : 'م';
+    final timeString = '$hour:$minute $period';
+
+    if (isToday) {
+      return timeString;
+    } else if (isYesterday) {
+      return 'أمس $timeString';
     } else {
-      return '${timestamp.day}/${timestamp.month}';
+      // For older messages, show date and time
+      final day = timestamp.day.toString().padLeft(2, '0');
+      final month = timestamp.month.toString().padLeft(2, '0');
+      return '$day/$month $timeString';
     }
   }
 }

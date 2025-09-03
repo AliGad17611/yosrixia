@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import '../../cubit/chat_cubit.dart';
+import '../../manger/cubit/chat_cubit.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({super.key});
