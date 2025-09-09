@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/features/payments/views/widgets/button_content.dart';
-import 'package:yosrixia/features/payments/views/widgets/loading_content.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/button_content.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/loading_content.dart';
 
 class PayButton extends StatelessWidget {
   final bool isLoading;

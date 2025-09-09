@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/features/payments/manger/helper/payment_services.dart';
-import 'package:yosrixia/features/payments/views/widgets/amount_display.dart';
-import 'package:yosrixia/features/payments/views/widgets/helper_text.dart';
-import 'package:yosrixia/features/payments/views/widgets/pay_button.dart';
-import 'package:yosrixia/features/payments/views/widgets/phone_input_field.dart';
-import 'package:yosrixia/features/payments/views/widgets/phone_input_label.dart';
-import 'package:yosrixia/features/payments/views/widgets/wallet_icon.dart';
-import 'package:yosrixia/features/payments/views/widgets/wallet_phone_header.dart';
+import 'package:yosrixia/features/subscripton_and_payments/manger/services/payment_services.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/amount_display.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/helper_text.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/pay_button.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/phone_input_field.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/phone_input_label.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/wallet_icon.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/wallet_phone_header.dart';
 
 class WalletPhoneView extends StatefulWidget {
   final double amount;

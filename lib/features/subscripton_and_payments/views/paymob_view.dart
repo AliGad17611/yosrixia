@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
-import 'package:yosrixia/features/payments/manger/helper/payment_services.dart';
+import 'package:yosrixia/features/subscripton_and_payments/manger/services/payment_services.dart';
 
 class PaymobView extends StatelessWidget {
   final double amount;

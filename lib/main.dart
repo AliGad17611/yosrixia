@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
-import 'package:yosrixia/features/payments/manger/helper/payment_services.dart';
+import 'package:yosrixia/features/subscripton_and_payments/manger/services/payment_services.dart';
 import 'package:yosrixia/firebase_options.dart';
 import 'package:yosrixia/supabase_config.dart';
 

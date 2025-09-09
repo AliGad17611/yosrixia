@@ -35,8 +35,8 @@ import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 import 'package:yosrixia/features/settings/views/help_center_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
-import 'package:yosrixia/features/payments/views/wallet_phone_view.dart';
-import 'package:yosrixia/features/payments/views/paymob_view.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/wallet_phone_view.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/paymob_view.dart';
 
 abstract class AppRouter {
   // welcome routes
@@ -85,7 +85,7 @@ abstract class AppRouter {
 // payment routes
   static const String walletPhone = '/walletPhone';
   static const String paymobView = '/paymobView';
-
+  static const String subscriptionUsageExample = '/subscriptionUsageExample';
   static final router = GoRouter(routes: [
     // welcome routes
     GoRoute(
@@ -244,6 +244,7 @@ abstract class AppRouter {
         return WalletPhoneView(amount: amount);
       },
     ),
+    
     GoRoute(
       path: paymobView,
       builder: (context, state) {

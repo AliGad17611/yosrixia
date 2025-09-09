@@ -25,7 +25,7 @@ class ChildCategory extends StatelessWidget {
         if (text == 'دروس') {
           GoRouter.of(context).push(AppRouter.droosHome);
         } else if (text == 'العاب تعليمية') {
-          GoRouter.of(context).push(AppRouter.paymobView, extra: 100.0);
+          GoRouter.of(context).push(AppRouter.paymobView);
         } else if (text == 'صحابى') {
           GoRouter.of(context).push(AppRouter.chat);
         } else if (text == 'نصائح') {

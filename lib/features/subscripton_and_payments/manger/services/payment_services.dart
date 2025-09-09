@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_paymob/flutter_paymob.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
+import 'package:yosrixia/features/subscripton_and_payments/manger/helper/subscription_enum.dart';
+import 'package:yosrixia/features/subscripton_and_payments/manger/services/subscription_services.dart';
 
 class PaymentServices {
   static const String apiKey =
@@ -29,6 +31,7 @@ class PaymentServices {
       currency: 'EGP',
       onPayment: (response) {
         if (response.success) {
+          SubscriptionServices.createSubscription(SubscriptionType.monthly);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(

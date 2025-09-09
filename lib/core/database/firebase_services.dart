@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -88,6 +90,14 @@ class FirebaseServices {
       throw Exception('User ID is empty');
     }
     return await firestore.collection('users').doc(userId).get().then((value) => value.data()?['imageUrl'] as String);
+  }
+  //* update user data
+  Future<void> updateUserData(Map<String, dynamic> data) async {
+    if (userId.isEmpty) {
+      log('User ID is empty');
+      throw Exception('User ID is empty');
+    }
+    await firestore.collection('users').doc(userId).update(data);
   }
 
 }

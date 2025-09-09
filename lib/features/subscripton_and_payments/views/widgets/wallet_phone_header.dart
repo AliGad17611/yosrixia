@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/payments/views/widgets/back_icon_button.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/widgets/back_icon_button.dart';
 
 class WalletPhoneHeader extends StatelessWidget {
   const WalletPhoneHeader({super.key});
