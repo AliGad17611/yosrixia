@@ -32,4 +32,20 @@ class SubscriptionServices {
       log('Error creating subscription: $e');
     }
   }
+
+  //* check if subscription is active
+  static Future<bool> isSubscriptionActive() async {
+    final userData = await FirebaseServices.instance.getUserData();
+    if (userData.isEmpty) {
+      return false;
+    }
+    final subscription = userData['subscription'];
+    if (subscription == null) {
+      return false;
+    }
+    if (subscription['expiryDate'].toDate().isAfter(Timestamp.now().toDate())) {
+      return true;
+    }
+    return false;
+  }
 }
