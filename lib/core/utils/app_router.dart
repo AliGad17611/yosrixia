@@ -244,7 +244,7 @@ abstract class AppRouter {
         return WalletPhoneView(amount: amount);
       },
     ),
-    
+
     GoRoute(
       path: paymobView,
       builder: (context, state) {
