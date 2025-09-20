@@ -11,7 +11,7 @@ class HandwritingState extends Equatable {
   final bool isCorrect;
   final bool isfinished;
 
-  const HandwritingState( {
+  const HandwritingState({
     this.isfinished = false,
     this.isModelDownloaded = false,
     this.isProcessing = false,

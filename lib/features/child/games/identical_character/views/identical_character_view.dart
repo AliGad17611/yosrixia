@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/features/child/games/identical_character/cubits/tutorial_cubit/identical_character_tutorial_cubit.dart';
 import 'package:yosrixia/features/child/games/identical_character/cubits/tutorial_cubit/identical_character_tutorial_state.dart';
@@ -11,20 +12,22 @@ class IdenticalCharacterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackGround(
-      child: BlocProvider(
-        create: (context) =>
-            IdenticalCharacterTutorialCubit()..checkTutorialStatus(),
-        child: BlocBuilder<IdenticalCharacterTutorialCubit,
-            IdenticalCharacterTutorialState>(
-          builder: (context, state) {
-            if (state is IdenticalCharacterTutorialSeen) {
-              return const IdenticalCharacterViewBody();
-            } else if (state is IdenticalCharacterTutorialNotSeen) {
-              return const IdenticalCharacterTutorialViewBody();
-            }
-            return const Center(child: CircularProgressIndicator());
-          },
+    return SubscriptionGuard(
+      child: BackGround(
+        child: BlocProvider(
+          create: (context) =>
+              IdenticalCharacterTutorialCubit()..checkTutorialStatus(),
+          child: BlocBuilder<IdenticalCharacterTutorialCubit,
+              IdenticalCharacterTutorialState>(
+            builder: (context, state) {
+              if (state is IdenticalCharacterTutorialSeen) {
+                return const IdenticalCharacterViewBody();
+              } else if (state is IdenticalCharacterTutorialNotSeen) {
+                return const IdenticalCharacterTutorialViewBody();
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          ),
         ),
       ),
     );

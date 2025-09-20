@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
 import 'package:yosrixia/features/child/games/views/widgets/image_name_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 
@@ -7,6 +8,8 @@ class ImageNameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: ImageNameViewBody(),);
+    return const SubscriptionGuard(
+      child: BackGround(child: ImageNameViewBody()),
+    );
   }
 }

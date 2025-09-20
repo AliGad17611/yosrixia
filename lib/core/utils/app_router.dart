@@ -35,6 +35,8 @@ import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 import 'package:yosrixia/features/settings/views/help_center_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/wallet_phone_view.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/paymob_view.dart';
 
 abstract class AppRouter {
   // welcome routes
@@ -80,8 +82,11 @@ abstract class AppRouter {
 // doctor routes
   static const String doctorHome = '/doctorHome';
   static const String childDetails = '/childDetails';
-
-  static final router = GoRouter( routes: [
+// payment routes
+  static const String walletPhone = '/walletPhone';
+  static const String paymobView = '/paymobView';
+  static const String subscriptionUsageExample = '/subscriptionUsageExample';
+  static final router = GoRouter(routes: [
     // welcome routes
     GoRoute(
       path: splash,
@@ -230,6 +235,22 @@ abstract class AppRouter {
     GoRoute(
       path: childProfile,
       builder: (context, state) => const ChildProfileView(),
+    ),
+    // payment routes
+    GoRoute(
+      path: walletPhone,
+      builder: (context, state) {
+        final amount = state.extra as double? ?? 100.0;
+        return WalletPhoneView(amount: amount);
+      },
+    ),
+
+    GoRoute(
+      path: paymobView,
+      builder: (context, state) {
+        final amount = state.extra as double? ?? 100.0;
+        return PaymobView(amount: amount);
+      },
     ),
     GoRoute(
       path: childDetails,

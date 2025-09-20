@@ -42,7 +42,6 @@ class EmailConfirmationBody extends StatelessWidget {
               CustomTextButton(
                 onPressed: () {
                   GoRouter.of(context).push(AppRouter.userInformation);
-                  
                 },
               ),
               SizedBox(height: widgetHeight(context: context, height: 59)),

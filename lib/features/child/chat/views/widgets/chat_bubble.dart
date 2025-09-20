@@ -117,7 +117,7 @@ class _ChatBubbleState extends State<ChatBubble> {
     );
   }
 
-/// build semantic label to make the widget more accessible for screen readers 
+  /// build semantic label to make the widget more accessible for screen readers
   String _buildSemanticLabel() {
     final sender = widget.message.isFromUser
         ? 'أنت'
@@ -125,7 +125,8 @@ class _ChatBubbleState extends State<ChatBubble> {
     final status = _getStatusLabel();
     return 'رسالة من $sender: ${widget.message.message}. الوقت: $_timeString. $status';
   }
-/// get status label to make the semantic label more accurate appear in the screen reader 
+
+  /// get status label to make the semantic label more accurate appear in the screen reader
   String _getStatusLabel() {
     switch (widget.message.status) {
       case MessageStatus.sending:

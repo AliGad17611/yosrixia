@@ -16,7 +16,7 @@ class ChildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        uid= user.uid;
+        uid = user.uid;
         GoRouter.of(context).push(AppRouter.childDetails);
       },
       child: Directionality(

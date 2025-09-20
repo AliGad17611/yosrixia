@@ -1,8 +1,6 @@
 class GameState {}
 
-class InitialGameState extends GameState {
-  
-}
+class InitialGameState extends GameState {}
 
 class CorrectAnswerState extends GameState {
   final int questionIndex;

@@ -19,10 +19,8 @@ class DoctorExtraInfoCubit extends Cubit<void> {
       );
 
       // Navigate to the confirmation screen
-     
 
-        GoRouter.of(context).push(AppRouter.doctorHome);
-      
+      GoRouter.of(context).push(AppRouter.doctorHome);
     }
   }
 }

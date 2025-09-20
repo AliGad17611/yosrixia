@@ -5,7 +5,6 @@ import 'package:yosrixia/core/models/word_model.dart';
 class WordsCubit extends Cubit<List<WordModel>> {
   WordsCubit() : super([]);
 
-
   void loadCharacterData(String mainCharacter, String subCategory) {
     final wordList = arabicCharactersMap[mainCharacter]?[subCategory] ?? [];
     emit(wordList);

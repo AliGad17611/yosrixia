@@ -5,6 +5,7 @@ import 'package:yosrixia/core/responsive/widget_width.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
+import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
 
 class ChildCategory extends StatelessWidget {
   const ChildCategory(
@@ -25,7 +26,8 @@ class ChildCategory extends StatelessWidget {
         if (text == 'دروس') {
           GoRouter.of(context).push(AppRouter.droosHome);
         } else if (text == 'العاب تعليمية') {
-          GoRouter.of(context).push(AppRouter.gamesHome);
+          // Check subscription before navigating to games
+          SubscriptionNavigationHelper.navigateToGames(context);
         } else if (text == 'صحابى') {
           GoRouter.of(context).push(AppRouter.chat);
         } else if (text == 'نصائح') {

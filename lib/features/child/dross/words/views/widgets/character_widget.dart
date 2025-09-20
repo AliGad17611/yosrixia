@@ -15,15 +15,15 @@ class CharacterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final bloc = context.read<SpeechBloc>();
+    final bloc = context.read<SpeechBloc>();
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         GestureDetector(
-          onTap: () async{
+          onTap: () async {
             final player = AudioPlayer();
-        await player.play(AssetSource(subLetter.voicePath));
+            await player.play(AssetSource(subLetter.voicePath));
           },
           child: Container(
             width: widgetWidth(context: context, width: 148),
@@ -42,8 +42,7 @@ class CharacterWidget extends StatelessWidget {
         ),
         IconButton(
             onPressed: () {
-        bloc.add(StartListeningEvent(wordToMatch: subLetter.wordToCheck));
-
+              bloc.add(StartListeningEvent(wordToMatch: subLetter.wordToCheck));
             },
             icon:
                 const Icon(Icons.graphic_eq, size: 50, color: kSecondaryColor)),

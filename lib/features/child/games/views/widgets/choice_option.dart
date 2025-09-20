@@ -7,7 +7,8 @@ class ChoiceOption extends StatelessWidget {
   const ChoiceOption({
     super.key,
     required this.text,
-    required this.onTap,  this.backgroundColor =kPrimaryColor,
+    required this.onTap,
+    this.backgroundColor = kPrimaryColor,
   });
   final String text;
   final Color backgroundColor;

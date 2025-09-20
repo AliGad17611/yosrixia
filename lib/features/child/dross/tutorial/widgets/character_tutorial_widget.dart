@@ -16,20 +16,20 @@ class CharacterTutorialWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-            width: widgetWidth(context: context, width: 148),
-            height: widgetHeight(context: context, height: 167),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: kPrimaryColor,
-              borderRadius: BorderRadius.circular(35),
-            ),
-            child: Text(
-              subLetter.characterToDisplay,
-              style: Styles.textStyle64Inter,
-              textAlign: TextAlign.center,
-            ),
+          width: widgetWidth(context: context, width: 148),
+          height: widgetHeight(context: context, height: 167),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(35),
           ),
-          const MicIcon(),
+          child: Text(
+            subLetter.characterToDisplay,
+            style: Styles.textStyle64Inter,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        const MicIcon(),
       ],
     );
   }

@@ -31,8 +31,8 @@ class ProgressAndRefreshRow extends StatelessWidget {
             Expanded(
               child: Container(
                 height: 50,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
                   color: kLightWhiteColor,
                   borderRadius: BorderRadius.circular(25),
@@ -48,8 +48,7 @@ class ProgressAndRefreshRow extends StatelessWidget {
                   child: Text(
                     'المتبقي : $remainingCharacters',
                     style: Styles.textStyle20.copyWith(
-                        color: kLightBlackColor,
-                        fontWeight: FontWeight.bold),
+                        color: kLightBlackColor, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

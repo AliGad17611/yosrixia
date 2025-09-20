@@ -35,4 +35,3 @@ class DoctorDetailsCubit extends Cubit<DoctorDetailsState> {
     }
   }
 }
-

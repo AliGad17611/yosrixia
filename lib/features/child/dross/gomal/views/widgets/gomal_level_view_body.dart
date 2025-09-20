@@ -10,7 +10,8 @@ class GomalLevelViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController pageController = PageController(initialPage: 0);
-    final List<GomalModel> sentencesList = gomalMap['المستوي $gomalLevel'] ?? [];
+    final List<GomalModel> sentencesList =
+        gomalMap['المستوي $gomalLevel'] ?? [];
     return Scaffold(
       body: PageView.builder(
         controller: pageController,

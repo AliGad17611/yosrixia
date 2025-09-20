@@ -7,9 +7,8 @@ import 'package:yosrixia/features/child/profile/models/child_info_model.dart';
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-    String userId = FirebaseAuth.instance.currentUser!.uid;
+  String userId = FirebaseAuth.instance.currentUser!.uid;
   Future<void> saveUserData(String name, String role, String imageUrl) async {
-
     await _firestore.collection("users").doc(userId).set({
       "name": name,
       "role": role,
@@ -41,7 +40,8 @@ class FirestoreService {
   }
 
   Future<ChildInfoModel> getUserData() async {
-    DocumentSnapshot userDoc = await _firestore.collection("users").doc(userId).get();
+    DocumentSnapshot userDoc =
+        await _firestore.collection("users").doc(userId).get();
     if (userDoc.exists) {
       Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
       ChildInfoModel childInfoModel = ChildInfoModel(

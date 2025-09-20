@@ -10,17 +10,18 @@ class ChildOnboardingViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-     BlocProvider(
+    return BlocProvider(
         create: (context) => ChildOnboardingCubit(),
-        child: BlocBuilder<ChildOnboardingCubit, ChildOnboardingState>(builder: (context, state) {
-          if (state is ChildOnboardingOverviewState){
-            return OnBoardingWidget(index :state.index);
-          }
-          else if (state is ChildOnboardingExamState){
-            return ExamQuestionsViewBody(questionIndex: state.questionIndex,);
+        child: BlocBuilder<ChildOnboardingCubit, ChildOnboardingState>(
+            builder: (context, state) {
+          if (state is ChildOnboardingOverviewState) {
+            return OnBoardingWidget(index: state.index);
+          } else if (state is ChildOnboardingExamState) {
+            return ExamQuestionsViewBody(
+              questionIndex: state.questionIndex,
+            );
           }
           return Container();
-  }));
-        }
+        }));
+  }
 }

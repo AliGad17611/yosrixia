@@ -17,7 +17,8 @@ class LetterButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         globalMainCharacter = letter;
-        globalSubCharacter = arabicCharactersMap[globalMainCharacter]!.keys.toList();
+        globalSubCharacter =
+            arabicCharactersMap[globalMainCharacter]!.keys.toList();
         // context.read<CharacterCubit>().updateMainCharacter(letter);
         log(globalMainCharacter);
         letter == ''
@@ -41,4 +42,3 @@ class LetterButton extends StatelessWidget {
     );
   }
 }
-

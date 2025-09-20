@@ -7,6 +7,8 @@ class UserInformationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: UserInformationViewBody(),);
+    return const BackGround(
+      child: UserInformationViewBody(),
+    );
   }
 }

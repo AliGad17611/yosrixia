@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:yosrixia/core/helper/global_variable.dart';
@@ -34,7 +33,6 @@ class _SubCharacterTutorialViewBodyState
           characterMicKey,
           navigateCharacterKey
         ]));
-    
   }
 
   @override
@@ -121,21 +119,21 @@ class _SubCharacterTutorialViewBodyState
                   ),
                 ),
                 LetterToWord(
-                  letter: subCharactersMap[mainCharacter]?[1]
-                          .characterToDisplay ??
-                      '',
+                  letter:
+                      subCharactersMap[mainCharacter]?[1].characterToDisplay ??
+                          '',
                   index: 1,
                 ),
                 LetterToWord(
-                  letter: subCharactersMap[mainCharacter]?[2]
-                          .characterToDisplay ??
-                      '',
+                  letter:
+                      subCharactersMap[mainCharacter]?[2].characterToDisplay ??
+                          '',
                   index: 2,
                 ),
                 LetterToWord(
-                  letter: subCharactersMap[mainCharacter]?[3]
-                          .characterToDisplay ??
-                      '',
+                  letter:
+                      subCharactersMap[mainCharacter]?[3].characterToDisplay ??
+                          '',
                   index: 3,
                 ),
               ],

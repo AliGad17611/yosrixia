@@ -1,6 +1,5 @@
 part of 'doctor_details_cubit.dart';
 
-
 sealed class DoctorDetailsState extends Equatable {
   const DoctorDetailsState();
 
@@ -13,9 +12,11 @@ final class DoctorDetailsInitial extends DoctorDetailsState {}
 final class DoctorDetailsLoading extends DoctorDetailsState {}
 
 final class DoctorDetailsLoaded extends DoctorDetailsState {
-  final DoctorModel doctorModel; 
+  final DoctorModel doctorModel;
 
-  const DoctorDetailsLoaded({required this.doctorModel,});
+  const DoctorDetailsLoaded({
+    required this.doctorModel,
+  });
 }
 
 final class DoctorDetailsFailure extends DoctorDetailsState {
@@ -23,4 +24,3 @@ final class DoctorDetailsFailure extends DoctorDetailsState {
 
   const DoctorDetailsFailure({required this.error});
 }
-  

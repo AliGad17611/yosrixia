@@ -30,7 +30,9 @@ class OnBoardingWidget extends StatelessWidget {
             const Spacer(
               flex: 1,
             ),
-             NextButton(index: index,),
+            NextButton(
+              index: index,
+            ),
             const SizedBox(height: 80),
           ],
         ),

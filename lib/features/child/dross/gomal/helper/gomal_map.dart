@@ -154,7 +154,8 @@ Map<String, List<GomalModel>> gomalMap = {
     GomalModel(
         gomlaToDisplay: 'السماء مليئة بالسحاب الأبيض هذا الصباح',
         gomlaToCheck: 'السماء مليئه بالسحاب الابيض هذا الصباح',
-        imagePath: 'assets/media/gomal/3/alsamaamaleabelsohbalbaidahazaalsabah.png',
+        imagePath:
+            'assets/media/gomal/3/alsamaamaleabelsohbalbaidahazaalsabah.png',
         voicePath: 'media/gomal/3/alsamaamaleabelsohbalbaidahazaalsabah.wav'),
     GomalModel(
         gomlaToDisplay: 'الأطفال يساعدون الأم في تنظيف البيت',
@@ -164,12 +165,14 @@ Map<String, List<GomalModel>> gomalMap = {
     GomalModel(
         gomlaToDisplay: 'الفتاة تحمل الحقيبة و ذاهبة للمدرسة',
         gomlaToCheck: 'الفتاه تحمل الحقيبه و ذاهبه للمدرسه',
-        imagePath: 'assets/media/gomal/3/alfatahtahmelhaqebthawzaheballmdrsa.png',
+        imagePath:
+            'assets/media/gomal/3/alfatahtahmelhaqebthawzaheballmdrsa.png',
         voicePath: 'media/gomal/3/alfatahtahmelhaqebthawzaheballmdrsa.wav'),
     GomalModel(
         gomlaToDisplay: 'الولد الصغير يشرب الحليب ليصبح أقوى',
         gomlaToCheck: 'الولد الصغير يشرب الحليب ليصبح اقوي',
-        imagePath: 'assets/media/gomal/3/alwaladalsagheryashrabalhaleblyosbhaqwa.png',
+        imagePath:
+            'assets/media/gomal/3/alwaladalsagheryashrabalhaleblyosbhaqwa.png',
         voicePath: 'media/gomal/3/alwaladalsagheryashrabalhaleblyosbhaqwa.wav'),
     GomalModel(
         gomlaToDisplay: 'الدجاجة تضع البيض في العش الدافئ',
@@ -179,7 +182,8 @@ Map<String, List<GomalModel>> gomalMap = {
     GomalModel(
         gomlaToDisplay: 'الزرافة تأكل الأوراق من الشجرة العالية',
         gomlaToCheck: 'الزرافه تاكل الاوراق من الشجره العاليه',
-        imagePath: 'assets/media/gomal/3/alzarafatakolalawraqmenalshagaraalalia.png',
+        imagePath:
+            'assets/media/gomal/3/alzarafatakolalawraqmenalshagaraalalia.png',
         voicePath: 'media/gomal/3/alzarafatakolalawraqmenalshagaraalalia.wav'),
     GomalModel(
         gomlaToDisplay: 'الطفل يلعب مع الكلب في الفناء',

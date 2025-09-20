@@ -7,6 +7,8 @@ class CharactersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BackGround(child: CharactersViewBody() ,);
+    return BackGround(
+      child: CharactersViewBody(),
+    );
   }
 }

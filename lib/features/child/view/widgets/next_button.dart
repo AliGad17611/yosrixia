@@ -7,7 +7,10 @@ import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/features/child/cubit/child_onboarding_cubit.dart';
 
 class NextButton extends StatelessWidget {
-  const NextButton({super.key, required this.index,});
+  const NextButton({
+    super.key,
+    required this.index,
+  });
   final int index;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class NextButton extends StatelessWidget {
         if (index == onboardingList.length - 1) {
           GoRouter.of(context).go(AppRouter.childHome);
         } else {
-          context.read<ChildOnboardingCubit>().goToNextPage(index+1);
+          context.read<ChildOnboardingCubit>().goToNextPage(index + 1);
         }
       },
       child: Text(

@@ -18,10 +18,10 @@ class HelpCenter extends StatelessWidget {
           color: Colors.white,
         ),
         child: Text(
-  "إذا كنت بحاجة إلى أي مساعدة، لديك استفسار، أو تواجه أي مشكلة أثناء استخدام التطبيق، لا تتردد في التواصل معنا عبر البريد الإلكتروني: \n"
-  "yosrexia@gmail.com",
-  style: Styles.textStyle36Passion,
-),
+          "إذا كنت بحاجة إلى أي مساعدة، لديك استفسار، أو تواجه أي مشكلة أثناء استخدام التطبيق، لا تتردد في التواصل معنا عبر البريد الإلكتروني: \n"
+          "yosrexia@gmail.com",
+          style: Styles.textStyle36Passion,
+        ),
       ),
     );
   }

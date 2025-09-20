@@ -14,34 +14,32 @@ class ExamQuestionsViewBody extends StatelessWidget {
     return Scaffold(
       body: Directionality(
         textDirection: TextDirection.rtl,
-        child:Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                spacing: 20,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    examQuestions[questionIndex],
-                    style: Styles.textStyle40.copyWith(height: 0.95),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  ...["دائمًا", "غالبًا", "أحيانًا", "نادرًا", "أبدًا"].map(
-                    (option) => ChoiceOption(
-                      text: option,
-                      onTap: () {
-                        context
-                            .read<ChildOnboardingCubit>()
-                            .saveAnswer(questionIndex, option, context);
-                      },
-                    ),
-                  ),
-                ],
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            spacing: 20,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                examQuestions[questionIndex],
+                style: Styles.textStyle40.copyWith(height: 0.95),
+                textAlign: TextAlign.center,
               ),
-            ),
-          
+              const SizedBox(height: 20),
+              ...["دائمًا", "غالبًا", "أحيانًا", "نادرًا", "أبدًا"].map(
+                (option) => ChoiceOption(
+                  text: option,
+                  onTap: () {
+                    context
+                        .read<ChildOnboardingCubit>()
+                        .saveAnswer(questionIndex, option, context);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
-      
+      ),
     );
   }
 }

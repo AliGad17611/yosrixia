@@ -7,6 +7,8 @@ class TipsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: TipsViewBody(),);
+    return const BackGround(
+      child: TipsViewBody(),
+    );
   }
 }

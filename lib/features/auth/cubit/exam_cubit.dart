@@ -38,7 +38,8 @@ class ExamCubit extends Cubit<int> {
     final user = _auth.currentUser;
     if (user != null) {
       _firestore.collection('users').doc(user.uid).update({
-        'questionsAndAnswers': questionsAndAnswers.map((key, value) => MapEntry(key.toString(), value)),
+        'questionsAndAnswers': questionsAndAnswers
+            .map((key, value) => MapEntry(key.toString(), value)),
       });
     }
   }

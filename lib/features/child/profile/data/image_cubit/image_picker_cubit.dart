@@ -11,9 +11,10 @@ class ImagePickerCubit extends Cubit<ImagePickerStates> {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> pickImage(bool isFirebaseImageEmpty) async {
-    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-       File file = File(pickedFile.path);
+      File file = File(pickedFile.path);
       StorageService storageService = StorageService();
       String? imageUrl = await storageService.uploadProfileImage(file);
       if (imageUrl != null && isFirebaseImageEmpty) {
@@ -21,7 +22,7 @@ class ImagePickerCubit extends Cubit<ImagePickerStates> {
       }
       emit(ImagePickerLoaded(File(pickedFile.path)));
     } else {
-      emit( ImagePickerError());
+      emit(ImagePickerError());
     }
   }
 }

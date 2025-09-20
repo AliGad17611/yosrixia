@@ -1,4 +1,4 @@
-class  GomalModel{
+class GomalModel {
   String gomlaToDisplay;
   String gomlaToCheck;
   double? imagePadding;
