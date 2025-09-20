@@ -44,6 +44,7 @@ class FirebaseServices {
         .get()
         .then((value) => value.data() as Map<String, dynamic>);
   }
+
   /// Get Childs data from firestore
   Future<List<Map<String, dynamic>>> getChildsData() async {
     if (userId.isEmpty) {
@@ -54,7 +55,8 @@ class FirebaseServices {
         .where('role', isEqualTo: 'child')
         .get()
         .then((value) => value.docs.map((doc) => doc.data()).toList());
-  }   
+  }
+
   /// Get Doctors data from firestore
   Future<List<Map<String, dynamic>>> getDoctorsData() async {
     if (userId.isEmpty) {
@@ -66,6 +68,7 @@ class FirebaseServices {
         .get()
         .then((value) => value.docs.map((doc) => doc.data()).toList());
   }
+
   /// Get custom user data from firestore
   Future<Map<String, dynamic>> getCustomUserData(String userId) async {
     if (userId.isEmpty) {
@@ -76,21 +79,32 @@ class FirebaseServices {
         .doc(userId)
         .get()
         .then((value) => value.data() as Map<String, dynamic>);
-  } 
+  }
+
   /// Get user name from firestore
   Future<String> getUserName(String userId) async {
     if (userId.isEmpty) {
       throw Exception('User ID is empty');
     }
-    return await firestore.collection('users').doc(userId).get().then((value) => value.data()?['name'] as String);
+    return await firestore
+        .collection('users')
+        .doc(userId)
+        .get()
+        .then((value) => value.data()?['name'] as String);
   }
+
   /// Get user image url from firestore
   Future<String> getUserImageUrl(String userId) async {
     if (userId.isEmpty) {
       throw Exception('User ID is empty');
     }
-    return await firestore.collection('users').doc(userId).get().then((value) => value.data()?['imageUrl'] as String);
+    return await firestore
+        .collection('users')
+        .doc(userId)
+        .get()
+        .then((value) => value.data()?['imageUrl'] as String);
   }
+
   //* update user data
   Future<void> updateUserData(Map<String, dynamic> data) async {
     if (userId.isEmpty) {
@@ -99,5 +113,4 @@ class FirebaseServices {
     }
     await firestore.collection('users').doc(userId).update(data);
   }
-
 }

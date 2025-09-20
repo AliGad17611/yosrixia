@@ -3,7 +3,11 @@ import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
 class NumberTextFormField extends StatelessWidget {
-  const NumberTextFormField({super.key, required this.labelText, required this.validator, this.controller});
+  const NumberTextFormField(
+      {super.key,
+      required this.labelText,
+      required this.validator,
+      this.controller});
   final String labelText;
   final String? Function(String?) validator;
   final TextEditingController? controller;

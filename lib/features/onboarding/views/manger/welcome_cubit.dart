@@ -6,7 +6,7 @@ import 'package:yosrixia/features/onboarding/views/manger/welcome_state.dart';
 class WelcomeCubit extends Cubit<WelcomeState> {
   WelcomeCubit() : super(WelcomeInitial());
 
- Future<void> checkUserRole() async {
+  Future<void> checkUserRole() async {
     final userId = FirebaseServices.instance.userId;
     if (userId.isEmpty) {
       emit(ShowWelcomeView());

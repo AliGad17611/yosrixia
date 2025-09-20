@@ -10,7 +10,8 @@ class DoctorHomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UsersCubit()..getUsersBasedOnRole(), // ✅ Fetch users on creation
+      create: (context) =>
+          UsersCubit()..getUsersBasedOnRole(), // ✅ Fetch users on creation
       child: SafeArea(
         child: Scaffold(
           body: Padding(
@@ -25,7 +26,8 @@ class DoctorHomeViewBody extends StatelessWidget {
                   child: BlocBuilder<UsersCubit, UsersState>(
                     builder: (context, state) {
                       if (state is UsersLoading) {
-                        return const Center(child: CircularProgressIndicator()); // ✅ Better UX
+                        return const Center(
+                            child: CircularProgressIndicator()); // ✅ Better UX
                       } else if (state is UsersSuccess) {
                         return ListView.separated(
                           padding: const EdgeInsets.only(bottom: 16),
@@ -38,9 +40,12 @@ class DoctorHomeViewBody extends StatelessWidget {
                           itemCount: state.usersList.length,
                         );
                       } else if (state is UsersFailure) {
-                        return const Center(child: Text('Something went wrong'));
-                      } 
-                      return const Center(child: CircularProgressIndicator()); // ✅ Fallback loader
+                        return const Center(
+                            child: Text('Something went wrong'));
+                      }
+                      return const Center(
+                          child:
+                              CircularProgressIndicator()); // ✅ Fallback loader
                     },
                   ),
                 ),

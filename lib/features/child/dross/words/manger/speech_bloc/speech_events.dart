@@ -15,17 +15,16 @@ class StartListeningEvent extends SpeechEvent {
 }
 
 // Event to stop listening
-class StopListeningEvent extends SpeechEvent {
-
-}
+class StopListeningEvent extends SpeechEvent {}
 
 // Event when text is recognized from speech
 class ListeningSpeechEvent extends SpeechEvent {
   final String recognizedText;
-   final String wordToMatch;
+  final String wordToMatch;
 
-  const ListeningSpeechEvent({required this.recognizedText,required this.wordToMatch});
+  const ListeningSpeechEvent(
+      {required this.recognizedText, required this.wordToMatch});
 
   @override
-  List<Object?> get props => [recognizedText,wordToMatch];
+  List<Object?> get props => [recognizedText, wordToMatch];
 }

@@ -7,6 +7,8 @@ class ChildOnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: ChildOnboardingViewBody(),);
+    return const BackGround(
+      child: ChildOnboardingViewBody(),
+    );
   }
 }

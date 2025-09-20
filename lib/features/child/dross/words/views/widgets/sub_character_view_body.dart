@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/core/helper/global_variable.dart';
@@ -16,7 +15,6 @@ class SubCharacterViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final String mainCharacter = globalMainCharacter;
     log('main character is $mainCharacter');
 
@@ -41,12 +39,19 @@ class SubCharacterViewBody extends StatelessWidget {
                 child: Row(
                   children: [
                     CharacterWidget(
-                      subLetter: subCharactersMap[mainCharacter]?[0]??CharacterModel(characterToDisplay: '', wordToCheck: '', voicePath: ''),
-
+                      subLetter: subCharactersMap[mainCharacter]?[0] ??
+                          CharacterModel(
+                              characterToDisplay: '',
+                              wordToCheck: '',
+                              voicePath: ''),
                     ),
                     const Spacer(),
                     CharacterWidget(
-                      subLetter: subCharactersMap[mainCharacter]?[1]??CharacterModel(characterToDisplay: '', wordToCheck: '', voicePath: ''),
+                      subLetter: subCharactersMap[mainCharacter]?[1] ??
+                          CharacterModel(
+                              characterToDisplay: '',
+                              wordToCheck: '',
+                              voicePath: ''),
                     ),
                   ],
                 ),
@@ -57,11 +62,19 @@ class SubCharacterViewBody extends StatelessWidget {
                 child: Row(
                   children: [
                     CharacterWidget(
-                      subLetter: subCharactersMap[mainCharacter]?[2]??CharacterModel(characterToDisplay: '', wordToCheck: '', voicePath: ''),
+                      subLetter: subCharactersMap[mainCharacter]?[2] ??
+                          CharacterModel(
+                              characterToDisplay: '',
+                              wordToCheck: '',
+                              voicePath: ''),
                     ),
                     const Spacer(),
                     CharacterWidget(
-                      subLetter: subCharactersMap[mainCharacter]?[3]??CharacterModel(characterToDisplay: '', wordToCheck: '', voicePath: ''),
+                      subLetter: subCharactersMap[mainCharacter]?[3] ??
+                          CharacterModel(
+                              characterToDisplay: '',
+                              wordToCheck: '',
+                              voicePath: ''),
                     ),
                   ],
                 ),
@@ -71,19 +84,27 @@ class SubCharacterViewBody extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   LetterToWord(
-                    letter: subCharactersMap[mainCharacter]?[0].characterToDisplay??'',
+                    letter: subCharactersMap[mainCharacter]?[0]
+                            .characterToDisplay ??
+                        '',
                     index: 0,
                   ),
                   LetterToWord(
-                    letter: subCharactersMap[mainCharacter]?[1].characterToDisplay??'',
+                    letter: subCharactersMap[mainCharacter]?[1]
+                            .characterToDisplay ??
+                        '',
                     index: 1,
                   ),
                   LetterToWord(
-                    letter: subCharactersMap[mainCharacter]?[2].characterToDisplay??'',
+                    letter: subCharactersMap[mainCharacter]?[2]
+                            .characterToDisplay ??
+                        '',
                     index: 2,
                   ),
                   LetterToWord(
-                    letter: subCharactersMap[mainCharacter]?[3].characterToDisplay??'',
+                    letter: subCharactersMap[mainCharacter]?[3]
+                            .characterToDisplay ??
+                        '',
                     index: 3,
                   ),
                 ],

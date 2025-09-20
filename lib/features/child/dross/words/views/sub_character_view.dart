@@ -21,19 +21,20 @@ class SubCharacterView extends StatelessWidget {
           builder: (context, state) {
             // Wrap tutorial view with ShowCaseWidget
             if (state is TutorialVisible) {
-               return ShowCaseWidget(
-              builder: (context) => const SubCharacterTutorialViewBody(),
-              onComplete: (index, key) {
-                log('index is $index');
-                log('key is $key');
-                if (index == 3) {
-                  context.read<SubCharacterTutorialCubit>().completeTutorial();
-                }
-              },
-            );
+              return ShowCaseWidget(
+                builder: (context) => const SubCharacterTutorialViewBody(),
+                onComplete: (index, key) {
+                  log('index is $index');
+                  log('key is $key');
+                  if (index == 3) {
+                    context
+                        .read<SubCharacterTutorialCubit>()
+                        .completeTutorial();
+                  }
+                },
+              );
             }
-              return const SubCharacterViewBody();
-           
+            return const SubCharacterViewBody();
           },
         ),
       ),

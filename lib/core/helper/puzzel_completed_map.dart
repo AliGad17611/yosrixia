@@ -1,4 +1,3 @@
-
 Map<String, String> puzzelCompletedMap = {
   "ع": "assets/puzzle/ain/ain.jpeg",
   "أ": "assets/puzzle/alef/alef.jpeg",

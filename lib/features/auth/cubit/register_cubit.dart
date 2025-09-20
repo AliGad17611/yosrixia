@@ -24,7 +24,8 @@ class RegisterCubit extends Cubit<void> {
         return;
       }
 
-      signUpUser(emailController.text, passwordController.text, role, numberController.text);
+      signUpUser(emailController.text, passwordController.text, role,
+          numberController.text);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('تم التسجيل بنجاح')),
       );

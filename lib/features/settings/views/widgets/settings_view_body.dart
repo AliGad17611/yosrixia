@@ -23,9 +23,11 @@ class SettingsViewBody extends StatelessWidget {
                 },
                 icon: Icons.account_circle_outlined),
             SettingsButton(
-                text: 'مركز المساعدة', onTap: () {
+                text: 'مركز المساعدة',
+                onTap: () {
                   GoRouter.of(context).push(AppRouter.helpCenter);
-                }, icon: Icons.support_agent),
+                },
+                icon: Icons.support_agent),
             SettingsButton(
                 text: 'تسجيل الخروج',
                 onTap: () async {

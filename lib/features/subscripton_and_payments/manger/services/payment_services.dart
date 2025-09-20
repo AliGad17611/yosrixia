@@ -58,6 +58,7 @@ class PaymentServices {
       number: number,
       onPayment: (response) {
         if (response.success) {
+          SubscriptionServices.createSubscription(SubscriptionType.monthly);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(

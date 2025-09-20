@@ -12,6 +12,17 @@ class SubscriptionModel {
     required this.type,
     required this.isActive,
   });
+
+  //* from firebase
+  factory SubscriptionModel.fromFirebase(Map<String, dynamic> data) {
+    return SubscriptionModel(
+      startDate: data['startDate'],
+      expiryDate: data['expiryDate'],
+      type: SubscriptionType.values.byName(data['type']),
+      isActive: data['isActive'],
+    );
+  }
+
   //* to firebase
   Map<String, dynamic> toFirebase() {
     return {

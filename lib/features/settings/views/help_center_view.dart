@@ -7,6 +7,6 @@ class HelpCenterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: HelpCenterViewBody());  
+    return const BackGround(child: HelpCenterViewBody());
   }
 }

@@ -48,4 +48,15 @@ class SubscriptionServices {
     }
     return false;
   }
+
+  //* Returns a stream that listens to subscription changes in real-time
+  static Stream<SubscriptionModel> getSubscriptionStream() {
+    return FirebaseServices.instance.firestore
+        .collection('users')
+        .doc(FirebaseServices.instance.userId)
+        .snapshots()
+        .asyncMap((event) async {
+      return SubscriptionModel.fromFirebase(event.data()!['subscription']);
+    });
+  }
 }

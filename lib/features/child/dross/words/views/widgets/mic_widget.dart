@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/core/responsive/widget_height.dart';
@@ -9,7 +8,8 @@ import 'package:yosrixia/features/child/dross/words/manger/speech_bloc/speech_ev
 
 class MicWidget extends StatelessWidget {
   const MicWidget({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
   final String text;
 
@@ -24,12 +24,11 @@ class MicWidget extends StatelessWidget {
         width: widgetWidth(context: context, width: 78),
         height: widgetHeight(context: context, height: 75),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(
-              widgetWidth(context: context, width: 35))),
+          borderRadius: BorderRadius.all(
+              Radius.circular(widgetWidth(context: context, width: 35))),
           color: kPrimaryColor,
         ),
-        child:
-            const Icon(Icons.mic, size: 40, color: kBlackColor),
+        child: const Icon(Icons.mic, size: 40, color: kBlackColor),
       ),
     );
   }

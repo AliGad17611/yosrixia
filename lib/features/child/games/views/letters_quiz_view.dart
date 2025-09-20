@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
 import 'package:yosrixia/features/child/games/views/widgets/letters_quiz_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 
@@ -7,6 +8,8 @@ class LettersQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BackGround(child: LettersQuizViewBody(),);
+    return const SubscriptionGuard(
+      child: BackGround(child: LettersQuizViewBody()),
+    );
   }
 }

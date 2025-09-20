@@ -29,7 +29,8 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
       // Select random background image from list
       final backgroundImage = imagesList[_random.nextInt(imagesList.length)];
       // Generate character positions
-      final characterPositions = _generateCharacterPositions(screenWidth, screenHeight);
+      final characterPositions =
+          _generateCharacterPositions(screenWidth, screenHeight);
 
       emit(FindCharacterGameState(
         currentCharacter: currentCharacter,
@@ -50,7 +51,8 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
 
   void resetCharactersPositions(double screenWidth, double screenHeight) {
     // re-generate character positions
-    final characterPositions = _generateCharacterPositions(screenWidth, screenHeight);
+    final characterPositions =
+        _generateCharacterPositions(screenWidth, screenHeight);
     final currentState = state;
 
     if (currentState is FindCharacterGameState) {
@@ -70,7 +72,8 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Generate random positions for characters on screen
-  List<CharacterPosition> _generateCharacterPositions(double screenWidth, double screenHeight) {
+  List<CharacterPosition> _generateCharacterPositions(
+      double screenWidth, double screenHeight) {
     final characterPositions = <CharacterPosition>[];
 
     // Define safe areas to avoid overlapping with title
@@ -109,7 +112,8 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
   }
 
   /// Handle character tap - hide character and update remaining count
-  void onCharacterTapped(double screenWidth, double screenHeight, int characterId) {
+  void onCharacterTapped(
+      double screenWidth, double screenHeight, int characterId) {
     final currentState = state;
     if (currentState is! FindCharacterGameState) return;
 
@@ -133,7 +137,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
             totalCharactersFound: showedCharacters.length,
           ));
         } else {
-        navigateToNextScreen(screenWidth, screenHeight);
+          navigateToNextScreen(screenWidth, screenHeight);
         }
       } else {
         emit(currentState.copyWith(

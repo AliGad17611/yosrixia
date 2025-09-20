@@ -11,7 +11,7 @@ class StoryViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<StoryModel> storiesList = storiesMap[storyTitle] ?? [];
     final PageController pageController = PageController(initialPage: 0);
-    return  SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: PageView.builder(
           controller: pageController,
