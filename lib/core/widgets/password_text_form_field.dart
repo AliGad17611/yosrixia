@@ -7,15 +7,19 @@ class PasswordTextFormField extends StatelessWidget {
       {super.key,
       required this.labelText,
       required this.validator,
-      this.controller});
+      this.controller,
+      this.horizontalPadding = 28,
+      this.hintText = 'أدخل كلمة المرور هنا...'});
   final String labelText;
+  final String hintText;
   final String? Function(String?) validator;
   final TextEditingController? controller;
+  final double horizontalPadding;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28),
+      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -30,6 +34,7 @@ class PasswordTextFormField extends StatelessWidget {
             keyboardType: TextInputType.visiblePassword,
             style: Styles.textStyle24.copyWith(color: kSecondaryColor),
             decoration: InputDecoration(
+              hintText: hintText,
               filled: true,
               fillColor: kPrimaryColor,
               border: OutlineInputBorder(

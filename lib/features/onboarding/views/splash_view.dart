@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yosrixia/core/database/firebase_services.dart';
 import 'package:yosrixia/core/helper/get_current_id_and_role.dart';
 import 'package:yosrixia/core/helper/global_variable.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
@@ -22,8 +22,8 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> checkUserRole() async {
-    final userId = FirebaseServices.instance.userId;
-    if (userId.isEmpty) {
+    final userId = FirebaseAuth.instance.currentUser;
+    if (userId?.uid.isEmpty ?? true) {
       if (!mounted) return;
       GoRouter.of(context).go(AppRouter.welcome);
       return;
@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
 
     final role = await getCurrentUserIdAndRole();
     final firestoreService = FirestoreService();
-    final isUserDataExist = await firestoreService.doesNameExist(userId);
+    final isUserDataExist = await firestoreService.doesNameExist(userId?.uid ?? '');
 
     if (!mounted) return;
 

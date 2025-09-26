@@ -33,6 +33,7 @@ import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/doctor/views/child_details_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
+import 'package:yosrixia/features/parent_profile/views/parent_profile_view.dart';
 import 'package:yosrixia/features/settings/views/help_center_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
 import 'package:yosrixia/features/subscripton_and_payments/views/wallet_phone_view.dart';
@@ -78,6 +79,7 @@ abstract class AppRouter {
   static const String findCharacter = '/findCharacter';
   // show all doctors routes
   static const String childProfile = '/childProfile';
+  static const String parentProfile = '/parentProfile';
   static const String doctorDetails = '/doctorDetails';
 // doctor routes
   static const String doctorHome = '/doctorHome';
@@ -235,6 +237,10 @@ abstract class AppRouter {
     GoRoute(
       path: childProfile,
       builder: (context, state) => const ChildProfileView(),
+    ),
+    GoRoute(
+      path: parentProfile,
+      builder: (context, state) => const ParentProfileView(),
     ),
     // payment routes
     GoRoute(
