@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:yosrixia/core/services/app_usage_tracker.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/features/subscripton_and_payments/manger/services/payment_services.dart';
@@ -16,6 +17,10 @@ Future<void> main() async {
   );
   await PaymentServices.initPaymob();
   await Hive.initFlutter();
+  
+  // Initialize app usage tracker
+  await AppUsageTracker().init();
+  
   await SupabaseConfig.init();
   runApp(const MyApp());
 }
