@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/subscription_guard.dart';
 import 'package:yosrixia/features/child/games/views/widgets/word_completion_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 

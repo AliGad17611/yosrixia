@@ -13,10 +13,12 @@ import 'package:yosrixia/features/subscripton_and_payments/views/widgets/wallet_
 
 class WalletPhoneView extends StatefulWidget {
   final double amount;
+  final dynamic subscriptionType;
 
   const WalletPhoneView({
     super.key,
     required this.amount,
+    this.subscriptionType,
   });
 
   @override
@@ -115,6 +117,7 @@ class _WalletPhoneViewState extends State<WalletPhoneView> {
         context,
         widget.amount,
         formattedPhone,
+        subscriptionType: widget.subscriptionType,
       );
 
       if (mounted) {

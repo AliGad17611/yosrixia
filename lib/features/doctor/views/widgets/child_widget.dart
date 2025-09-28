@@ -44,7 +44,8 @@ class ChildWidget extends StatelessWidget {
               const SizedBox(width: 16), // Instead of Spacer
               Expanded(
                 child: Text(
-                  user.name,
+                  // split the name into two words
+                  user.name.split(' ').take(2).join(' '),
                   style: Styles.textStyle40.copyWith(color: kBlackColor),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

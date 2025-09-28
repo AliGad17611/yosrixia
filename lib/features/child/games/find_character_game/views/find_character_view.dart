@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yosrixia/features/child/games/find_character_game/views/find_character_view_body.dart';
 import 'package:yosrixia/features/widgets/background.dart';
-import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/subscription_guard.dart';
 
 class FindCharacterView extends StatelessWidget {
   const FindCharacterView({super.key});

@@ -78,13 +78,13 @@ class SubscriptionNavigationHelper {
       } else {
         // No active subscription, navigate to subscription view
         if (context.mounted) {
-          GoRouter.of(context).push(AppRouter.paymobView);
+          GoRouter.of(context).push(AppRouter.subscriptionHome);
         }
       }
     } catch (e) {
       // On error, navigate to subscription view as fallback
       if (context.mounted) {
-        GoRouter.of(context).push(AppRouter.paymobView);
+        GoRouter.of(context).push(AppRouter.subscriptionHome);
       }
     }
   }
