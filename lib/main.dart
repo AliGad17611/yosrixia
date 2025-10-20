@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:yosrixia/core/di/dependency_injection.dart';
 import 'package:yosrixia/core/services/app_usage_tracker.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
@@ -15,12 +16,16 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  //* initialize paymob
   await PaymentServices.initPaymob();
+  //* initialize hive
   await Hive.initFlutter();
-  
+  //* initialize Dependencies
+  await setupDependencyInjection();
+
   // Initialize app usage tracker
   await AppUsageTracker().init();
-  
+
   await SupabaseConfig.init();
   runApp(const MyApp());
 }
