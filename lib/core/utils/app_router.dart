@@ -26,6 +26,7 @@ import 'package:yosrixia/features/child/games/views/letters_quiz_view.dart';
 import 'package:yosrixia/features/child/games/views/word_completion_view.dart';
 import 'package:yosrixia/features/child/games/views/word_home_view.dart';
 import 'package:yosrixia/features/child/profile/views/child_profile_view.dart';
+import 'package:yosrixia/features/child/profile/views/doctor_profile_view.dart';
 import 'package:yosrixia/features/child/tips/views/tips_view.dart';
 import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/child/view/child_onboarding_view.dart';
@@ -87,6 +88,7 @@ abstract class AppRouter {
   static const String doctorDetails = '/doctorDetails';
 // doctor routes
   static const String doctorHome = '/doctorHome';
+  static const String doctorProfile = '/doctorProfile';
   static const String childDetails = '/childDetails';
   static const String appointment = '/appointment';
 // payment routes
@@ -239,6 +241,10 @@ abstract class AppRouter {
     GoRoute(
       path: doctorHome,
       builder: (context, state) => const DoctorHome(),
+    ),
+    GoRoute(
+      path: doctorProfile,
+      builder: (context, state) => const DoctorProfileView(),
     ),
     GoRoute(
       path: childProfile,
