@@ -5,7 +5,7 @@ import 'package:yosrixia/core/responsive/widget_width.dart';
 import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/subscription_guard.dart';
 
 class ChildCategory extends StatelessWidget {
   const ChildCategory(

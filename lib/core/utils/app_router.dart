@@ -31,6 +31,7 @@ import 'package:yosrixia/features/child/view/child_home_view.dart';
 import 'package:yosrixia/features/child/view/child_onboarding_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/doctor/views/child_details_view.dart';
+import 'package:yosrixia/features/doctor/views/appointment_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 import 'package:yosrixia/features/parent_profile/views/child_tracker_view.dart';
@@ -39,6 +40,7 @@ import 'package:yosrixia/features/settings/views/help_center_view.dart';
 import 'package:yosrixia/features/settings/views/settings_view.dart';
 import 'package:yosrixia/features/subscripton_and_payments/views/wallet_phone_view.dart';
 import 'package:yosrixia/features/subscripton_and_payments/views/paymob_view.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/subscription_hom_view.dart';
 
 abstract class AppRouter {
   // welcome routes
@@ -86,9 +88,11 @@ abstract class AppRouter {
 // doctor routes
   static const String doctorHome = '/doctorHome';
   static const String childDetails = '/childDetails';
+  static const String appointment = '/appointment';
 // payment routes
   static const String walletPhone = '/walletPhone';
   static const String paymobView = '/paymobView';
+  static const String subscriptionHome = '/subscriptionHome';
   static const String subscriptionUsageExample = '/subscriptionUsageExample';
   static final router = GoRouter(routes: [
     // welcome routes
@@ -252,21 +256,45 @@ abstract class AppRouter {
     GoRoute(
       path: walletPhone,
       builder: (context, state) {
-        final amount = state.extra as double? ?? 100.0;
-        return WalletPhoneView(amount: amount);
+        if (state.extra is Map<String, dynamic>) {
+          final data = state.extra as Map<String, dynamic>;
+          return WalletPhoneView(
+            amount: data['amount'] ?? 100.0,
+            subscriptionType: data['subscriptionType'],
+          );
+        } else {
+          final amount = state.extra as double? ?? 100.0;
+          return WalletPhoneView(amount: amount);
+        }
       },
     ),
 
     GoRoute(
       path: paymobView,
       builder: (context, state) {
-        final amount = state.extra as double? ?? 100.0;
-        return PaymobView(amount: amount);
+        if (state.extra is Map<String, dynamic>) {
+          final data = state.extra as Map<String, dynamic>;
+          return PaymobView(
+            amount: data['amount'] ?? 100.0,
+            subscriptionType: data['subscriptionType'],
+          );
+        } else {
+          final amount = state.extra as double? ?? 100.0;
+          return PaymobView(amount: amount);
+        }
       },
+    ),
+    GoRoute(
+      path: subscriptionHome,
+      builder: (context, state) => const SubscriptionHomView(),
     ),
     GoRoute(
       path: childDetails,
       builder: (context, state) => const ChildDetailsView(),
+    ),
+    GoRoute(
+      path: appointment,
+      builder: (context, state) => const AppointmentView(),
     ),
   ]);
 }

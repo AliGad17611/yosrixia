@@ -21,7 +21,8 @@ class PaymentServices {
     );
   }
 
-  static Future<void> payWithCard(BuildContext context, double amount) async {
+  static Future<void> payWithCard(BuildContext context, double amount,
+      {SubscriptionType? subscriptionType}) async {
     await FlutterPaymob.instance.payWithCard(
       context: context,
       amount: amount,
@@ -31,7 +32,8 @@ class PaymentServices {
       currency: 'EGP',
       onPayment: (response) {
         if (response.success) {
-          SubscriptionServices.createSubscription(SubscriptionType.monthly);
+          SubscriptionServices.createSubscription(
+              subscriptionType ?? SubscriptionType.monthly);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(
@@ -47,7 +49,8 @@ class PaymentServices {
   }
 
   static Future<void> payWithWallet(
-      BuildContext context, double amount, String number) async {
+      BuildContext context, double amount, String number,
+      {SubscriptionType? subscriptionType}) async {
     await FlutterPaymob.instance.payWithWallet(
       context: context,
       amount: amount,
@@ -58,7 +61,8 @@ class PaymentServices {
       number: number,
       onPayment: (response) {
         if (response.success) {
-          SubscriptionServices.createSubscription(SubscriptionType.monthly);
+          SubscriptionServices.createSubscription(
+              subscriptionType ?? SubscriptionType.monthly);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
                 content: Text(

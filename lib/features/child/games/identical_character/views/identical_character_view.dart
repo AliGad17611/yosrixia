@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yosrixia/features/subscripton_and_payments/widgets/subscription_guard.dart';
+import 'package:yosrixia/features/subscripton_and_payments/views/subscription_guard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yosrixia/features/child/games/identical_character/cubits/tutorial_cubit/identical_character_tutorial_cubit.dart';
 import 'package:yosrixia/features/child/games/identical_character/cubits/tutorial_cubit/identical_character_tutorial_state.dart';

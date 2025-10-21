@@ -14,9 +14,15 @@ final class UsersLoading extends UsersState {}
 final class UsersSuccess extends UsersState {
   final List<UserModel> usersList;
   const UsersSuccess({required this.usersList});
+
+  @override
+  List<Object> get props => [usersList];
 }
 
 final class UsersFailure extends UsersState {
   final String error;
   const UsersFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
 }

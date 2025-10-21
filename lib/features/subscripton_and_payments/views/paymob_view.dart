@@ -8,10 +8,12 @@ import 'package:yosrixia/features/subscripton_and_payments/manger/services/payme
 
 class PaymobView extends StatelessWidget {
   final double amount;
+  final dynamic subscriptionType;
 
   const PaymobView({
     super.key,
     this.amount = 100.0,
+    this.subscriptionType,
   });
 
   @override
@@ -130,7 +132,8 @@ class PaymobView extends StatelessWidget {
                   title: 'الدفع بالبطاقة الائتمانية',
                   subtitle: 'فيزا، ماستركارد',
                   onTap: () {
-                    PaymentServices.payWithCard(context, amount);
+                    PaymentServices.payWithCard(context, amount,
+                        subscriptionType: subscriptionType);
                   },
                 ),
 
@@ -144,7 +147,10 @@ class PaymobView extends StatelessWidget {
                   onTap: () {
                     GoRouter.of(context).push(
                       AppRouter.walletPhone,
-                      extra: amount,
+                      extra: {
+                        'amount': amount,
+                        'subscriptionType': subscriptionType,
+                      },
                     );
                   },
                 ),
