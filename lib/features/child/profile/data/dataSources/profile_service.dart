@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yosrixia/core/error/failure.dart';
 import 'package:yosrixia/core/success/success.dart';
-import 'package:yosrixia/features/child/profile/models/child_profile_model.dart';
-import 'package:yosrixia/features/child/profile/models/doctor_profile_model.dart';
+import 'package:yosrixia/features/child/profile/data/models/child_profile_model.dart';
+import 'package:yosrixia/features/child/profile/data/models/doctor_profile_model.dart';
 
 class ProfileService {
   final FirebaseAuth _auth;
@@ -87,5 +87,13 @@ class ProfileService {
     await _firestore.collection('users').doc(_currentUserId).delete();
     return const Right(
         Success(icon: Icons.check, message: 'Profile deleted successfully'));
+  }
+
+  //* update user image in firestore
+  Future<void> updateUserImage(String imageUrl) async {
+    await _firestore
+        .collection('users')
+        .doc(_currentUserId)
+        .update({'imageUrl': imageUrl});
   }
 }

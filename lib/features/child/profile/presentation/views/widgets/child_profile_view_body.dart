@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yosrixia/core/di/dependency_injection.dart';
 import 'package:yosrixia/core/utils/styles.dart';
-import 'package:yosrixia/features/child/profile/data/child_info_cubit/child_info_cubit.dart';
-import 'package:yosrixia/features/child/profile/data/image_cubit/image_picker_cubit.dart';
-import 'package:yosrixia/features/child/profile/views/widgets/profile_avatar.dart';
+import 'package:yosrixia/features/child/profile/data/repo/profile_repo.dart';
+import 'package:yosrixia/features/child/profile/presentation/cubits/child_info_cubit/child_info_cubit.dart';
+import 'package:yosrixia/features/child/profile/presentation/cubits/image_cubit/image_picker_cubit.dart';
+import 'package:yosrixia/features/child/profile/presentation/views/widgets/profile_avatar.dart';
 
 class ChildProfileViewBody extends StatelessWidget {
   const ChildProfileViewBody({super.key});
@@ -14,7 +16,7 @@ class ChildProfileViewBody extends StatelessWidget {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: BlocProvider(
-          create: (context) => ChildInfoCubit()..fetchChildInfo(),
+          create: (context) => ChildInfoCubit(profileRepo: getIt<ProfileRepo>())..fetchChildInfo(),
           child: Scaffold(
             body: BlocBuilder<ChildInfoCubit, ChildInfoState>(
               builder: (context, state) {
@@ -28,9 +30,9 @@ class ChildProfileViewBody extends StatelessWidget {
                         horizontal: 16, vertical: 20),
                     children: [
                       BlocProvider(
-                        create: (context) => ImagePickerCubit(),
+                        create: (context) => ImagePickerCubit(profileRepo: getIt<ProfileRepo>()),
                         child: ProfileAvatar(
-                          imageUrl: state.childInfoModel.imageUrl,
+                          imageUrl: state.childProfileModel.imageUrl,
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -38,21 +40,21 @@ class ChildProfileViewBody extends StatelessWidget {
                         leading: const Icon(Icons.person),
                         title: const Text('الاسم'),
                         subtitle: Text(
-                          state.childInfoModel.name,
+                          state.childProfileModel.name,
                         ),
                       ),
                       ListTile(
                         leading: const Icon(Icons.email),
                         title: const Text('البريد الالكتروني'),
                         subtitle: Text(
-                          state.childInfoModel.email,
+                          state.childProfileModel.email,
                         ),
                       ),
                       ListTile(
                         leading: const Icon(Icons.phone),
                         title: const Text('الهاتف'),
                         subtitle: Text(
-                          state.childInfoModel.number,
+                          state.childProfileModel.number,
                           textDirection: TextDirection.ltr,
                           textAlign: TextAlign.right,
                         ),
@@ -60,17 +62,17 @@ class ChildProfileViewBody extends StatelessWidget {
                       ListTile(
                         leading: const Icon(Icons.people),
                         title: const Text('النوع'),
-                        subtitle: Text(state.childInfoModel.gender),
+                        subtitle: Text(state.childProfileModel.gender),
                       ),
                       ListTile(
                         leading: const Icon(Icons.cake),
                         title: const Text('تاريخ الميلاد'),
-                        subtitle: Text(state.childInfoModel.birthDate),
+                        subtitle: Text(state.childProfileModel.birthDate),
                       ),
                       ListTile(
                         leading: const Icon(Icons.location_on),
                         title: const Text('الدولة'),
-                        subtitle: Text(state.childInfoModel.country),
+                        subtitle: Text(state.childProfileModel.country),
                       ),
                       Row(
                           spacing: 10,

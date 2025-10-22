@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yosrixia/features/child/profile/models/child_info_model.dart';
+import 'package:yosrixia/features/child/profile/data/models/child_profile_model.dart';
 
 part 'child_details_state.dart';
 
@@ -21,7 +21,7 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
       if (childDoc.exists) {
         Map<String, dynamic> childData =
             childDoc.data() as Map<String, dynamic>;
-        ChildInfoModel childInfoModel = ChildInfoModel(
+        ChildProfileModel childProfileModel = ChildProfileModel(
           name: childData['name'],
           imageUrl: childData['imageUrl'],
           country: childData['country'],
@@ -30,8 +30,8 @@ class ChildDetailsCubit extends Cubit<ChildDetailsState> {
           number: childData['number'],
           email: childData['email'],
         );
-        log("child name ${childInfoModel.name}//country ${childInfoModel.country}//birthDate ${childInfoModel.birthDate}//gender ${childInfoModel.gender}//number ${childInfoModel.number}");
-        emit(ChildDetailsLoaded(childInfoModel: childInfoModel));
+        log("child name ${childProfileModel.name}//country ${childProfileModel.country}//birthDate ${childProfileModel.birthDate}//gender ${childProfileModel.gender}//number ${childProfileModel.number}");
+        emit(ChildDetailsLoaded(childProfileModel: childProfileModel));
       }
     } catch (e) {
       emit(ChildDetailsError(error: e.toString()));
