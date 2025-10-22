@@ -12,19 +12,19 @@ final class DoctorProfileInitial extends DoctorProfileState {}
 final class DoctorProfileLoading extends DoctorProfileState {}
 
 final class DoctorProfileLoaded extends DoctorProfileState {
-  final DoctorModel doctorModel;
+  final DoctorProfileModel doctorProfileModel;
 
-  const DoctorProfileLoaded({required this.doctorModel});
+  const DoctorProfileLoaded({required this.doctorProfileModel});
 
   @override
-  List<Object> get props => [doctorModel];
+  List<Object> get props => [doctorProfileModel];
 }
 
 final class DoctorProfileFailure extends DoctorProfileState {
-  final String error;
+  final Failure failure;
 
-  const DoctorProfileFailure({required this.error});
+  const DoctorProfileFailure({required this.failure});
 
   @override
-  List<Object> get props => [error];
+  List<Object> get props => [failure];
 }

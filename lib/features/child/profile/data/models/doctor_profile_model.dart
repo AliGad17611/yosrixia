@@ -3,7 +3,7 @@ class DoctorProfileModel {
   final String email;
   final String number;
   final String imageUrl;
-  final DateTime birthDate;
+  final String birthDate;
   final String organization;
   final String experience;
   DoctorProfileModel(
@@ -22,7 +22,7 @@ class DoctorProfileModel {
       imageUrl: json['imageUrl'],
       birthDate: json['birthDate'],
       organization: json['organization'],
-      experience: json['experience'],
+      experience: json['experience'].toString(),
     );
   }
   Map<String, dynamic> toJson() {
