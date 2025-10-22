@@ -12,8 +12,8 @@ final class ChildDetailsInitial extends ChildDetailsState {}
 final class ChildDetailsLoading extends ChildDetailsState {}
 
 final class ChildDetailsLoaded extends ChildDetailsState {
-  final ChildInfoModel childInfoModel;
-  const ChildDetailsLoaded({required this.childInfoModel});
+  final ChildProfileModel childProfileModel;
+  const ChildDetailsLoaded({required this.childProfileModel});
 }
 
 final class ChildDetailsError extends ChildDetailsState {

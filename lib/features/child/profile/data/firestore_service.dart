@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:yosrixia/features/child/profile/models/child_info_model.dart';
+import 'package:yosrixia/core/logger/app_logger.dart';
+import 'package:yosrixia/features/child/profile/data/models/child_profile_model.dart';
 
 class FirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -39,12 +40,12 @@ class FirestoreService {
     }
   }
 
-  Future<ChildInfoModel> getUserData() async {
+  Future<ChildProfileModel> getUserData() async {
     DocumentSnapshot userDoc =
         await _firestore.collection("users").doc(userId).get();
     if (userDoc.exists) {
       Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
-      ChildInfoModel childInfoModel = ChildInfoModel(
+      ChildProfileModel childProfileModel = ChildProfileModel(
         name: userData['name'],
         imageUrl: userData['imageUrl'],
         country: userData['country'],
@@ -52,9 +53,10 @@ class FirestoreService {
         gender: userData['gender'],
         number: userData['number'],
         email: userData['email'],
+
       );
-      log("child name ${childInfoModel.name}//country ${childInfoModel.country}//birthDate ${childInfoModel.birthDate}//gender ${childInfoModel.gender}//number ${childInfoModel.number}");
-      return childInfoModel;
+      AppLogger.logInfo("child name ${childProfileModel.name}//country ${childProfileModel.country}//birthDate ${childProfileModel.birthDate}//gender ${childProfileModel.gender}//number ${childProfileModel.number}");
+      return childProfileModel;
     }
     throw Exception("User not found");
   }

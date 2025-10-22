@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/cubit/users_cubit.dart';
+import 'package:yosrixia/core/utils/app_router.dart';
+import 'package:yosrixia/core/utils/constants.dart';
+import 'package:yosrixia/core/utils/styles.dart';
 import 'package:yosrixia/features/doctor/views/widgets/child_widget.dart';
 import 'package:yosrixia/features/doctor/views/widgets/doctor_header_widget.dart';
 
@@ -42,6 +46,32 @@ class DoctorHomeViewBody extends StatelessWidget {
                   },
                 ),
               ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouter.appointment);
+                      },
+                      child: Text(
+                        'تحديد ميعاد',
+                        style:
+                            Styles.textStyle24.copyWith(color: kPrimaryColor),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            GoRouter.of(context).push(AppRouter.doctorProfile);
+                          },
+                          child: Text(
+                            'الصفحة الشخصية',
+                            style: Styles.textStyle24
+                                .copyWith(color: kPrimaryColor),
+                          ))),
+                ],
+              )
             ],
           ),
         ),

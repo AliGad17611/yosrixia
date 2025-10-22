@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:yosrixia/core/cubit/users_cubit.dart';
-import 'package:yosrixia/core/utils/app_router.dart';
 import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/core/utils/styles.dart';
 
@@ -26,46 +24,11 @@ class _DoctorHeaderWidgetState extends State<DoctorHeaderWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Navigation Icons Row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Personal Profile Icon
-            IconButton(
-              onPressed: () {
-                // Navigate to settings which contains profile options
-                GoRouter.of(context).push(AppRouter.settings);
-              },
-              icon: const Icon(
-                Icons.account_circle,
-                size: 30,
-                color: kBlueColor,
-              ),
-              tooltip: 'الصفحة الشخصية',
-            ),
-
-            // Title
-            Text(
-              'الاطفال',
-              style: Styles.textStyle96,
-            ),
-
-            // Appointment Scheduling Icon
-            IconButton(
-              onPressed: () {
-                // Navigate to appointment scheduling
-                GoRouter.of(context).push(AppRouter.appointment);
-              },
-              icon: const Icon(
-                Icons.calendar_today,
-                size: 30,
-                color: kBlueColor,
-              ),
-              tooltip: 'تحديد ميعاد',
-            ),
-          ],
+        // Title
+        Text(
+          'الاطفال',
+          style: Styles.textStyle96,
         ),
-
         const SizedBox(height: 16),
 
         // Search Bar

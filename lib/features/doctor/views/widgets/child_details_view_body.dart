@@ -34,7 +34,7 @@ class ChildDetailsViewBody extends StatelessWidget {
                           Align(
                             alignment: Alignment.center,
                             child: UserAvatar(
-                              imageUrl: state.childInfoModel.imageUrl,
+                              imageUrl: state.childProfileModel.imageUrl,
                               role: "child",
                             ),
                           ),
@@ -43,21 +43,21 @@ class ChildDetailsViewBody extends StatelessWidget {
                             leading: const Icon(Icons.person),
                             title: const Text('الاسم'),
                             subtitle: Text(
-                              state.childInfoModel.name,
+                              state.childProfileModel.name,
                             ),
                           ),
                           ListTile(
                             leading: const Icon(Icons.email),
                             title: const Text('البريد الالكتروني'),
                             subtitle: Text(
-                              state.childInfoModel.email,
+                              state.childProfileModel.email,
                             ),
                           ),
                           ListTile(
                             leading: const Icon(Icons.phone),
                             title: const Text('الهاتف'),
                             subtitle: Text(
-                              state.childInfoModel.number,
+                              state.childProfileModel.number,
                               textDirection: TextDirection.ltr,
                               textAlign: TextAlign.right,
                             ),
@@ -65,17 +65,17 @@ class ChildDetailsViewBody extends StatelessWidget {
                           ListTile(
                             leading: const Icon(Icons.people),
                             title: const Text('النوع'),
-                            subtitle: Text(state.childInfoModel.gender),
+                            subtitle: Text(state.childProfileModel.gender),
                           ),
                           ListTile(
                             leading: const Icon(Icons.cake),
                             title: const Text('تاريخ الميلاد'),
-                            subtitle: Text(state.childInfoModel.birthDate),
+                            subtitle: Text(state.childProfileModel.birthDate),
                           ),
                           ListTile(
                             leading: const Icon(Icons.location_on),
                             title: const Text('الدولة'),
-                            subtitle: Text(state.childInfoModel.country),
+                            subtitle: Text(state.childProfileModel.country),
                           ),
                           Row(
                               spacing: 10,

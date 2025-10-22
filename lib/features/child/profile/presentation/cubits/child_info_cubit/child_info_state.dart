@@ -12,11 +12,14 @@ final class ChildInfoInitial extends ChildInfoState {}
 final class ChildInfoLoading extends ChildInfoState {}
 
 final class ChildInfoLoaded extends ChildInfoState {
-  final ChildInfoModel childInfoModel;
-  const ChildInfoLoaded(this.childInfoModel);
+  final ChildProfileModel childProfileModel;
+  const ChildInfoLoaded({required this.childProfileModel});
 }
 
 final class ChildInfoError extends ChildInfoState {
-  final String errorMessage;
-  const ChildInfoError(this.errorMessage);
+  final Failure failure;
+  const ChildInfoError({required this.failure});
+
+  @override
+  List<Object> get props => [failure];
 }

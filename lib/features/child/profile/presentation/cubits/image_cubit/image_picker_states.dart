@@ -5,8 +5,12 @@ class ImagePickerStates {}
 class ImagePickerInitial extends ImagePickerStates {}
 
 class ImagePickerLoaded extends ImagePickerStates {
-  final File imageFile;
-  ImagePickerLoaded(this.imageFile);
+  final File file;
+  ImagePickerLoaded(this.file);
 }
 
 class ImagePickerError extends ImagePickerStates {}
+
+class ImagePickerLoading extends ImagePickerStates {
+
+}

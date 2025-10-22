@@ -10,9 +10,12 @@ import 'package:yosrixia/yosrixia_app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //* initialize firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  //* initialize supabase
+  await SupabaseConfig.init();
   //* initialize paymob
   await PaymentServices.initPaymob();
   //* initialize hive
@@ -23,6 +26,5 @@ Future<void> main() async {
   // Initialize app usage tracker
   await AppUsageTracker().init();
 
-  await SupabaseConfig.init();
   runApp(const YosrixiaApp());
 }
