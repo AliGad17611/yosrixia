@@ -1,82 +1,72 @@
-import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:yosrixia/features/child/doctors/models/doctor_model.dart';
+import 'package:yosrixia/core/error/failure.dart';
+import 'package:yosrixia/core/logger/app_logger.dart';
+import 'package:yosrixia/features/child/profile/data/models/doctor_profile_model.dart';
+import 'package:yosrixia/features/child/profile/data/repo/profile_repo.dart';
 
 part 'doctor_profile_state.dart';
 
 class DoctorProfileCubit extends Cubit<DoctorProfileState> {
-  DoctorProfileCubit({required this.firebaseInstance}) : super(DoctorProfileInitial());
-  final FirebaseAuth firebaseInstance ;
+  DoctorProfileCubit({required this.profileRepo})
+      : super(DoctorProfileInitial());
+  final ProfileRepo profileRepo;
 
   Future<void> getDoctorProfile() async {
+    AppLogger.logInfo('Getting doctor profile');
     emit(DoctorProfileLoading());
-    try {
-      // Get current user ID
-      final currentUserId = firebaseInstance.currentUser?.uid;
 
-      if (currentUserId == null) {
-        emit(const DoctorProfileFailure(error: 'User not authenticated'));
-        return;
-      }
-
-      log('Fetching doctor profile for user: $currentUserId');
-
-      // Fetch doctor data from Firestore
-      DocumentSnapshot doctorDoc = await FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUserId)
-          .get();
-
-      if (doctorDoc.exists) {
-        Map<String, dynamic> doctorData =
-            doctorDoc.data() as Map<String, dynamic>;
-
-        DoctorModel doctorModel = DoctorModel(
-          email: doctorData['email'] ?? '',
-          name: doctorData['name'] ?? '',
-          imageUrl: doctorData['imageUrl'] ?? '',
-          number: doctorData['number'] ?? '',
-        );
-
-        log("Doctor profile loaded - name: ${doctorModel.name}, email: ${doctorModel.email}");
-        emit(DoctorProfileLoaded(doctorModel: doctorModel));
-      } else {
-        emit(const DoctorProfileFailure(error: 'Doctor profile not found'));
-      }
-    } catch (e) {
-      log('Error loading doctor profile: $e');
-      emit(DoctorProfileFailure(error: e.toString()));
-    }
+    AppLogger.logInfo('Profile repo: $profileRepo');
+    final result = await profileRepo.getDoctorProfile();
+    AppLogger.logInfo('Doctor profile result: $result');
+    result.fold(
+      (failure) => emit(DoctorProfileFailure(failure: failure)),
+      (doctorProfileModel) =>
+          emit(DoctorProfileLoaded(doctorProfileModel: doctorProfileModel)),
+    );
   }
 
   Future<void> updateDoctorProfile({
     required String name,
     required String number,
+    required DateTime birthDate,
+    required String organization,
+    required String experience,
+    String? imageUrl,
+    String? email,
   }) async {
-    try {
-      final currentUserId = FirebaseAuth.instance.currentUser?.uid;
+    AppLogger.logInfo('Updating doctor profile');
+    // Get current state to retrieve existing values
+    if (state is DoctorProfileLoaded) {
+      final currentDoctor = (state as DoctorProfileLoaded).doctorProfileModel;
 
-      if (currentUserId == null) {
-        emit(const DoctorProfileFailure(error: 'User not authenticated'));
-        return;
-      }
+      final updatedDoctor = DoctorProfileModel(
+        name: name,
+        email: email ?? currentDoctor.email,
+        number: number,
+        imageUrl: imageUrl ?? currentDoctor.imageUrl,
+        birthDate:
+            '${birthDate.year}-${birthDate.month.toString().padLeft(2, '0')}-${birthDate.day.toString().padLeft(2, '0')}',
+        organization: organization,
+        experience: experience,
+      );
 
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(currentUserId)
-          .update({
-        'name': name,
-        'number': number,
-      });
+      emit(DoctorProfileLoading());
 
-      // Reload the profile
-      await getDoctorProfile();
-    } catch (e) {
-      log('Error updating doctor profile: $e');
-      emit(DoctorProfileFailure(error: e.toString()));
+      final result = await profileRepo.updateDoctorProfile(updatedDoctor);
+
+      result.fold(
+        (failure) => emit(DoctorProfileFailure(failure: failure)),
+        (success) async {
+          // After successful update, fetch the updated profile
+          final profileResult = await profileRepo.getDoctorProfile();
+          profileResult.fold(
+            (failure) => emit(DoctorProfileFailure(failure: failure)),
+            (doctorProfileModel) => emit(
+                DoctorProfileLoaded(doctorProfileModel: doctorProfileModel)),
+          );
+        },
+      );
     }
   }
 }
