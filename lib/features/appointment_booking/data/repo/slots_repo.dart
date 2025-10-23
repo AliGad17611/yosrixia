@@ -21,6 +21,23 @@ class SlotsRepo {
     }
   }
 
+  //* update slot
+  Future<Either<Failure, Success>> updateSlot(SlotModel slot) async {
+    try {
+      //* check if slot dosnt booked
+      if (slot.isAvailable == true) {
+        await _slotsService.updateSlot(slot);
+        return const Right(
+            Success(icon: Icons.check, message: 'تم تحديث الموعد بنجاح'));
+      } else {
+        return const Left(Failure(
+            icon: Icons.error, message: 'هذا الموعد محجوز ولا يمكن تحديثه'));
+      }
+    } catch (e) {
+      return Left(Failure(icon: Icons.error, message: e.toString()));
+    }
+  }
+
   //* get available slots
   Stream<Either<Failure, List<SlotModel>>> getAvailableSlotsStream(
       String doctorId) async* {

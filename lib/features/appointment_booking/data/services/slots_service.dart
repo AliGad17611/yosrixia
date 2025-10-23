@@ -20,6 +20,11 @@ class SlotsService {
     await _firestore.collection(collectionName).add(slot.toJson());
   }
 
+  //* update slot
+  Future<void> updateSlot(SlotModel slot) async {
+    await _firestore.collection(collectionName).doc(slot.id).update(slot.toJson());
+  }
+
   //* get slots from firestore
   Stream<List<SlotModel>> getAvailableSlotsStream(String doctorId) async* {
     yield* _firestore
