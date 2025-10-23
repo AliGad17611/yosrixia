@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/profile_service.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/storage_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/profile_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/storage_service.dart';
 import 'package:yosrixia/features/child/profile/data/repo/profile_repo.dart';
 import 'package:yosrixia/features/child/profile/presentation/cubits/child_info_cubit/child_info_cubit.dart';
 

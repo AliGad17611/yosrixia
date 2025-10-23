@@ -6,8 +6,8 @@ import 'package:yosrixia/core/error/failure.dart';
 import 'package:yosrixia/core/helper/picker.dart';
 import 'package:yosrixia/core/logger/app_logger.dart';
 import 'package:yosrixia/core/success/success.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/profile_service.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/storage_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/profile_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/storage_service.dart';
 import 'package:yosrixia/features/child/profile/data/models/child_profile_model.dart';
 import 'package:yosrixia/features/child/profile/data/models/doctor_profile_model.dart';
 
