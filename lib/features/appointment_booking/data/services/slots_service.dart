@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yosrixia/features/appointment_booking/data/models/slot_model.dart';
 
-class SlotService {
+class SlotsService {
   final FirebaseFirestore _firestore;
   final String collectionName = 'appointment_slots';
-  SlotService({required FirebaseFirestore firestore}) : _firestore = firestore;
+  SlotsService({required FirebaseFirestore firestore}) : _firestore = firestore;
 
   //* add slot
   Future<void> addSlot(SlotModel slot) async {
