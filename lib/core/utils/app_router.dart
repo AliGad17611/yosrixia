@@ -33,6 +33,7 @@ import 'package:yosrixia/features/child/view/child_onboarding_view.dart';
 import 'package:yosrixia/features/doctor/views/doctor_home.dart';
 import 'package:yosrixia/features/doctor/views/child_details_view.dart';
 import 'package:yosrixia/features/doctor/views/appointment_view.dart';
+import 'package:yosrixia/features/appointment_booking/presentation/views/add_slot_view.dart';
 import 'package:yosrixia/features/onboarding/views/splash_view.dart';
 import 'package:yosrixia/features/onboarding/views/welcome_view.dart';
 import 'package:yosrixia/features/parent_profile/views/child_tracker_view.dart';
@@ -91,6 +92,7 @@ abstract class AppRouter {
   static const String doctorProfile = '/doctorProfile';
   static const String childDetails = '/childDetails';
   static const String appointment = '/appointment';
+  static const String addSlot = '/addSlot';
 // payment routes
   static const String walletPhone = '/walletPhone';
   static const String paymobView = '/paymobView';
@@ -301,6 +303,10 @@ abstract class AppRouter {
     GoRoute(
       path: appointment,
       builder: (context, state) => const AppointmentView(),
+    ),
+    GoRoute(
+      path: addSlot,
+      builder: (context, state) => const AddSlotView(),
     ),
   ]);
 }
