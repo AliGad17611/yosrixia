@@ -3,7 +3,7 @@ class DoctorProfileModel {
   final String email;
   final String number;
   final String imageUrl;
-  final DateTime birthDate;
+  final String birthDate;
   final String organization;
   final String experience;
   DoctorProfileModel(

@@ -39,5 +39,5 @@ Future<void> setupDependencyInjection() async {
   // slots repo
   getIt.registerLazySingleton<SlotsRepo>(() => SlotsRepo(slotsService: getIt<SlotsService>()));
   // slots cubit
-  getIt.registerFactory<SlotsCubit>(() => SlotsCubit(slotsRepo: getIt<SlotsRepo>()));
+  getIt.registerFactory<SlotsCubit>(() => SlotsCubit(slotsRepo: getIt<SlotsRepo>(), profileRepo: getIt<ProfileRepo>(), firebaseAuth: getIt<FirebaseAuth>()));
 }

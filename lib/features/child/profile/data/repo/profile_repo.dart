@@ -14,15 +14,19 @@ import 'package:yosrixia/features/child/profile/data/models/doctor_profile_model
 class ProfileRepo {
   final ProfileService _profileService;
   final StorageService _storageService;
-  ProfileRepo({required ProfileService profileService, required StorageService storageService})
+  ProfileRepo(
+      {required ProfileService profileService,
+      required StorageService storageService})
       : _profileService = profileService,
         _storageService = storageService;
 
   //* get doctor profile
   Future<Either<Failure, DoctorProfileModel>> getDoctorProfile() async {
     try {
+      AppLogger.logInfo('getDoctorProfile');
       return await _profileService.getDoctorProfile();
     } catch (e) {
+      AppLogger.logInfo('getDoctorProfile error: $e');
       return Left(Failure(icon: Icons.error, message: e.toString()));
     }
   }
