@@ -22,7 +22,10 @@ class SlotsService {
 
   //* update slot
   Future<void> updateSlot(SlotModel slot) async {
-    await _firestore.collection(collectionName).doc(slot.id).update(slot.toJson());
+    await _firestore
+        .collection(collectionName)
+        .doc(slot.id)
+        .update(slot.toJson());
   }
 
   //* get slots from firestore
@@ -34,7 +37,7 @@ class SlotsService {
         .orderBy('dateTime', descending: false)
         .snapshots()
         .map((snapshot) => snapshot.docs
-            .map((doc) => SlotModel.fromJson(doc.data()))
+            .map((doc) => SlotModel.fromJson(doc.data(), id: doc.id))
             .toList());
   }
 
