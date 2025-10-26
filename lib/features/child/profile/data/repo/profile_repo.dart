@@ -6,23 +6,27 @@ import 'package:yosrixia/core/error/failure.dart';
 import 'package:yosrixia/core/helper/picker.dart';
 import 'package:yosrixia/core/logger/app_logger.dart';
 import 'package:yosrixia/core/success/success.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/profile_service.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/storage_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/profile_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/storage_service.dart';
 import 'package:yosrixia/features/child/profile/data/models/child_profile_model.dart';
 import 'package:yosrixia/features/child/profile/data/models/doctor_profile_model.dart';
 
 class ProfileRepo {
   final ProfileService _profileService;
   final StorageService _storageService;
-  ProfileRepo({required ProfileService profileService, required StorageService storageService})
+  ProfileRepo(
+      {required ProfileService profileService,
+      required StorageService storageService})
       : _profileService = profileService,
         _storageService = storageService;
 
   //* get doctor profile
   Future<Either<Failure, DoctorProfileModel>> getDoctorProfile() async {
     try {
+      AppLogger.logInfo('getDoctorProfile');
       return await _profileService.getDoctorProfile();
     } catch (e) {
+      AppLogger.logInfo('getDoctorProfile error: $e');
       return Left(Failure(icon: Icons.error, message: e.toString()));
     }
   }

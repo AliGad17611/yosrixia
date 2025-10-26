@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yosrixia/core/utils/app_router.dart';
+import 'package:yosrixia/core/utils/constants.dart';
 import 'package:yosrixia/features/widgets/background.dart';
 
 class AppointmentView extends StatelessWidget {
@@ -13,31 +16,58 @@ class AppointmentView extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(16.0),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.calendar_today,
                   size: 100,
                   color: Colors.blue,
                 ),
-                SizedBox(height: 20),
-                Text(
-                  'تحديد ميعاد',
+                const SizedBox(height: 20),
+                const Text(
+                  'إدارة المواعيد',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'هذه الصفحة قيد التطوير',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
+                const SizedBox(height: 30),
+                ElevatedButton.icon(
+                  onPressed: () => context.push(AppRouter.addSlot),
+                  icon: const Icon(Icons.add),
+                  label: const Text('إضافة موعد جديد'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kBlueColor,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('عرض المواعيد - قيد التطوير')),
+                    );
+                  },
+                  icon: const Icon(Icons.list),
+                  label: const Text('عرض المواعيد الحالية'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: kSecondaryColor,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24, vertical: 12),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                   ),
                 ),
               ],

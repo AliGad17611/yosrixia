@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/profile_service.dart';
-import 'package:yosrixia/features/child/profile/data/dataSources/storage_service.dart';
+import 'package:yosrixia/features/appointment_booking/data/repo/slots_repo.dart';
+import 'package:yosrixia/features/appointment_booking/data/services/slots_service.dart';
+import 'package:yosrixia/features/appointment_booking/presentation/cubits/slots_cubit/slots_cubit.dart';
+import 'package:yosrixia/features/child/profile/data/services/profile_service.dart';
+import 'package:yosrixia/features/child/profile/data/services/storage_service.dart';
 import 'package:yosrixia/features/child/profile/data/repo/profile_repo.dart';
 import 'package:yosrixia/features/child/profile/presentation/cubits/child_info_cubit/child_info_cubit.dart';
 
@@ -27,5 +30,14 @@ Future<void> setupDependencyInjection() async {
   getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepo(profileService: getIt<ProfileService>(), storageService: getIt<StorageService>()));
 
   // profile cubits
-  getIt.registerLazySingleton<ChildInfoCubit>(() => ChildInfoCubit(profileRepo: getIt<ProfileRepo>()));
+  getIt.registerFactory<ChildInfoCubit>(() => ChildInfoCubit(profileRepo: getIt<ProfileRepo>()));
+
+  // Appointment Booking
+
+  // slots service
+  getIt.registerLazySingleton<SlotsService>(() => SlotsService(firestore: getIt<FirebaseFirestore>()));
+  // slots repo
+  getIt.registerLazySingleton<SlotsRepo>(() => SlotsRepo(slotsService: getIt<SlotsService>()));
+  // slots cubit
+  getIt.registerFactory<SlotsCubit>(() => SlotsCubit(slotsRepo: getIt<SlotsRepo>(), profileRepo: getIt<ProfileRepo>(), firebaseAuth: getIt<FirebaseAuth>()));
 }
