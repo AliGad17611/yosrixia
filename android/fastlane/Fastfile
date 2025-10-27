@@ -13,8 +13,7 @@ platform :android do
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       groups: "testers",
       release_notes: "This is a test for the app distribution",
-      testers: "aligad.17611@gmail.com",
+      testers: "aligad.17611@gmail.com","mayae5928@gmail.com","ahmedrenad263@gmail.com"
     )
   end
 end
-# "mayae5928@gmail.com","ahmedrenad263@gmail.com" are the testers for the app distribution will be added later.
