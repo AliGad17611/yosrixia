@@ -8,8 +8,8 @@ class WordCompletionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: WordCompletionViewBody()),
+    return const BackGround(
+      child: SubscriptionGuard(child: WordCompletionViewBody()),
     );
   }
 }

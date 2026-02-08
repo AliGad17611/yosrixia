@@ -130,7 +130,7 @@ class FindCharacterCubit extends Cubit<FindCharacterState> {
 
       // Check if there is no remaining character, navigate to next screen
       if (newRemainingCount <= 0) {
-        if (showedCharacters.length == 3) {
+        if (showedCharacters.length == allArabicChars.length) {
           // game completed
           emit(FindCharacterSuccess(
             completedCharacter: showedCharacters.last,

@@ -10,8 +10,8 @@ class HandwritingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SubscriptionGuard(
-      child: BackGround(
+    return BackGround(
+      child: SubscriptionGuard(
           child: BlocProvider(
               create: (context) => HandwritingCubit(),
               child: const HandwritingViewBody())),

@@ -8,8 +8,8 @@ class WordHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: WordHomeViewBody()),
+    return const BackGround(
+      child: SubscriptionGuard(child: WordHomeViewBody()),
     );
   }
 }

@@ -8,8 +8,8 @@ class FindCharacterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(
+    return const BackGround(
+      child: SubscriptionGuard(
         child: FindCharacterViewBody(),
       ),
     );

@@ -20,4 +20,8 @@ class AssetsData {
   static const String identicalCharacter =
       'assets/media/games/identical_character.png';
   static const String chat = 'assets/media/childHome/chat.png';
+  static const String childOnboardingPage6 =
+      'assets/media/childOnboarding/6.png';
+  static const String childOnboardingPage7 =
+      'assets/media/childOnboarding/7.png';
 }

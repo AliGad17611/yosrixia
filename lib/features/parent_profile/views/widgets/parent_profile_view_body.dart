@@ -46,7 +46,7 @@ class _ParentProfileViewBodyState extends State<ParentProfileViewBody> {
             child: BlocConsumer<ParentAuthCubit, ParentAuthState>(
               listener: (context, state) {
                 if (state is ParentAuthSuccess) {
-                  GoRouter.of(context).push(AppRouter.childTracker);
+                  GoRouter.of(context).pushReplacement(AppRouter.settings);
                 } else if (state is ParentAuthError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

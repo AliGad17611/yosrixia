@@ -52,11 +52,11 @@ class SubCharacterTutorialCubit extends Cubit<TutorialState> {
   /// Move to next tutorial step
   void nextStep() {
     log('currentIndex is $currentIndex');
-    if (currentIndex < 3) {
+    if (currentIndex < subCharacterTutorialData.length - 1) {
       currentIndex++;
       emit(TutorialVisible(
         currentIndex: currentIndex,
-        isLastStep: currentIndex == 3,
+        isLastStep: currentIndex == subCharacterTutorialData.length - 1,
       ));
     } else {
       completeTutorial();

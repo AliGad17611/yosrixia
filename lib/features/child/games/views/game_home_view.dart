@@ -8,8 +8,8 @@ class GameHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: Center(child: GameHomeViewBody())),
+    return const BackGround(
+      child: SubscriptionGuard(child: Center(child: GameHomeViewBody())),
     );
   }
 }
