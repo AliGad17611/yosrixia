@@ -66,13 +66,16 @@ class IdenticalCharacterCubit extends Cubit<IdenticalCharacterState> {
     newFlippedCards[index] = true;
     newCurrentFlippedIndexes.add(index);
 
+    final isCheckingMatch = newCurrentFlippedIndexes.length == 2;
+
     emit(currentState.copyWith(
       flippedCards: newFlippedCards,
       currentFlippedIndexes: newCurrentFlippedIndexes,
+      isProcessing: isCheckingMatch,
     ));
 
     // Check if we have two cards flipped
-    if (newCurrentFlippedIndexes.length == 2) {
+    if (isCheckingMatch) {
       _checkMatch();
     }
   }
@@ -81,8 +84,6 @@ class IdenticalCharacterCubit extends Cubit<IdenticalCharacterState> {
     final currentState = state;
     if (currentState is! IdenticalCharacterGameState) return;
 
-    emit(currentState.copyWith(isProcessing: true));
-
     final firstIndex = currentState.currentFlippedIndexes[0];
     final secondIndex = currentState.currentFlippedIndexes[1];
     final firstCharacter = currentState.characters[firstIndex];
@@ -90,16 +91,21 @@ class IdenticalCharacterCubit extends Cubit<IdenticalCharacterState> {
 
     // Check if characters match
     if (firstCharacter == secondCharacter) {
-      // Match found - mark cards as matched
-      final newMatchedCards = List<bool>.from(currentState.matchedCards);
-      newMatchedCards[firstIndex] = true;
-      newMatchedCards[secondIndex] = true;
+      // Match found - mark cards as matched after a small delay to let animation finish
+      Timer(const Duration(milliseconds: 500), () {
+        final newestState = state;
+        if (newestState is! IdenticalCharacterGameState) return;
 
-      emit(currentState.copyWith(
-        matchedCards: newMatchedCards,
-        currentFlippedIndexes: [],
-        isProcessing: false,
-      ));
+        final newMatchedCards = List<bool>.from(newestState.matchedCards);
+        newMatchedCards[firstIndex] = true;
+        newMatchedCards[secondIndex] = true;
+
+        emit(newestState.copyWith(
+          matchedCards: newMatchedCards,
+          currentFlippedIndexes: [],
+          isProcessing: false,
+        ));
+      });
     } else {
       // No match - flip cards back after delay
       _flipBackTimer = Timer(const Duration(milliseconds: 1000), () {

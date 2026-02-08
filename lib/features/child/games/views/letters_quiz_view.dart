@@ -8,8 +8,8 @@ class LettersQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: LettersQuizViewBody()),
+    return const BackGround(
+      child: SubscriptionGuard(child: LettersQuizViewBody()),
     );
   }
 }

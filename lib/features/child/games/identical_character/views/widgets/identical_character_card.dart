@@ -4,59 +4,34 @@ import 'package:yosrixia/features/child/games/identical_character/views/widgets/
 import 'package:yosrixia/features/child/games/identical_character/views/widgets/identical_charactercard_front.dart';
 import 'package:yosrixia/features/child/games/identical_character/views/widgets/identical_character_card_back.dart';
 
-class IdenticalCharacterCard extends StatefulWidget {
+class IdenticalCharacterCard extends StatelessWidget {
   const IdenticalCharacterCard({
     super.key,
     this.character = 'أ',
     this.onTap,
     this.isFlipped = false,
     this.isMatched = false,
+    this.isProcessing = false,
   });
 
   final String character;
   final VoidCallback? onTap;
   final bool isFlipped;
   final bool isMatched;
-
-  @override
-  State<IdenticalCharacterCard> createState() => _IdenticalCharacterCardState();
-}
-
-class _IdenticalCharacterCardState extends State<IdenticalCharacterCard> {
-  bool _isFlipped = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isFlipped = widget.isFlipped;
-  }
-
-  @override
-  void didUpdateWidget(IdenticalCharacterCard oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.isFlipped != oldWidget.isFlipped) {
-      setState(() {
-        _isFlipped = widget.isFlipped;
-      });
-    }
-  }
+  final bool isProcessing;
 
   void _handleTap() {
-    // Don't allow tapping if the card is matched
-    if (widget.isMatched) return;
-
-    setState(() {
-      _isFlipped = !_isFlipped;
-    });
-    widget.onTap?.call();
+    // Don't allow tapping if the card is matched, already flipped, or processing
+    if (isMatched || isFlipped || isProcessing) return;
+    onTap?.call();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.isMatched ? null : _handleTap,
+      onTap: _handleTap,
       child: AnimatedFlipContainer(
-        isFlipped: _isFlipped,
+        isFlipped: isFlipped,
         frontChild: Container(
           decoration: BoxDecoration(
             color: kPrimaryColor,
@@ -69,8 +44,8 @@ class _IdenticalCharacterCardState extends State<IdenticalCharacterCard> {
           child: const IdenticalCharactercardFront(),
         ),
         backChild: IdenticalCharacterCardBack(
-          character: widget.character,
-          isMatched: widget.isMatched,
+          character: character,
+          isMatched: isMatched,
         ),
         onFlipComplete: () {
           // You can add logic here when flip animation completes

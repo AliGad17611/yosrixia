@@ -8,8 +8,8 @@ class ImageNameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: ImageNameViewBody()),
+    return const BackGround(
+      child: SubscriptionGuard(child: ImageNameViewBody()),
     );
   }
 }

@@ -8,8 +8,8 @@ class PuzzelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SubscriptionGuard(
-      child: BackGround(child: PuzzelViewBody()),
+    return const BackGround(
+      child: SubscriptionGuard(child: PuzzelViewBody()),
     );
   }
 }

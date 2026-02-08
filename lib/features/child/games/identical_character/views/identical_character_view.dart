@@ -12,8 +12,8 @@ class IdenticalCharacterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SubscriptionGuard(
-      child: BackGround(
+    return BackGround(
+      child: SubscriptionGuard(
         child: BlocProvider(
           create: (context) =>
               IdenticalCharacterTutorialCubit()..checkTutorialStatus(),

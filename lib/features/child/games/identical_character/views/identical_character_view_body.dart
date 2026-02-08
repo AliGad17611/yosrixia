@@ -64,6 +64,7 @@ class IdenticalCharacterViewBody extends StatelessWidget {
                           character: state.characters[index],
                           isFlipped: state.flippedCards[index],
                           isMatched: state.matchedCards[index],
+                          isProcessing: state.isProcessing,
                           onTap: () {
                             context
                                 .read<IdenticalCharacterCubit>()
