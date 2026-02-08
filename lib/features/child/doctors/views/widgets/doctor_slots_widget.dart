@@ -113,7 +113,7 @@ class DoctorSlotsWidget extends StatelessWidget {
                           width: 60,
                           height: 60,
                           decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.1),
+                            color: Colors.blue.withValues(alpha:0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Column(
@@ -212,7 +212,7 @@ class DoctorSlotsWidget extends StatelessWidget {
 
         // Show success message
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('تم حجز الموعد بنجاح!'),
             backgroundColor: Colors.green,
           ),

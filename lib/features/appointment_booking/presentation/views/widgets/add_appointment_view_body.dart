@@ -83,7 +83,7 @@ class _AddAppointmentViewBodyState extends State<AddAppointmentViewBody> {
                                   .format(selectedDate),
                               style: Styles.textStyle16,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.calendar_today,
                               color: Colors.blue,
                             ),
@@ -130,7 +130,7 @@ class _AddAppointmentViewBodyState extends State<AddAppointmentViewBody> {
                               selectedTime.format(context),
                               style: Styles.textStyle16,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.access_time,
                               color: Colors.blue,
                             ),
@@ -153,7 +153,7 @@ class _AddAppointmentViewBodyState extends State<AddAppointmentViewBody> {
                 listener: (context, state) {
                   if (state is SlotsAdded) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('تم إضافة الموعد بنجاح!'),
                         backgroundColor: Colors.green,
                       ),
