@@ -26,7 +26,7 @@ class SettingsViewBody extends StatelessWidget {
             SettingsButton(
                 text: "قسم أوليات الأمور",
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.parentProfile);
+                  GoRouter.of(context).push(AppRouter.childTracker);
                 },
                 icon: Icons.family_restroom),
             SettingsButton(

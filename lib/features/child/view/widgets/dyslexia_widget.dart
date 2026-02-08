@@ -12,7 +12,7 @@ class DyslexiaWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.settings);
+        GoRouter.of(context).push(AppRouter.parentProfile);
       },
       child: Align(
         alignment: Alignment.centerRight,
