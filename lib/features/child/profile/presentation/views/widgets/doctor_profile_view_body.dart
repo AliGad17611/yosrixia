@@ -99,7 +99,7 @@ class _DoctorProfileContent extends StatelessWidget {
             const SizedBox(height: 28),
 
             // Contact Information
-            _SectionTitle(title: 'معلومات التواصل'),
+            const _SectionTitle(title: 'معلومات التواصل'),
 
             const SizedBox(height: 12),
 
@@ -128,7 +128,7 @@ class _DoctorProfileContent extends StatelessWidget {
             const SizedBox(height: 28),
 
             // Professional Information
-            _SectionTitle(title: 'المعلومات المهنية'),
+            const _SectionTitle(title: 'المعلومات المهنية'),
 
             const SizedBox(height: 12),
 
